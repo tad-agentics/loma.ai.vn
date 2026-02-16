@@ -152,7 +152,7 @@ Infrastructure: $53/month at launch. Break-even at ~15 paying users.
 
 Natural upgrade path: hit free limit on a busy day → buy a PAYG pack → realize 3 packs/month → Pro is cheaper → self-selected upgrade.
 
-Vietnam payments via MoMo, ZaloPay, VietQR (PayOS). International via Stripe.
+Vietnam payments via MoMo, ZaloPay, VietQR (PayOS).
 
 ---
 

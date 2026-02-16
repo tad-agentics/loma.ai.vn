@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Local API server for the Loma extension.
-Serves POST /api/v1/rewrite, /api/v1/events, /api/v1/billing/webhook, GET /health.
+Serves POST /api/v1/rewrite, /api/v1/events, GET /health.
 Run: cd backend && python server.py
 Default: http://127.0.0.1:3000
 """
@@ -65,11 +65,6 @@ def rewrite():
 
 @app.route("/api/v1/events", methods=["POST", "OPTIONS"])
 def events():
-    return _dispatch()
-
-
-@app.route("/api/v1/billing/webhook", methods=["POST"])
-def billing_webhook():
     return _dispatch()
 
 

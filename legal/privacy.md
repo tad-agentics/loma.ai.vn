@@ -41,7 +41,7 @@ We do **not** collect browsing history, page content beyond text fields you acti
 We do **not** sell your data. We share data only with:
 - **Anthropic (Claude API):** Your input text is sent to Claude for rewriting. Anthropic's usage policy applies.
 - **Supabase:** Our database provider, for storing user accounts and rewrite history.
-- **Stripe / PayOS:** For processing payments (billing data only, not your text).
+- **PayOS:** For processing payments (billing data only, not your text).
 
 ## 4. Data Retention
 

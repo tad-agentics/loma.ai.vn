@@ -24,10 +24,6 @@ def handler(event: dict, context: object) -> dict:
     if path.endswith("/health"):
         return _json_response(200, {"ok": True, "service": "loma-rewrite"})
 
-    # Stripe webhook
-    if path.endswith("/billing/webhook"):
-        return _handle_stripe_webhook(event)
-
     # Analytics event
     if path.endswith("/events"):
         return _handle_event(event)
@@ -115,17 +111,6 @@ def _handle_rewrite(event: dict) -> dict:
     analytics.track_rewrite(user_id, result)
 
     return _json_response(200, result)
-
-
-def _handle_stripe_webhook(event: dict) -> dict:
-    """Handle POST /api/v1/billing/webhook."""
-    raw_body = event.get("body") or ""
-    payload = raw_body.encode("utf-8") if isinstance(raw_body, str) else raw_body
-    headers = event.get("headers") or {}
-    sig = headers.get("stripe-signature") or headers.get("Stripe-Signature") or ""
-    result = billing.handle_stripe_webhook(payload, sig)
-    status = 200 if result.get("ok") else 400
-    return _json_response(status, result)
 
 
 def _handle_event(event: dict) -> dict:
