@@ -1,9 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Loma",
-  "version": "0.1.0",
-  "description": "Viết tiếng Việt. Nhận tiếng Anh chuyên nghiệp.",
+  "version": "1.0.0",
+  "description": "Hết loay hoay với câu chữ. Viết tiếng Việt, nhận văn bản chuyên nghiệp — tiếng Anh hoặc tiếng Việt.",
   "default_locale": "vi",
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
   "permissions": ["storage", "activeTab", "tabs"],
   "host_permissions": ["https://*/*", "http://localhost/*"],
   "background": {
@@ -12,12 +17,34 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content/detection.js", "content/text-isolation.js", "content/loma-button.js", "content/result-card.js", "content/content.js"],
+      "js": [
+        "content/detection.js",
+        "content/text-isolation.js",
+        "content/loma-button.js",
+        "content/result-card.js",
+        "content/content.js"
+      ],
       "run_at": "document_idle",
       "all_frames": false
     }
   ],
   "action": {
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "48": "images/icon-48.png"
+    }
+  },
+  "commands": {
+    "trigger-rewrite": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Period",
+        "mac": "Command+Shift+Period"
+      },
+      "description": "Trigger Loma rewrite"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }

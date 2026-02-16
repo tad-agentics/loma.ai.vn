@@ -16,14 +16,38 @@
     .toggle.on::after { left: 18px; }
     select { padding: 4px 8px; border-radius: 6px; border: 1px solid #d1d5db; font-size: 13px; }
     .api { font-size: 11px; color: #9ca3af; word-break: break-all; }
+    .tier-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+    .tier-free { background: #f3f4f6; color: #6b7280; }
+    .tier-payg { background: #dbeafe; color: #1d4ed8; }
+    .tier-pro { background: #d1fae5; color: #059669; }
+    .auth-section { text-align: center; padding: 4px 0; }
+    .auth-email { font-size: 12px; color: #6b7280; margin-bottom: 4px; }
+    .btn-link { background: none; border: none; color: #0d9488; cursor: pointer; font-size: 12px; padding: 2px 0; }
+    .btn-link:hover { text-decoration: underline; }
+    .shortcut { font-size: 11px; color: #9ca3af; text-align: center; margin-top: 8px; }
+    kbd { background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 3px; padding: 1px 4px; font-size: 10px; font-family: monospace; }
   </style>
 </head>
 <body>
   <h1 id="title">Loma</h1>
+
+  <div class="section">
+    <div class="auth-section">
+      <div id="auth-info" style="display:none;">
+        <div class="auth-email" id="user-email"></div>
+        <span class="tier-badge tier-free" id="tier-badge">Free</span>
+        <br><button class="btn-link" id="btn-logout">Đăng xuất</button>
+      </div>
+      <div id="auth-anon">
+        <span class="label">5 lượt miễn phí / ngày</span>
+      </div>
+    </div>
+  </div>
+
   <div class="section">
     <div class="row">
-      <span class="label" id="lbl-balance">Gói dùng thử</span>
-      <span class="value" id="balance">—</span>
+      <span class="label" id="lbl-balance">Gói</span>
+      <span class="value" id="balance">-</span>
     </div>
     <div class="row">
       <span class="label" id="lbl-today">Hôm nay</span>
@@ -34,12 +58,14 @@
       <span class="value" id="rewrites-month">0</span>
     </div>
   </div>
+
   <div class="section">
     <div class="row">
       <span class="label" id="lbl-site">Bật Loma trên trang này</span>
       <div id="site-toggle" class="toggle on" role="switch" aria-checked="true"></div>
     </div>
   </div>
+
   <div class="section">
     <div class="row">
       <span class="label" id="lbl-lang">Giao diện</span>
@@ -49,9 +75,15 @@
       </select>
     </div>
   </div>
+
   <div class="section">
-    <p class="api"><span id="lbl-api">API</span>: <span id="api-base">—</span></p>
+    <p class="api"><span id="lbl-api">API</span>: <span id="api-base">-</span></p>
   </div>
+
+  <div class="shortcut">
+    <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> để viết lại
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 /**
- * Popup — Vietnamese-first: balance (stub), rewrites today/month, per-site toggle, UI language.
+ * Popup — Vietnamese-first: auth status, balance, rewrites today/month,
+ * per-site toggle, UI language, keyboard shortcut hint.
  */
 (function () {
   const t = (key) => chrome.i18n.getMessage(key) || key;
@@ -11,7 +12,6 @@
 
   function applyLocale() {
     setText('title', t('ext_name'));
-    setText('lbl-balance', t('popup_balance'));
     setText('lbl-today', t('popup_rewrites_today'));
     setText('lbl-month', t('popup_rewrites_month'));
     setText('lbl-site', t('popup_site_toggle'));
@@ -21,10 +21,12 @@
 
   applyLocale();
 
+  // API base
   chrome.storage.local.get(['loma_api_base'], (data) => {
-    setText('api-base', data.loma_api_base || 'http://localhost:3000');
+    setText('api-base', data.loma_api_base || 'https://api.loma.app');
   });
 
+  // Stats
   chrome.runtime.sendMessage({ type: 'GET_STATS' }, (res) => {
     if (res) {
       setText('rewrites-today', String(res.rewrites_today || 0));
@@ -32,8 +34,43 @@
     }
   });
 
-  setText('balance', '5/5 ngày'); // Stub: free tier 5 per day
+  // Auth state
+  chrome.runtime.sendMessage({ type: 'GET_AUTH' }, (res) => {
+    if (res && res.email) {
+      document.getElementById('auth-info').style.display = 'block';
+      document.getElementById('auth-anon').style.display = 'none';
+      setText('user-email', res.email);
+      const badge = document.getElementById('tier-badge');
+      const tier = res.tier || 'free';
+      badge.textContent = tier === 'pro' ? 'Pro' : tier === 'payg' ? 'PAYG' : 'Free';
+      badge.className = 'tier-badge tier-' + tier;
+      if (tier === 'pro') {
+        setText('balance', 'Unlimited');
+      } else if (tier === 'payg') {
+        setText('balance', (res.paygBalance || 0) + ' còn lại');
+      } else {
+        setText('balance', '5/ngày miễn phí');
+      }
+    } else {
+      document.getElementById('auth-info').style.display = 'none';
+      document.getElementById('auth-anon').style.display = 'block';
+      setText('balance', '5/ngày miễn phí');
+    }
+  });
 
+  // Logout
+  const logoutBtn = document.getElementById('btn-logout');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      chrome.runtime.sendMessage({ type: 'LOGOUT' }, () => {
+        document.getElementById('auth-info').style.display = 'none';
+        document.getElementById('auth-anon').style.display = 'block';
+        setText('balance', '5/ngày miễn phí');
+      });
+    });
+  }
+
+  // Site toggle
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const url = tabs[0] && tabs[0].url;
     const host = url ? new URL(url).hostname : '';
@@ -54,15 +91,19 @@
     });
   });
 
+  // Language selector
   chrome.runtime.sendMessage({ type: 'GET_UI_LANG' }, (res) => {
     const sel = document.getElementById('lang-select');
     if (sel && res && res.lang) sel.value = res.lang;
   });
 
-  document.getElementById('lang-select').addEventListener('change', (e) => {
-    const lang = e.target.value;
-    chrome.runtime.sendMessage({ type: 'SET_UI_LANG', lang }, () => {
-      applyLocale();
+  const langSel = document.getElementById('lang-select');
+  if (langSel) {
+    langSel.addEventListener('change', (e) => {
+      const lang = e.target.value;
+      chrome.runtime.sendMessage({ type: 'SET_UI_LANG', lang }, () => {
+        applyLocale();
+      });
     });
-  });
+  }
 })();

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loma — Hết loay hoay với câu chữ</title>
+  <meta name="description" content="Viết tiếng Việt, nhận văn bản chuyên nghiệp. Tiếng Anh hoặc tiếng Việt. Một nút, đúng giọng.">
+  <style>
+    :root { --teal: #0d9488; --teal-dark: #0f766e; --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-500: #6b7280; --gray-900: #111827; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; color: var(--gray-900); line-height: 1.6; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero { padding: 80px 0 60px; text-align: center; background: linear-gradient(180deg, #f0fdfa 0%, #fff 100%); }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero p.tagline { font-size: 1.25rem; color: var(--gray-500); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .btn-primary { display: inline-block; background: var(--teal); color: #fff; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-size: 1rem; font-weight: 600; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--teal-dark); }
+    .hero-sub { margin-top: 12px; font-size: 0.875rem; color: var(--gray-500); }
+
+    /* Demo */
+    .demo { padding: 60px 0; }
+    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .demo-card { background: var(--gray-50); border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; }
+    .demo-card .label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+    .demo-card .input { font-size: 0.875rem; color: var(--gray-500); margin-bottom: 16px; line-height: 1.5; }
+    .demo-card .output { font-size: 0.9375rem; color: var(--gray-900); line-height: 1.5; }
+    .demo-card .arrow { text-align: center; margin: 12px 0; font-size: 1.5rem; color: var(--teal); }
+
+    /* Features */
+    .features { padding: 60px 0; background: var(--gray-50); }
+    .features h2 { text-align: center; font-size: 1.75rem; margin-bottom: 40px; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature { text-align: center; padding: 24px; }
+    .feature .icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature h3 { font-size: 1rem; margin-bottom: 8px; }
+    .feature p { font-size: 0.875rem; color: var(--gray-500); }
+
+    /* Pricing */
+    .pricing { padding: 60px 0; }
+    .pricing h2 { text-align: center; font-size: 1.75rem; margin-bottom: 40px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 800px; margin: 0 auto; }
+    .price-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 28px; text-align: center; }
+    .price-card.popular { border-color: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
+    .price-card h3 { font-size: 1.125rem; margin-bottom: 8px; }
+    .price-card .price { font-size: 2rem; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+    .price-card .period { font-size: 0.875rem; color: var(--gray-500); margin-bottom: 16px; }
+    .price-card ul { list-style: none; text-align: left; margin-bottom: 20px; }
+    .price-card li { font-size: 0.875rem; padding: 4px 0; }
+    .price-card li::before { content: "✓ "; color: var(--teal); font-weight: 600; }
+
+    /* Footer */
+    .footer { padding: 40px 0; border-top: 1px solid #e5e7eb; text-align: center; font-size: 0.875rem; color: var(--gray-500); }
+    .footer a { color: var(--teal); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    .footer-links { margin-bottom: 12px; }
+    .footer-links a { margin: 0 12px; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.75rem; }
+      .demo-grid, .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Hết loay hoay với câu chữ.<br>Bạn lo phần ý. <em>Loma lo phần lời.</em></h1>
+      <p class="tagline">Viết tiếng Việt, nhận văn bản chuyên nghiệp — tiếng Anh hoặc tiếng Việt. Một nút, đúng giọng, dưới 2 giây.</p>
+      <a href="#" class="btn-primary" id="install-btn">Cài đặt miễn phí cho Chrome</a>
+      <p class="hero-sub">5 lượt viết lại miễn phí mỗi ngày. Không cần đăng ký.</p>
+    </div>
+  </section>
+
+  <section class="demo">
+    <div class="container">
+      <div class="demo-grid">
+        <div class="demo-card">
+          <div class="label">English Output</div>
+          <div class="input">"anh Minh ơi, cái invoice tháng 1 chưa thanh toán, 5000 USD quá hạn 2 tuần rồi"</div>
+          <div class="arrow">↓</div>
+          <div class="output">"Hi Minh, following up on January's invoice for $5,000 — now 2 weeks overdue. Could you confirm the expected payment date by Friday?"</div>
+        </div>
+        <div class="demo-card">
+          <div class="label">Vietnamese Output</div>
+          <div class="input">"cần xin giấy phép kinh doanh cho công ty mới, gửi sở kế hoạch đầu tư"</div>
+          <div class="arrow">↓</div>
+          <div class="output">"Kính gửi Sở Kế hoạch và Đầu tư,<br>Căn cứ Luật Doanh nghiệp 2020, Công ty kính đề nghị Quý Sở xem xét cấp Giấy chứng nhận đăng ký kinh doanh..."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2>Tại sao chọn Loma?</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="icon">🎯</div>
+          <h3>Hiểu ý bạn</h3>
+          <p>14 intent workflows — nhắc thanh toán, từ chối, theo dõi, viết công văn — mỗi intent cho ra output khác nhau.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🌏</div>
+          <h3>Hai ngôn ngữ, một nút</h3>
+          <p>Email tiếng Anh cho client? Công văn tiếng Việt cho sở? Loma tự nhận biết và viết đúng giọng.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⚡</div>
+          <h3>Dưới 2 giây</h3>
+          <p>Một nút bấm, không cần copy-paste, không cần viết prompt. Nhanh hơn ChatGPT 15 lần.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🇻🇳</div>
+          <h3>Giao diện tiếng Việt</h3>
+          <p>Toàn bộ giao diện bằng tiếng Việt. Người dùng không cần đọc tiếng Anh để được giúp viết tiếng Anh.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔀</div>
+          <h3>Code-switch native</h3>
+          <p>"Anh ơi, cái KPI report Q4 đã review chưa?" — Loma hiểu input trộn lẫn Việt-Anh.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>An toàn & riêng tư</h3>
+          <p>Không lưu browsing history. Không đọc trang web. Chỉ xử lý text bạn chủ động gửi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>Bảng giá</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Miễn phí</h3>
+          <div class="price">$0</div>
+          <div class="period">mãi mãi</div>
+          <ul>
+            <li>5 lượt viết lại / ngày</li>
+            <li>Tất cả 14 intents</li>
+            <li>Tiếng Anh + tiếng Việt</li>
+          </ul>
+        </div>
+        <div class="price-card popular">
+          <h3>Pay-As-You-Go</h3>
+          <div class="price">49K VND</div>
+          <div class="period">~$2 / 20 lượt</div>
+          <ul>
+            <li>20 lượt viết lại</li>
+            <li>Không hết hạn</li>
+            <li>MoMo, ZaloPay, Stripe</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Pro</h3>
+          <div class="price">149K VND</div>
+          <div class="period">~$6/tháng (VN) · $9/tháng (global)</div>
+          <ul>
+            <li>Không giới hạn lượt</li>
+            <li>Ưu tiên tốc độ</li>
+            <li>Hủy bất cứ lúc nào</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="/legal/privacy.md">Chính sách bảo mật</a>
+        <a href="/legal/terms.md">Điều khoản sử dụng</a>
+        <a href="mailto:support@loma.app">Liên hệ</a>
+      </div>
+      <p>&copy; 2026 Loma. Hết loay hoay với câu chữ.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
