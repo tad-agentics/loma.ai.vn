@@ -1,0 +1,9 @@
+# SAM CLI config — update with your AWS region and S3 bucket
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "loma-api"
+region = "ap-southeast-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+resolve_s3 = true

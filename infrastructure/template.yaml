@@ -1,0 +1,97 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Loma Rewrite API — serverless backend
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: python3.12
+    MemorySize: 256
+    Environment:
+      Variables:
+        LOMA_ENV: production
+        ANTHROPIC_API_KEY: !Ref AnthropicApiKey
+        SUPABASE_URL: !Ref SupabaseUrl
+        SUPABASE_SERVICE_KEY: !Ref SupabaseServiceKey
+        SUPABASE_JWT_SECRET: !Ref SupabaseJwtSecret
+        STRIPE_SECRET_KEY: !Ref StripeSecretKey
+        STRIPE_WEBHOOK_SECRET: !Ref StripeWebhookSecret
+        ALLOWED_ORIGINS: "chrome-extension://,https://loma.app"
+
+Parameters:
+  AnthropicApiKey:
+    Type: String
+    NoEcho: true
+  SupabaseUrl:
+    Type: String
+  SupabaseServiceKey:
+    Type: String
+    NoEcho: true
+  SupabaseJwtSecret:
+    Type: String
+    NoEcho: true
+  StripeSecretKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+  StripeWebhookSecret:
+    Type: String
+    NoEcho: true
+    Default: ""
+
+Resources:
+  LomaApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: prod
+      CorsConfiguration:
+        AllowOrigins:
+          - "chrome-extension://*"
+          - "https://loma.app"
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+        AllowMethods:
+          - POST
+          - GET
+          - OPTIONS
+
+  RewriteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: loma-rewrite
+      Handler: handler.handler
+      CodeUri: ../backend/
+      Events:
+        Rewrite:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /api/v1/rewrite
+            Method: POST
+        Health:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /health
+            Method: GET
+        Events:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /api/v1/events
+            Method: POST
+        BillingWebhook:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /api/v1/billing/webhook
+            Method: POST
+
+Outputs:
+  ApiUrl:
+    Description: Loma API endpoint
+    Value: !Sub "https://${LomaApi}.execute-api.${AWS::Region}.amazonaws.com/prod"
+  FunctionArn:
+    Description: Lambda function ARN
+    Value: !GetAtt RewriteFunction.Arn

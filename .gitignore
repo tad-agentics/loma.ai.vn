@@ -45,3 +45,11 @@ Thumbs.db
 .cache/
 tmp/
 temp/
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# SAM build artifacts
+.aws-sam/
