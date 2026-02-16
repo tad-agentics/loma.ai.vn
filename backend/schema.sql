@@ -16,14 +16,11 @@ CREATE TABLE IF NOT EXISTS users (
     payg_balance INTEGER NOT NULL DEFAULT 0,
     rewrites_today INTEGER NOT NULL DEFAULT 0,
     last_rewrite_date DATE,
-    stripe_customer_id TEXT,
-    stripe_subscription_id TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE INDEX IF NOT EXISTS idx_users_email ON users (email);
-CREATE INDEX IF NOT EXISTS idx_users_stripe_customer ON users (stripe_customer_id);
 
 -- ============================================================
 -- Rewrites table

@@ -27,7 +27,7 @@ Loma is a text rewriting tool that transforms Vietnamese and English professiona
 | Pay-As-You-Go | 49,000 VND (~$2 USD) | 20 rewrites per pack |
 | Pro | 149,000 VND/month (~$6 USD) or $9 USD/month | Unlimited rewrites |
 
-- Payments processed via Stripe (international) or PayOS/MoMo/ZaloPay (Vietnam)
+- Payments processed via PayOS/MoMo/ZaloPay (Vietnam)
 - Pro subscriptions auto-renew monthly
 - Cancellation takes effect at the end of the billing period
 - No refunds for partial months or unused PAYG credits

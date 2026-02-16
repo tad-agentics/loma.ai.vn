@@ -14,8 +14,6 @@ Globals:
         SUPABASE_URL: !Ref SupabaseUrl
         SUPABASE_SERVICE_KEY: !Ref SupabaseServiceKey
         SUPABASE_JWT_SECRET: !Ref SupabaseJwtSecret
-        STRIPE_SECRET_KEY: !Ref StripeSecretKey
-        STRIPE_WEBHOOK_SECRET: !Ref StripeWebhookSecret
         ALLOWED_ORIGINS: "chrome-extension://,https://loma.app"
 
 Parameters:
@@ -30,14 +28,6 @@ Parameters:
   SupabaseJwtSecret:
     Type: String
     NoEcho: true
-  StripeSecretKey:
-    Type: String
-    NoEcho: true
-    Default: ""
-  StripeWebhookSecret:
-    Type: String
-    NoEcho: true
-    Default: ""
 
 Resources:
   LomaApi:
@@ -80,12 +70,6 @@ Resources:
           Properties:
             ApiId: !Ref LomaApi
             Path: /api/v1/events
-            Method: POST
-        BillingWebhook:
-          Type: HttpApi
-          Properties:
-            ApiId: !Ref LomaApi
-            Path: /api/v1/billing/webhook
             Method: POST
 
 Outputs:
