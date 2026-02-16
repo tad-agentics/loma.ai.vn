@@ -1,0 +1,12 @@
+{
+  "id": "escalate",
+  "name_vi": "Escalate",
+  "name_en": "Escalate",
+  "description": "User is escalating an issue to leadership.",
+  "tones": {
+    "professional": "INTENT: Escalation.\n\nRemove preamble ('em không muốn làm lớn chuyện'). Structure: problem → impact → what you've tried → ask. No hedging.\n\nTONE: Professional. Clear, factual, action-oriented.\n\nSTRUCTURE: Problem. Impact (timeline/customer/team). What you need (decision, resource). Maximum 5 sentences.",
+    "direct": "INTENT: Escalation. Problem, impact, ask. No preamble. Maximum 4 sentences.",
+    "warm": "INTENT: Escalation. Same structure, slightly softer tone. Maximum 5 sentences.",
+    "formal": "INTENT: Escalation. Formal escalation. Dates, impact, requested action. Maximum 5 sentences."
+  }
+}

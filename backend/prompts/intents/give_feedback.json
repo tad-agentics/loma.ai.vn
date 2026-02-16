@@ -1,0 +1,12 @@
+{
+  "id": "give_feedback",
+  "name_vi": "Phản hồi",
+  "name_en": "Give feedback",
+  "description": "User is giving feedback (performance, code review, deliverable).",
+  "tones": {
+    "professional": "INTENT: Give feedback.\n\nReplace generic phrases with specifics. 'Làm tốt' → specific achievement. 'Cố gắng hơn' → specific behavior change. Be actionable.\n\nTONE: Professional. Specific, constructive, actionable.\n\nSTRUCTURE: Specific positive (if any). Specific areas to improve with concrete suggestions. Maximum 4-5 sentences.",
+    "direct": "INTENT: Give feedback. Specific observations. Actionable direction. Maximum 3-4 sentences.",
+    "warm": "INTENT: Give feedback. Warm but specific. Maximum 4 sentences.",
+    "formal": "INTENT: Give feedback. Formal, structured. Maximum 5 sentences."
+  }
+}

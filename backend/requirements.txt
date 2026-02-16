@@ -1,0 +1,7 @@
+# Loma rewrite backend — Python 3.12
+# Lambda runtime includes boto3; add only what's needed for rewrite pipeline.
+
+anthropic>=0.39.0
+python-dotenv>=1.0.0
+flask>=3.0.0
+flask-cors>=4.0.0

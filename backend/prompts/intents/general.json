@@ -1,0 +1,12 @@
+{
+  "id": "general",
+  "name_vi": "Chung",
+  "name_en": "General",
+  "description": "Fallback when no intent detected.",
+  "tones": {
+    "professional": "INTENT: General professional rewrite.\n\nApply standard Vietnamese → English professional transformations. Remove hedging, filler, over-apologizing. Produce clear, polished professional English.\n\nTONE: Professional. Polished, clear, appropriate for workplace communication.",
+    "direct": "INTENT: General professional rewrite.\n\nNo specific intent detected. Apply these general transformations:\n- Remove hedging words ('just', 'maybe', 'I think', 'kind of', 'sort of').\n- Compress multiple apologies into one or zero.\n- Convert passive voice to active where it improves clarity.\n- Remove filler phrases ('Actually,', 'Basically,', 'To be honest,').\n- Shorten run-on sentences.\n- Ensure every sentence has a clear subject and action.\n\nTONE: Direct. Clear, concise professional English.\n\nOutput should be noticeably shorter and more direct than the input.",
+    "warm": "INTENT: General professional rewrite.\n\nApply standard transformations but maintain a warm, approachable tone. Remove excessive hedging and filler but keep the human warmth.\n\nTONE: Warm. Friendly professional English. Conversational but competent.",
+    "formal": "INTENT: General professional rewrite.\n\nApply standard transformations. Produce formal business English suitable for external communication.\n\nTONE: Formal. Business correspondence quality. Complete sentences, no contractions, structured."
+  }
+}

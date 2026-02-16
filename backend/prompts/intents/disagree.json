@@ -1,0 +1,12 @@
+{
+  "id": "disagree",
+  "name_vi": "Không đồng ý",
+  "name_en": "Disagree",
+  "description": "User is disagreeing or pushing back respectfully.",
+  "tones": {
+    "professional": "INTENT: Disagree respectfully.\n\nState your view with evidence. Remove Vietnamese hedging ('em nghĩ khác một chút', 'nếu được phép nói thẳng'). Directness doesn't need a permission slip in English.\n\nTONE: Professional. Clear disagreement with reasoning. Propose alternative where relevant.\n\nSTRUCTURE: Your view + evidence. Optional alternative. Maximum 4 sentences.",
+    "direct": "INTENT: Disagree. State view with evidence. No minimizers. Maximum 3-4 sentences.",
+    "warm": "INTENT: Disagree. Respectful but clear. Maximum 4 sentences.",
+    "formal": "INTENT: Disagree. Formal, evidence-based. Maximum 4-5 sentences."
+  }
+}

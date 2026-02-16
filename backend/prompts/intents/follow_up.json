@@ -1,0 +1,12 @@
+{
+  "id": "follow_up",
+  "name_vi": "Theo dõi",
+  "name_en": "Follow up",
+  "description": "User is following up on an unanswered message or pending deliverable.",
+  "tones": {
+    "professional": "INTENT: Follow up on a pending item.\n\nThe user is nudging someone about an unanswered message, overdue deliverable, or pending decision.\n\nCULTURAL TRANSFORMATION:\n- Vietnamese: over-hedged, apologetic follow-ups → English: clear, polite, action-oriented.\n- Vietnamese: 'sorry to bother you again' → English: no apology needed for following up on legitimate work.\n\nTONE: Professional. Polite but clear. One softener is acceptable ('Following up on...'). Must include a specific ask.\n\nSTRUCTURE: 'Following up on [specific item]' or 'Checking in on [specific item]'. State what you need. Maximum 3-4 sentences.",
+    "direct": "INTENT: Follow up. State what's pending and what you need. No softening. Maximum 3 sentences.",
+    "warm": "INTENT: Follow up. Warm nudge between colleagues. Still include what you need. Maximum 3-4 sentences.",
+    "formal": "INTENT: Follow up. Formal, specific, documented. Reference dates or document names. Maximum 4 sentences."
+  }
+}

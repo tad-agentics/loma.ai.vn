@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Loma",
+  "version": "0.1.0",
+  "description": "Viết tiếng Việt. Nhận tiếng Anh chuyên nghiệp.",
+  "default_locale": "vi",
+  "permissions": ["storage", "activeTab", "tabs"],
+  "host_permissions": ["https://*/*", "http://localhost/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/detection.js", "content/text-isolation.js", "content/loma-button.js", "content/result-card.js", "content/content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
+}

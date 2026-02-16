@@ -1,0 +1,13 @@
+{
+  "id": "ask_payment",
+  "name_vi": "Nhắc thanh toán",
+  "name_en": "Payment follow-up",
+  "description": "User is following up on an unpaid invoice or requesting payment.",
+  "cultural_context": "In Vietnamese business culture, discussing money is uncomfortable. Users write long, apologetic messages that bury the actual ask. The rewrite must be direct about the amount owed, the due date, and the action needed — with zero apology for asking.",
+  "tones": {
+    "professional": "INTENT: Payment follow-up.\n\nThe user is asking someone to pay an overdue invoice or confirm a payment.\n\nCULTURAL TRANSFORMATION:\n- Vietnamese: long preamble, apologies for asking, indirect reference to money → English: state the amount, the status, and the action needed clearly.\n- Vietnamese: avoids naming a deadline → English: include a specific deadline.\n- Vietnamese: softens with hedging → English: polite but clear.\n\nTONE: Professional. Courteous, clear, no hedging. One polite framing is fine ('Could you confirm...'), but no over-softening.\n\nSTRUCTURE:\n- Sentence 1: Friendly reference to the invoice context.\n- Sentence 2: State current status.\n- Sentence 3: Polite but clear ask with deadline.\n- Maximum 4-5 sentences total.",
+    "direct": "INTENT: Payment follow-up.\n\nThe user is asking someone to pay an overdue invoice or confirm a payment.\n\nCULTURAL TRANSFORMATION:\n- Vietnamese: long preamble, apologies, indirect reference to money → English: state the amount, the status, and the action needed in the first 2 sentences.\n- Vietnamese: avoids naming a deadline → English: always include a clear deadline or next step.\n- Vietnamese: softens with 'nếu được' / 'khi nào tiện' → English: remove these. Payment requests are not favors.\n\nTONE: Direct. Firm but not aggressive. No apology for asking. State facts, state the ask.\n\nSTRUCTURE:\n- Sentence 1: Reference the specific invoice/amount/date.\n- Sentence 2: State current status (overdue, pending, etc.).\n- Sentence 3: Clear ask with deadline.\n- Maximum 4 sentences total.",
+    "warm": "INTENT: Payment follow-up.\n\nWarm, human framing. Still include amount and deadline.\n\nTONE: Warm. Friendly and human. Acknowledge the relationship. Still include the amount and deadline, but frame it as a collaborative check-in rather than a demand.",
+    "formal": "INTENT: Payment follow-up.\n\nFormal business correspondence style. Suitable for external clients, procurement departments, or finance teams.\n\nTONE: Formal. Business correspondence style. No casual language. Use complete sentences and standard business phrasing."
+  }
+}

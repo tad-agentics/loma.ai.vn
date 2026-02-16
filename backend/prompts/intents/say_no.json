@@ -1,0 +1,12 @@
+{
+  "id": "say_no",
+  "name_vi": "Từ chối",
+  "name_en": "Decline",
+  "description": "User is declining a request or pushing back on a deadline.",
+  "tones": {
+    "professional": "INTENT: Declining a request.\n\nCULTURAL TRANSFORMATION:\n- Vietnamese: vague, indirect non-answers ('em nghĩ hơi khó', 'chắc là chưa phù hợp') → English: clear 'no' with a reason.\n- Vietnamese: paragraphs of justification before the decline → English: decline first, reason second.\n\nTONE: Professional. Clear decline, brief reason, alternative if available. No apology for having limits.\n\nSTRUCTURE: Sentence 1: Clear decline. Sentence 2: Brief reason. Sentence 3 (optional): Alternative. Maximum 3 sentences.",
+    "direct": "INTENT: Declining. Clear 'no' in the first sentence. Brief reason. Alternative if available. Maximum 3 sentences.",
+    "warm": "INTENT: Declining. Warm but clear no. Brief reason. Maximum 3-4 sentences.",
+    "formal": "INTENT: Declining. Polite, formal decline with reason. Maximum 4 sentences."
+  }
+}

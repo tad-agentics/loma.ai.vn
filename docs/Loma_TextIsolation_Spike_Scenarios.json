@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "purpose": "Spike A — Text isolation: 20 scenarios, gate ≥18/20 (UX Spec 2.4)",
+    "scenarios": 20
+  },
+  "scenarios": [
+    {
+      "id": "T01",
+      "description": "Gmail reply — short thread, signature and quote",
+      "full_text": "Anh Minh ơi, invoice tháng 1 chưa thanh toán.\n\n-- \nBest regards,\nDuc Nguyen | Product Manager\n\nOn Feb 10, Minh wrote:\n> Thanks for the update. Can you send the invoice?"
+    },
+    {
+      "id": "T02",
+      "description": "Gmail reply — signature marker only (-- )",
+      "full_text": "Hi team, cái report Q4 đã xong, anh review giúp em nhé.\n\n-- \nDuc"
+    },
+    {
+      "id": "T03",
+      "description": "Gmail reply — On [date], [name] wrote:",
+      "full_text": "Em đã gửi proposal rồi anh.\n\nOn 15 Feb 2026, Linh wrote:\n> Can you send the proposal by EOD?"
+    },
+    {
+      "id": "T04",
+      "description": "Gmail forward — Forwarded message",
+      "full_text": "Anh xem giúp em email này.\n\n---------- Forwarded message ----------\nFrom: client@example.com\nDate: Mon, Feb 10, 2026\nSubject: Contract"
+    },
+    {
+      "id": "T05",
+      "description": "Gmail new message with signature",
+      "full_text": "Kính gửi anh, em gửi báo cáo tháng 1.\n\n-- \nTrần Văn A\nKế toán"
+    },
+    {
+      "id": "T06",
+      "description": "Gmail new message without signature",
+      "full_text": "Anh ơi, meeting mai dời sang 3pm được không ạ?"
+    },
+    {
+      "id": "T07",
+      "description": "Quoted line with > at start",
+      "full_text": "Here is my reply.\n\n> Original message here\n> Second line"
+    },
+    {
+      "id": "T08",
+      "description": "From: header boundary",
+      "full_text": "User content here.\n\nFrom: sender@mail.com\nTo: recipient@mail.com\nSubject: Re: Thread"
+    },
+    {
+      "id": "T09",
+      "description": "Best regards, closing",
+      "full_text": "Cảm ơn anh đã xem.\n\nBest regards,\nNguyen Van B"
+    },
+    {
+      "id": "T10",
+      "description": "Sincerely, closing",
+      "full_text": "Please find attached.\n\nSincerely,\nJohn Doe"
+    },
+    {
+      "id": "T11",
+      "description": "Slack — no boundary (full field)",
+      "full_text": "Anh ơi cái PR #347 cần anh review gấp, sprint kết thúc thứ 4."
+    },
+    {
+      "id": "T12",
+      "description": "GitHub comment — no boundary",
+      "full_text": "This change looks good but we should add a test for the edge case."
+    },
+    {
+      "id": "T13",
+      "description": "Single line — no boundary",
+      "full_text": "Anh approve budget giúp em trước Wednesday nhé."
+    },
+    {
+      "id": "T14",
+      "description": "Multiple blank lines then signature",
+      "full_text": "Message body.\n\n\n\n-- \nSignature"
+    },
+    {
+      "id": "T15",
+      "description": "Thanks, closing",
+      "full_text": "Done. Please review.\n\nThanks,\nAlice"
+    },
+    {
+      "id": "T16",
+      "description": "Regards, closing",
+      "full_text": "See you at the meeting.\n\nRegards,\nBob"
+    },
+    {
+      "id": "T17",
+      "description": "Nested quote — first > wins",
+      "full_text": "My reply above.\n\n> On 1 Jan, X wrote:\n> > Nested quote"
+    },
+    {
+      "id": "T18",
+      "description": "--- as signature marker",
+      "full_text": "Final content.\n\n---\nFooter"
+    },
+    {
+      "id": "T19",
+      "description": "LinkedIn / generic — no boundary",
+      "full_text": "Hi anh, em thấy profile anh trên LinkedIn, em là founder CloudBase."
+    },
+    {
+      "id": "T20",
+      "description": "Empty after extraction (boundary at start)",
+      "full_text": "\n\nOn Feb 10, Someone wrote:\n> Quoted"
+    }
+  ],
+  "expected_user_text": {
+    "T01": "Anh Minh ơi, invoice tháng 1 chưa thanh toán.",
+    "T02": "Hi team, cái report Q4 đã xong, anh review giúp em nhé.",
+    "T03": "Em đã gửi proposal rồi anh.",
+    "T04": "Anh xem giúp em email này.",
+    "T05": "Kính gửi anh, em gửi báo cáo tháng 1.",
+    "T06": "Anh ơi, meeting mai dời sang 3pm được không ạ?",
+    "T07": "Here is my reply.",
+    "T08": "User content here.",
+    "T09": "Cảm ơn anh đã xem.",
+    "T10": "Please find attached.",
+    "T11": "Anh ơi cái PR #347 cần anh review gấp, sprint kết thúc thứ 4.",
+    "T12": "This change looks good but we should add a test for the edge case.",
+    "T13": "Anh approve budget giúp em trước Wednesday nhé.",
+    "T14": "Message body.",
+    "T15": "Done. Please review.",
+    "T16": "See you at the meeting.",
+    "T17": "My reply above.",
+    "T18": "Final content.",
+    "T19": "Hi anh, em thấy profile anh trên LinkedIn, em là founder CloudBase.",
+    "T20": ""
+  }
+}

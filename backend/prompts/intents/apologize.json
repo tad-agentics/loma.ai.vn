@@ -1,0 +1,12 @@
+{
+  "id": "apologize",
+  "name_vi": "Xin lỗi",
+  "name_en": "Apologize",
+  "description": "User is apologizing or taking responsibility.",
+  "tones": {
+    "professional": "INTENT: Apology / accountability.\n\nTriple apology → one acknowledgment. Show corrective action. Remove 'thông cảm và bỏ qua'. Add what you're doing to prevent recurrence.\n\nTONE: Professional. One clean acknowledgment. What happened, what you've done, what you'll do differently.\n\nSTRUCTURE: Acknowledge. Fix/prevention. Maximum 3-4 sentences.",
+    "direct": "INTENT: Apology. One acknowledgment. Fix. Prevention. Maximum 3 sentences.",
+    "warm": "INTENT: Apology. Sincere but concise. Fix. Maximum 3-4 sentences.",
+    "formal": "INTENT: Apology. Formal accountability. Corrective action. Maximum 4 sentences."
+  }
+}

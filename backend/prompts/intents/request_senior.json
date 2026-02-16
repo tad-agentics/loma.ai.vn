@@ -1,0 +1,12 @@
+{
+  "id": "request_senior",
+  "name_vi": "Yêu cầu cấp trên",
+  "name_en": "Request from senior",
+  "description": "User is making a request to someone more senior.",
+  "tones": {
+    "professional": "INTENT: Request to someone senior.\n\nThe user is asking someone in a position of authority for something.\n\nCULTURAL TRANSFORMATION:\n- Vietnamese: over-hedged, self-diminishing → English: polite, structured, confident.\n- Vietnamese: buries the request in context → English: lead with the ask, follow with context.\n\nTONE: Professional. Respectful but not deferential. 'Could you' or 'Would you be able to' is fine. No over-hedging.\n\nSTRUCTURE: Clear ask, brief context, optional offer to provide more info. Maximum 4 sentences.",
+    "direct": "INTENT: Request to someone senior. State what you need and why. Directness is respect for their time. Maximum 3-4 sentences.",
+    "warm": "INTENT: Request to someone senior. Warm respect without self-diminishing. Maximum 4 sentences.",
+    "formal": "INTENT: Formal request to someone in authority. Polished business English. Maximum 4-5 sentences."
+  }
+}

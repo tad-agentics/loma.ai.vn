@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 320px; padding: 12px 16px; font-family: system-ui, sans-serif; font-size: 13px; margin: 0; color: #374151; }
+    h1 { font-size: 16px; margin: 0 0 12px 0; color: #111; font-weight: 600; }
+    .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .label { color: #6b7280; }
+    .value { font-weight: 500; }
+    .section { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e5e7eb; }
+    .section:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .toggle { position: relative; width: 36px; height: 20px; background: #d1d5db; border-radius: 10px; cursor: pointer; }
+    .toggle.on { background: #0d9488; }
+    .toggle::after { content: ''; position: absolute; width: 16px; height: 16px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: left 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    .toggle.on::after { left: 18px; }
+    select { padding: 4px 8px; border-radius: 6px; border: 1px solid #d1d5db; font-size: 13px; }
+    .api { font-size: 11px; color: #9ca3af; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1 id="title">Loma</h1>
+  <div class="section">
+    <div class="row">
+      <span class="label" id="lbl-balance">Gói dùng thử</span>
+      <span class="value" id="balance">—</span>
+    </div>
+    <div class="row">
+      <span class="label" id="lbl-today">Hôm nay</span>
+      <span class="value" id="rewrites-today">0</span>
+    </div>
+    <div class="row">
+      <span class="label" id="lbl-month">Tháng này</span>
+      <span class="value" id="rewrites-month">0</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="row">
+      <span class="label" id="lbl-site">Bật Loma trên trang này</span>
+      <div id="site-toggle" class="toggle on" role="switch" aria-checked="true"></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="row">
+      <span class="label" id="lbl-lang">Giao diện</span>
+      <select id="lang-select">
+        <option value="vi">Tiếng Việt</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </div>
+  <div class="section">
+    <p class="api"><span id="lbl-api">API</span>: <span id="api-base">—</span></p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

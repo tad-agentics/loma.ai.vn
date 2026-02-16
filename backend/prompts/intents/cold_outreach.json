@@ -1,0 +1,12 @@
+{
+  "id": "cold_outreach",
+  "name_vi": "Liên hệ lạnh",
+  "name_en": "Cold outreach",
+  "description": "User is reaching out to someone they don't know.",
+  "tones": {
+    "professional": "INTENT: Cold outreach.\n\nLead with value or hook, not company biography. Specific ask. No generic admiration. Preserve company/product names.\n\nTONE: Professional. Concise. One clear value prop and one clear ask.\n\nSTRUCTURE: Hook or value prop. Specific ask (e.g. 15-min call). Maximum 5 sentences.",
+    "direct": "INTENT: Cold outreach. Lead with why you're writing. Specific ask. Maximum 4 sentences.",
+    "warm": "INTENT: Cold outreach. Friendly but specific. Maximum 5 sentences.",
+    "formal": "INTENT: Cold outreach. Formal business style. Maximum 5 sentences."
+  }
+}

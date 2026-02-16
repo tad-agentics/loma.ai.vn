@@ -1,0 +1,12 @@
+{
+  "id": "platform_overrides",
+  "version": "1.0",
+  "platforms": {
+    "slack": "PLATFORM: Slack message.\n\nADJUST:\n- Maximum 3 sentences. Slack messages are short.\n- No greeting or sign-off unless the user included one.\n- No paragraph breaks unless the message has distinct sections.\n- Contractions are fine ('I'll', 'can't', 'won't').\n- Emoji in the original can be preserved if contextually appropriate.",
+    "gmail": "PLATFORM: Email (Gmail).\n\nADJUST:\n- Include a greeting line if the user's input implies one (e.g., starts with 'Anh ơi' or a name). Otherwise, no greeting.\n- Include a sign-off only if the input seems like a complete email (not a reply fragment).\n- Paragraphs are acceptable for complex messages.\n- Maximum 8 sentences for the body.",
+    "github": "PLATFORM: GitHub (issue, PR comment, code review).\n\nADJUST:\n- Technical writing mode. Concise, specific, actionable.\n- Use markdown formatting if the input is structured (bullet points, headers).\n- Code references should use backtick formatting.\n- No greeting, no sign-off. Get to the point.\n- Maximum 6 sentences unless the input is a detailed spec.",
+    "linkedin": "PLATFORM: LinkedIn message.\n\nADJUST:\n- Professional networking tone.\n- Keep it concise — LinkedIn messages that are too long don't get read.\n- Maximum 5 sentences.\n- If this is a connection request, it must be under 300 characters.",
+    "chatgpt": "PLATFORM: AI chat (ChatGPT).\n\nThis is a prompt, not a message to a person. Apply the ai_prompt intent rules regardless of detected intent:\n- Structure as: Context → Task → Constraints → Expected output.\n- No greetings, no politeness, no sign-offs.\n- Be precise and unambiguous.",
+    "claude": "PLATFORM: AI chat (Claude).\n\nThis is a prompt, not a message to a person. Apply the ai_prompt intent rules regardless of detected intent:\n- Structure as: Context → Task → Constraints → Expected output.\n- No greetings, no politeness, no sign-offs.\n- Be precise and unambiguous."
+  }
+}

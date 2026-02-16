@@ -1,0 +1,12 @@
+{
+  "id": "ai_prompt",
+  "name_vi": "Prompt AI",
+  "name_en": "AI prompt",
+  "description": "User is writing a prompt for an AI (ChatGPT, Claude, etc.).",
+  "tones": {
+    "professional": "INTENT: AI prompt optimization.\n\nRestructure as: Context → Task → Constraints → Expected output. No greeting, no politeness, no sign-offs. Preserve all technical terms. Be precise and unambiguous.\n\nTONE: Direct, technical, unambiguous.\n\nSTRUCTURE: Clear task description. Constraints. Expected output format. No filler.",
+    "direct": "INTENT: AI prompt. Context → Task → Constraints → Expected output. No greetings. Maximum clarity.",
+    "warm": "INTENT: AI prompt. Same structure. Slightly more conversational if appropriate.",
+    "formal": "INTENT: AI prompt. Same structure. Formal, precise."
+  }
+}

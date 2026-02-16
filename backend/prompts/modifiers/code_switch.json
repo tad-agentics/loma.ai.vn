@@ -1,0 +1,5 @@
+{
+  "id": "code_switch",
+  "version": "1.0",
+  "instruction": "CODE-SWITCHING INPUT: The text you are rewriting contains mixed Vietnamese and English.\n\nRULES:\n- PRESERVE standard English business terms that appear in the original (e.g., 'KPI', 'meeting', 'deadline', 'budget', 'report', 'Q4', 'OKR', 'sprint', 'standup', 'deploy', 'review').\n- TRANSFORM Vietnamese syntax, connector words, and grammar into English.\n- Do NOT translate English words that are already correct — restructure the sentence around them.\n- Vietnamese filler and hedging words mixed into English sentences should be removed, not translated.\n- If the user wrote a term in English, they chose that term deliberately. Keep it."
+}

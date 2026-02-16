@@ -1,0 +1,5 @@
+{
+  "id": "entity_preservation",
+  "version": "1.0",
+  "instruction": "NAMED ENTITIES DETECTED: The following entities were identified in the input. Reproduce each one EXACTLY as listed — do not modify spelling, capitalization, or diacritics.\n\nEntities: {entity_list}\n\nIf an entity appears in Vietnamese with diacritics (e.g., 'Nguyễn Khắc Chúc'), keep the diacritics in your output. Do not anglicize Vietnamese names."
+}

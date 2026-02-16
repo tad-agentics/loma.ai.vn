@@ -1,0 +1,1587 @@
+{
+  "meta": {
+    "name": "Loma Benchmark Test Suite",
+    "version": "1.0",
+    "date": "2026-02",
+    "total_scenarios": 50,
+    "code_switched_scenarios": 12,
+    "purpose": "Week 1-2 gate: run all 50 through Loma and ChatGPT. Loma must win >80% (40/50). Public benchmark page uses the same scenarios.",
+    "scoring_rubric": {
+      "cultural_accuracy": {
+        "weight": 0.3,
+        "description": "Did it transform Vietnamese communication patterns or just translate them? Triple apology → one acknowledgment? Hedging removed? Indirect no → clear decline?"
+      },
+      "structural_completeness": {
+        "weight": 0.25,
+        "description": "CTA present? Deadline stated? Subject clear? Proper greeting/sign-off (or proper omission)? All key information preserved?"
+      },
+      "tone_calibration": {
+        "weight": 0.2,
+        "description": "Matches the intent context? Payment = firm. Outreach = compelling. Apology = accountable. Feedback = specific."
+      },
+      "entity_preservation": {
+        "weight": 0.15,
+        "description": "Names, company names, amounts, dates, technical terms reproduced exactly? Vietnamese diacritics preserved on names?"
+      },
+      "conciseness": {
+        "weight": 0.1,
+        "description": "Output shorter than input? No filler? No unnecessary additions (greetings, sign-offs, pleasantries the user didn't include)?"
+      }
+    },
+    "scoring_method": "Each criterion scored 0-2 (0=fail, 1=partial, 2=pass). Weighted total → max 2.0. Winner per scenario = higher weighted score. Overall gate: Loma wins ≥40/50.",
+    "chatgpt_prompt": "Rewrite this professionally in English:",
+    "loma_prompt": "[Auto-detected intent + tone + system persona + cultural patterns — full pipeline]"
+  },
+  "scenarios": [
+    {
+      "id": "S01",
+      "intent": "request_senior",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Anh Hùng ơi, em xin phép hỏi anh, nếu anh có thời gian, em muốn nhờ anh xem giúp em cái báo cáo Q4 được không ạ? Em biết anh bận lắm nên không dám làm phiền, nhưng deadline là thứ 6 tuần này. Em cảm ơn anh nhiều ạ.",
+      "expected_output_qualities": "Direct request with deadline. No 'xin phép', no 'không dám làm phiền'. Name Hùng preserved. Q4 preserved. Friday deadline explicit.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi Hùng,\n\nCould you review my Q4 report when you have time? The deadline is this Friday.\n\nThank you.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "request_senior",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3229,
+      "loma_length_reduction_pct": 53
+    },
+    {
+      "id": "S02",
+      "intent": "request_senior",
+      "platform": "slack",
+      "code_switched": true,
+      "vi_ratio": 0.5,
+      "difficulty": "medium",
+      "input": "Anh ơi, cái PR #347 em cần anh review gấp, sprint kết thúc thứ 4, deploy trước Friday được không ạ?",
+      "expected_output_qualities": "Preserve PR #347, sprint, deploy, Friday. Urgent but professional request. Short — it's Slack.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Could you review PR #347 urgently? The sprint ends Wednesday and we need to deploy before Friday.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "request_senior",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2276,
+      "loma_length_reduction_pct": 2
+    },
+    {
+      "id": "S03",
+      "intent": "request_senior",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Chị Linh ơi, em không biết có phù hợp không nhưng em muốn đề xuất với chị là cho em tham gia project với team Singapore. Em nghĩ em có thể contribute vì em từng làm việc với đối tác nước ngoài 2 năm rồi. Nếu chị thấy chưa phù hợp thì em cũng hoàn toàn hiểu ạ.",
+      "expected_output_qualities": "Confident proposal, not permission-seeking. Remove 'không biết có phù hợp không' and 'nếu chưa phù hợp thì em hiểu'. Preserve Linh, Singapore, 2 years experience.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi Linh,\n\nI'd like to propose joining the project with the Singapore team. I believe I can contribute effectively given my two years of experience working with international partners. Please let me know if you think this would be a good fit.\n\nBest regards",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2645,
+      "loma_length_reduction_pct": 2
+    },
+    {
+      "id": "S04",
+      "intent": "request_senior",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Anh Tuấn ơi, em xin phép anh cho em nghỉ ngày thứ 6 tuần này vì em có việc gia đình. Em đã bàn giao công việc cho bạn Hoa rồi ạ.",
+      "expected_output_qualities": "Leave notification, not permission request. Preserve Tuấn, Hoa, Friday. Mention handoff to Hoa.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi Tuấn,\n\nI'd like to request Friday off this week for a family matter. I've already handed over my work to Hoa.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2286,
+      "loma_length_reduction_pct": 12
+    },
+    {
+      "id": "S05",
+      "intent": "request_senior",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "high",
+      "input": "Anh ơi, em cần approve budget $12,000 cho marketing campaign Q1. Breakdown: $5K cho paid ads, $4K cho content production, $3K cho influencer. ROI estimate khoảng 3.2x based on last quarter data. Anh sign off giúp em trước Wednesday nhé.",
+      "expected_output_qualities": "Preserve all dollar amounts, Q1, ROI 3.2x, Wednesday. Professional budget approval request with breakdown. Remove Vietnamese filler.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi,\n\nI need approval for a $12,000 budget for our Q1 marketing campaign. The breakdown is $5K for paid ads, $4K for content production, and $3K for influencer partnerships. Based on last quarter's data, I estimate a 3.2x ROI. Could you sign off before Wednesday?",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "request_senior",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2929,
+      "loma_length_reduction_pct": -11
+    },
+    {
+      "id": "S06",
+      "intent": "ask_payment",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Anh Minh ơi, em xin lỗi làm phiền anh, cái invoice tháng 1 số tiền 5000 USD bên em chưa nhận được thanh toán, quá hạn 2 tuần rồi anh. Anh xem giúp em khi nào tiện nhé. Cảm ơn anh nhiều ạ.",
+      "expected_output_qualities": "No apology for asking. State amount ($5,000), status (2 weeks overdue), and deadline. Preserve Minh. Remove 'khi nào tiện'.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi Minh,\n\nI wanted to follow up on the January invoice for $5,000 USD. We haven't received payment yet, and it's now 2 weeks overdue. Could you please let me know when we can expect payment?\n\nThanks so much.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "ask_payment",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2518,
+      "loma_length_reduction_pct": -11
+    },
+    {
+      "id": "S07",
+      "intent": "ask_payment",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.5,
+      "difficulty": "medium",
+      "input": "Hi anh, cái invoice #INV-2024-031 amount $8,500 chưa process, đã overdue 3 tuần rồi. Payment terms là net 30 nhưng đã quá hạn. Anh confirm lại expected payment date giúp em.",
+      "expected_output_qualities": "Preserve invoice number, amount, net 30, 3 weeks overdue. Direct payment request with deadline ask. No apology.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi there, I wanted to follow up on invoice #INV-2024-031 for $8,500. The payment is now 3 weeks overdue from the net 30 terms. Could you please confirm the expected payment date?",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "ask_payment",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2440,
+      "loma_length_reduction_pct": -3
+    },
+    {
+      "id": "S08",
+      "intent": "ask_payment",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Em rất ngại khi phải nhắc lại chuyện này lần thứ 3, nhưng khoản tiền 15.000 USD từ hợp đồng tháng 11 năm ngoái vẫn chưa thanh toán. Em biết bên anh cũng khó khăn nhưng bên em cũng cần tiền để trả nhà cung cấp. Mong anh thông cảm.",
+      "expected_output_qualities": "Third reminder — escalated tone. No shame ('ngại'), no sympathy plea ('thông cảm'). State $15,000, November contract, 3rd follow-up. Business impact framing.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I need to follow up on the $15,000 payment from our November contract, which remains outstanding. I understand you may be facing challenges, but we need to settle this amount to pay our suppliers. I'd appreciate your understanding and a timeline for payment.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3434,
+      "loma_length_reduction_pct": -13
+    },
+    {
+      "id": "S09",
+      "intent": "ask_payment",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Dạ em chào anh, em từ bộ phận kế toán công ty TechVina, em liên hệ về vấn đề thanh toán hóa đơn số TV-2025-089, số tiền 3.200 USD, hạn thanh toán là ngày 15 tháng 1.",
+      "expected_output_qualities": "Compress formal introduction. Preserve TechVina, invoice number, $3,200, January 15 deadline. One-sentence intro + ask.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hello,\n\nI'm reaching out from the accounting department at TechVina regarding payment for invoice TV-2025-089 in the amount of $3,200 USD, with a payment due date of January 15.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2612,
+      "loma_length_reduction_pct": -7
+    },
+    {
+      "id": "S10",
+      "intent": "ask_payment",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Khi nào tiện anh chuyển giúp em khoản còn lại nhé, 2.500 USD từ đợt thanh toán lần 2. Em gửi kèm hóa đơn để anh đối chiếu.",
+      "expected_output_qualities": "Remove 'khi nào tiện' — add specific timeline ask. Preserve $2,500, second installment context. Professional request.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "When you have a chance, could you please transfer the remaining amount of $2,500 from the second payment? I'm attaching the invoice for your reference.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2435,
+      "loma_length_reduction_pct": -24
+    },
+    {
+      "id": "S11",
+      "intent": "follow_up",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em không biết anh đã xem email em gửi thứ 2 tuần trước chưa, em gửi về cái đề xuất mở rộng thị trường Đà Nẵng. Anh cho em biết ý kiến khi nào tiện nhé ạ.",
+      "expected_output_qualities": "Direct follow-up. Reference specific email date and topic. Remove 'không biết đã xem chưa'. Preserve Đà Nẵng. Add specific ask.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I wanted to follow up on the Đà Nẵng market expansion proposal I sent last Monday. Could you share your thoughts when you have a chance?",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2309,
+      "loma_length_reduction_pct": 11
+    },
+    {
+      "id": "S12",
+      "intent": "follow_up",
+      "platform": "slack",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "low",
+      "input": "Anh ơi cái design mockup em share trên Figma tuần trước, anh feedback được chưa? Cần finalize trước sprint planning thứ 4.",
+      "expected_output_qualities": "Preserve Figma, feedback, finalize, sprint planning, Wednesday. Short Slack message. Direct ask.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Following up on the design mockup I shared on Figma last week - have you had a chance to review it? I need to finalize it before sprint planning on Wednesday.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "follow_up",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 1985,
+      "loma_length_reduction_pct": -30
+    },
+    {
+      "id": "S13",
+      "intent": "follow_up",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em xin lỗi đã làm phiền anh lần nữa, nhưng cái hợp đồng với đối tác Nhật Bản em gửi 2 tuần trước vẫn chưa được ký. Bên đối tác đang hỏi em hoài. Chắc anh bận quên mất, em nhắc lại anh nhé.",
+      "expected_output_qualities": "No apology for following up. No face-saving excuse ('chắc anh bận quên'). State: contract pending 2 weeks, Japanese partner pressing. Clear ask for signing timeline.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I wanted to follow up on the contract with our Japanese partner that I sent two weeks ago, as it's still pending signature. The partner has been asking for updates. Could you please review it when you have a moment?",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2572,
+      "loma_length_reduction_pct": -14
+    },
+    {
+      "id": "S14",
+      "intent": "follow_up",
+      "platform": "slack",
+      "code_switched": true,
+      "vi_ratio": 0.3,
+      "difficulty": "low",
+      "input": "Em ping lại về cái headcount request, HR cần final approval từ anh trước end of week để process offer letter cho candidate.",
+      "expected_output_qualities": "Preserve headcount request, HR, final approval, end of week, process, offer letter, candidate. Urgency clear. Short.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Following up on the headcount request - HR needs your final approval before end of week to process the offer letter for the candidate.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "follow_up",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 1673,
+      "loma_length_reduction_pct": -9
+    },
+    {
+      "id": "S15",
+      "intent": "follow_up",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Em theo dõi lại vụ này, không biết phía anh Khoa bên phòng pháp lý đã có phản hồi gì về hợp đồng chưa. Bên em cần hoàn tất trước ngày 20 tháng 2 để kịp timeline dự án.",
+      "expected_output_qualities": "Reference Khoa and legal department. State February 20 deadline. Clear ask for status update. Remove indirect framing.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I followed up on this matter and wanted to check if Mr. Khoa from the legal department has provided any feedback on the contract yet. We need to finalize this by February 20 to meet the project timeline.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2554,
+      "loma_length_reduction_pct": -22
+    },
+    {
+      "id": "S16",
+      "intent": "say_no",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em cảm ơn anh đã nghĩ tới em, nhưng hiện tại em đang quá tải công việc rồi nên em sợ là không thể nhận thêm được. Em rất muốn giúp nhưng em xin lỗi lần này em phải từ chối. Mong anh thông cảm.",
+      "expected_output_qualities": "Clear decline in first sentence. Brief reason (at capacity). No triple apology. No 'thông cảm'. Offer alternative if possible.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Thank you for thinking of me, but I'm currently overloaded with work and won't be able to take on additional responsibilities. I'd love to help, but I'll have to pass this time.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2170,
+      "loma_length_reduction_pct": 8
+    },
+    {
+      "id": "S17",
+      "intent": "say_no",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.5,
+      "difficulty": "high",
+      "input": "Anh ơi, cái scope này em nghĩ team mình không handle được với current resource. Nếu go theo plan A thì timeline sẽ bị delay ít nhất 3 sprint. Em suggest mình nên reduce scope hoặc push back deadline.",
+      "expected_output_qualities": "Preserve scope, handle, current resource, plan A, timeline, delay, 3 sprints, suggest, reduce scope, push back, deadline. Clear pushback with evidence and alternatives.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi,\n\nI don't think our team can handle this scope with our current resources. If we go with Plan A, the timeline will be delayed by at least 3 sprints. I suggest we either reduce the scope or push back the deadline.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "say_no",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2097,
+      "loma_length_reduction_pct": -8
+    },
+    {
+      "id": "S18",
+      "intent": "say_no",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Chắc là chưa phù hợp lắm ở thời điểm này, bên em vẫn đang tập trung vào sản phẩm chính nên chưa sẵn sàng cho hợp tác mới. Để em suy nghĩ thêm rồi liên hệ lại sau nha.",
+      "expected_output_qualities": "Make the 'no' explicit. Remove triple hedge. If genuinely open for future, give a specific timeframe. Don't leave it vague.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "This doesn't align well with our current priorities. We're focusing on our core product right now and aren't ready for new partnerships. Let me think it over and I'll get back to you.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2629,
+      "loma_length_reduction_pct": -10
+    },
+    {
+      "id": "S19",
+      "intent": "say_no",
+      "platform": "slack",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Em sợ là timeline này không khả thi, bên em cần ít nhất 3 tuần nữa để hoàn thành với chất lượng đảm bảo.",
+      "expected_output_qualities": "Direct pushback on timeline. State 3 additional weeks needed. No 'em sợ'. Short for Slack.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "This timeline isn't feasible - we need at least 3 more weeks to complete it with quality assurance.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2016,
+      "loma_length_reduction_pct": 5
+    },
+    {
+      "id": "S20",
+      "intent": "say_no",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em cảm ơn bên anh đã gửi đề xuất hợp tác rất chi tiết. Sau khi xem xét kỹ, em nghĩ hiện tại bên em chưa có nhu cầu sử dụng dịch vụ này. Nếu tương lai có thay đổi, em sẽ liên hệ lại.",
+      "expected_output_qualities": "Polite vendor rejection. Clear decline without hedging. Brief appreciation. Clean future-opening close.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Thank you for the detailed collaboration proposal. After careful review, we don't currently have a need for this service. I'll reach out if our situation changes.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "cold_outreach",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2254,
+      "loma_length_reduction_pct": 10
+    },
+    {
+      "id": "S21",
+      "intent": "cold_outreach",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Tôi xin tự giới thiệu, tôi là Nguyễn Văn Đức, hiện đang làm Giám đốc kinh doanh tại công ty DataSoft, được thành lập năm 2018, chuyên về giải pháp phân tích dữ liệu cho doanh nghiệp vừa và nhỏ tại Việt Nam. Tôi rất ngưỡng mộ công việc của anh và hy vọng có cơ hội được hợp tác.",
+      "expected_output_qualities": "Compress company biography into one line. Lead with hook/value. Preserve Nguyễn Văn Đức, DataSoft. Remove generic admiration. Add specific ask.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I'm Nguyễn Văn Đức, Business Director at DataSoft, founded in 2018. We specialize in data analytics solutions for small and medium enterprises in Vietnam. I admire your work and would welcome the opportunity to collaborate.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2558,
+      "loma_length_reduction_pct": 19
+    },
+    {
+      "id": "S22",
+      "intent": "cold_outreach",
+      "platform": "linkedin",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "medium",
+      "input": "Hi anh, em thấy profile anh trên LinkedIn, em là founder của CloudBase, bọn em đang build platform về developer tools cho market Việt Nam. Em muốn explore partnership vì team anh có strong distribution channel.",
+      "expected_output_qualities": "Preserve CloudBase, LinkedIn, founder, platform, developer tools, market, explore, partnership, distribution channel. Specific hook. Under 300 chars if connection request.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi! I saw your LinkedIn profile and wanted to reach out. I'm the founder of CloudBase, where we're building a developer tools platform for the Vietnamese market. I'd love to explore a potential partnership since your team has strong distribution channels. Would you be open to a brief call to discuss how we might collaborate?",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "cold_outreach",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3109,
+      "loma_length_reduction_pct": -55
+    },
+    {
+      "id": "S23",
+      "intent": "cold_outreach",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Kính gửi Quý khách hàng, chúng tôi xin trân trọng giới thiệu dịch vụ tư vấn nhân sự của công ty TalentVN. Với kinh nghiệm 8 năm trong ngành và hơn 200 khách hàng tin tưởng, chúng tôi tự tin có thể mang lại giá trị cho quý công ty.",
+      "expected_output_qualities": "Complete restructure. Remove formal template language. Lead with value prop, not credentials. Preserve TalentVN, 8 years, 200 clients (but as proof, not opener).",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Dear Valued Clients,\n\nWe are pleased to introduce TalentVN's HR consulting services. With 8 years of industry experience and over 200 trusted clients, we are confident in delivering value to your company.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2096,
+      "loma_length_reduction_pct": 11
+    },
+    {
+      "id": "S24",
+      "intent": "cold_outreach",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Em chào anh Trần Bảo Long, em là Phạm Thị Mai từ công ty GreenTech. Em được biết anh đang phụ trách mảng sustainability cho tập đoàn VinGroup. Em rất muốn được gặp anh để trình bày giải pháp năng lượng mặt trời mà bên em đang triển khai cho các tòa nhà thương mại.",
+      "expected_output_qualities": "Preserve Trần Bảo Long, Phạm Thị Mai, GreenTech, VinGroup, sustainability. Hook with their role, not your company. Specific meeting ask.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi Trần Bảo Long,\n\nI'm Phạm Thị Mai from GreenTech. I understand you oversee sustainability initiatives for VinGroup. I'd like to meet with you to present our solar energy solutions for commercial buildings.\n\nBest regards,\nPhạm Thị Mai",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2441,
+      "loma_length_reduction_pct": 11
+    },
+    {
+      "id": "S25",
+      "intent": "cold_outreach",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Em muốn mời anh làm diễn giả cho hội thảo công nghệ TechConnect 2026 vào ngày 15 tháng 4 tại Hà Nội. Chủ đề: AI trong doanh nghiệp Việt Nam. Khoảng 500 người tham dự.",
+      "expected_output_qualities": "Preserve TechConnect 2026, April 15, Hà Nội, AI, 500 attendees. Conference speaker invitation — clear, compelling, with specific details.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I'd like to invite you to be a keynote speaker at the TechConnect 2026 technology conference on April 15 in Hanoi. The topic is AI in Vietnamese enterprises, with approximately 500 attendees expected.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2375,
+      "loma_length_reduction_pct": -20
+    },
+    {
+      "id": "S26",
+      "intent": "give_feedback",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Nhìn chung em làm tốt trong quý vừa rồi. Em cần cố gắng hơn nữa về kỹ năng giao tiếp với khách hàng. Phần kỹ thuật thì ổn. Tiếp tục phát huy nhé.",
+      "expected_output_qualities": "Replace ALL generic phrases with specifics. 'Làm tốt' → specific achievement. 'Cố gắng hơn' → specific behavior change. 'Ổn' → specific technical strength. 'Phát huy' → specific forward direction.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Overall, you performed well this past quarter. You need to improve your customer communication skills. Your technical skills are solid. Keep up the good work.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2783,
+      "loma_length_reduction_pct": -9
+    },
+    {
+      "id": "S27",
+      "intent": "give_feedback",
+      "platform": "github",
+      "code_switched": true,
+      "vi_ratio": 0.3,
+      "difficulty": "medium",
+      "input": "Cái PR này logic OK nhưng em thấy cần refactor phần authentication module, code duplication khá nhiều. Naming convention chưa consistent — đang mix camelCase với snake_case. Performance cũng chưa optimize, query N+1 ở endpoint /api/users.",
+      "expected_output_qualities": "Preserve ALL technical terms. Structured code review: numbered items. GitHub markdown format. Specific and actionable.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "The logic looks good, but the authentication module needs refactoring due to significant code duplication. Naming convention is inconsistent — mixing camelCase with snake_case throughout. There's an N+1 query problem at the `/api/users` endpoint that needs optimization.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "give_feedback",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2928,
+      "loma_length_reduction_pct": -13
+    },
+    {
+      "id": "S28",
+      "intent": "give_feedback",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em không muốn nói nặng, nhưng báo cáo lần này chưa đạt yêu cầu. Số liệu chưa chính xác, phần phân tích còn sơ sài, và kết luận không rõ ràng. Em cần em làm lại và nộp trước thứ 6.",
+      "expected_output_qualities": "Remove 'không muốn nói nặng'. Direct feedback with specific issues. Preserve Friday deadline. Actionable direction for revision.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I need to be direct: this report doesn't meet our standards. The data contains inaccuracies, the analysis lacks depth, and the conclusions are unclear. Please revise and resubmit by Friday.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2473,
+      "loma_length_reduction_pct": -6
+    },
+    {
+      "id": "S29",
+      "intent": "give_feedback",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "medium",
+      "input": "Overall performance em Q4 khá tốt, exceed target revenue 15%, client satisfaction score cũng cao. Area cần improve: em cần develop thêm leadership skills, đặc biệt là delegation — em vẫn còn micromanage team quá nhiều.",
+      "expected_output_qualities": "Preserve Q4, 15%, client satisfaction, leadership skills, delegation, micromanage. Balanced feedback: specific positive + specific growth area + concrete suggestion.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Your Q4 performance was strong—you exceeded the revenue target by 15% and maintained high client satisfaction scores. The key area for improvement is developing your leadership skills, particularly delegation. You're still micromanaging the team too much, which limits both your capacity and their growth.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "give_feedback",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3217,
+      "loma_length_reduction_pct": -40
+    },
+    {
+      "id": "S30",
+      "intent": "give_feedback",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Phần thuyết trình của em hôm nay rất tốt, đặc biệt là cách em xử lý câu hỏi từ ban giám đốc. Tuy nhiên, slide hơi nhiều chữ quá, lần sau em nên dùng hình ảnh nhiều hơn.",
+      "expected_output_qualities": "Specific positive (handled board questions well). Specific improvement (reduce slide text, more visuals). No generic praise.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Your presentation today was excellent, especially how you handled the questions from the board. However, the slides were a bit text-heavy—next time, try using more visuals.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2300,
+      "loma_length_reduction_pct": -2
+    },
+    {
+      "id": "S31",
+      "intent": "disagree",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Em nghĩ khác một chút về vấn đề này. Em không chắc việc chuyển sang microservices lúc này là tốt nhất. Đội mình chỉ có 4 người, mà microservices cần ít nhất 8-10 người để maintain đúng cách. Nếu em được phép nói thẳng, em nghĩ mình nên giữ monolith thêm 6 tháng nữa.",
+      "expected_output_qualities": "Remove 'nghĩ khác một chút', 'không chắc', 'nếu được phép nói thẳng'. State disagreement clearly with evidence (4-person team vs 8-10 needed). Propose alternative (keep monolith 6 months).",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I have a different perspective on this issue. I don't think moving to microservices right now is the best approach. Our team only has 4 people, but microservices require at least 8-10 people to maintain properly. If I may be direct, I think we should stick with the monolith for another 6 months.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2636,
+      "loma_length_reduction_pct": -11
+    },
+    {
+      "id": "S32",
+      "intent": "disagree",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "medium",
+      "input": "Em respect decision của anh, nhưng em thấy approach này risky. Data từ A/B test tháng trước show conversion rate giảm 12% khi dùng pricing model mới. Em suggest mình nên test thêm 2 tuần trước khi full rollout.",
+      "expected_output_qualities": "Preserve A/B test, conversion rate, 12%, pricing model, suggest, test, full rollout. Evidence-based pushback. Preserve data reference. Clear alternative with timeline.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I respect your decision, but I think this approach is risky. Data from last month's A/B test shows conversion rates dropped 12% with the new pricing model. I suggest we test for another two weeks before full rollout.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "disagree",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2343,
+      "loma_length_reduction_pct": -3
+    },
+    {
+      "id": "S33",
+      "intent": "disagree",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em đồng ý với anh phần lớn, nhưng có một điểm em thấy cần xem lại. Việc cắt giảm ngân sách marketing 30% sẽ ảnh hưởng trực tiếp đến pipeline Q2. Theo dữ liệu năm ngoái, mỗi đồng marketing tạo ra 4.2 đồng doanh thu.",
+      "expected_output_qualities": "Acknowledge agreement, then clear pushback on 30% marketing cut. Cite 4.2x ROI data. Propose alternative or discussion.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I agree with most of your points, but one area needs reconsideration. Cutting the marketing budget by 30% will directly impact our Q2 pipeline. Last year's data shows each marketing dollar generated 4.2 dollars in revenue.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2220,
+      "loma_length_reduction_pct": -4
+    },
+    {
+      "id": "S34",
+      "intent": "disagree",
+      "platform": "slack",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Em ngại nói nhưng em thấy hướng này có vấn đề. Nếu mình tuyển thêm 3 người lúc này mà doanh thu chưa ổn định thì rủi ro cao.",
+      "expected_output_qualities": "Remove 'ngại nói'. State concern about hiring 3 people with unstable revenue. Direct risk assessment. Short for Slack.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I have concerns about this direction. If we hire 3 more people now while revenue isn't stable, we're taking on significant risk.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2030,
+      "loma_length_reduction_pct": -3
+    },
+    {
+      "id": "S35",
+      "intent": "disagree",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.5,
+      "difficulty": "high",
+      "input": "Cái strategy này em thấy không align với OKR Q1 mình đã commit. Key result #2 là tăng retention 15%, nhưng feature mới này focus vào acquisition. Em concern là nếu split resource thì cả 2 OKR đều không hit target.",
+      "expected_output_qualities": "Preserve strategy, align, OKR, Q1, commit, key result #2, retention 15%, feature, acquisition, concern, split resource, hit target. Structured strategic objection.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I don't think this strategy aligns with the Q1 OKR we committed to. Key result #2 is increasing retention by 15%, but this new feature focuses on acquisition. My concern is that if we split resources, we won't hit either target.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "disagree",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2402,
+      "loma_length_reduction_pct": -7
+    },
+    {
+      "id": "S36",
+      "intent": "escalate",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Em không muốn làm lớn chuyện, nhưng dự án bị block 5 ngày rồi vì bên team Platform chưa cung cấp API. Em đã liên hệ 3 lần nhưng chưa được phản hồi. Nếu không giải quyết tuần này thì sẽ trễ deadline giao hàng cho khách hàng vào ngày 28 tháng 2.",
+      "expected_output_qualities": "Remove 'không muốn làm lớn chuyện'. Structure: problem (5 days blocked, Platform team API), attempts (3 contacts, no response), impact (February 28 customer deadline at risk), ask (intervention needed this week).",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I don't want to escalate this, but our project has been blocked for 5 days because the Platform team hasn't provided the API. I've reached out 3 times with no response. If we don't resolve this by the end of the week, we'll miss our February 28 delivery deadline.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2244,
+      "loma_length_reduction_pct": -8
+    },
+    {
+      "id": "S37",
+      "intent": "escalate",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "high",
+      "input": "Anh ơi, em cần escalate vấn đề này. Production server bị outage từ 2 giờ sáng, downtime đã 6 tiếng rồi. SLA với client Grab là 99.9% uptime, hiện tại mình đang breach. DevOps team đang investigate nhưng root cause chưa identify được. Em cần anh authorize emergency resource từ Cloud team.",
+      "expected_output_qualities": "Preserve all: production, outage, downtime, 6 hours, SLA, Grab, 99.9%, breach, DevOps, investigate, root cause, identify, authorize, emergency, Cloud team. Structured incident escalation.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "Hi,\n\nI need to escalate this issue. Our production server has been down since 2 AM—we're at 6 hours of downtime. We're currently breaching our 99.9% uptime SLA with Grab. The DevOps team is investigating but hasn't identified the root cause yet. I need you to authorize emergency resources from the Cloud team.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "escalate",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2857,
+      "loma_length_reduction_pct": -8
+    },
+    {
+      "id": "S38",
+      "intent": "escalate",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em không muốn mách, nhưng bên team Marketing đã 2 lần hứa giao tài liệu quảng cáo mà vẫn chưa giao. Bên em không thể launch chiến dịch nếu không có tài liệu này. Em đã cố tự giải quyết nhưng vượt quá khả năng của em.",
+      "expected_output_qualities": "Remove 'mách'. Remove 'vượt quá khả năng' (reframe as scope). Structure: dependency (Marketing team, 2 missed deliveries), impact (campaign launch blocked), ask (leadership intervention).",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I need to escalate an issue with the Marketing team. They've missed two promised deadlines for delivering advertising materials, and we can't launch our campaign without these documents. I've tried to resolve this independently, but it's beyond what I can handle on my own.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2815,
+      "loma_length_reduction_pct": -26
+    },
+    {
+      "id": "S39",
+      "intent": "escalate",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Vấn đề này em đã báo từ đầu tháng 1 nhưng chưa ai xử lý. Máy chủ cũ thường xuyên bị lỗi, trung bình 3 lần mỗi tuần, ảnh hưởng đến 200 người dùng nội bộ. Em cần phê duyệt ngân sách 5.000 USD để nâng cấp.",
+      "expected_output_qualities": "Re-escalation: flagged since January, unresolved. Data: 3 failures/week, 200 internal users affected. Clear ask: $5,000 budget approval for upgrade.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I reported this issue at the beginning of January, but it hasn't been addressed yet. The old server frequently crashes an average of 3 times per week, affecting 200 internal users. I need approval for a $5,000 budget to upgrade the system.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2466,
+      "loma_length_reduction_pct": -18
+    },
+    {
+      "id": "S40",
+      "intent": "escalate",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Em sợ nếu không xử lý sớm thì khách hàng sẽ hủy hợp đồng. Bên Công ty ABC đã gửi email than phiền 2 lần về chất lượng dịch vụ tháng này.",
+      "expected_output_qualities": "Remove 'em sợ'. State risk: ABC Corp, 2 complaints this month, contract cancellation risk. Ask for intervention.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I'm concerned that if we don't address this promptly, the client may cancel their contract. ABC Company has already sent two complaint emails about this month's service quality.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2104,
+      "loma_length_reduction_pct": -30
+    },
+    {
+      "id": "S41",
+      "intent": "apologize",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "high",
+      "input": "Em xin lỗi anh, em rất tiếc, em thật sự sorry vì gửi nhầm báo cáo sai số liệu cho khách hàng Samsung sáng nay. Lỗi hoàn toàn là do em. Em đã gửi lại bản đúng và gọi điện xin lỗi trực tiếp khách hàng rồi. Em mong anh thông cảm.",
+      "expected_output_qualities": "Triple apology → one acknowledgment. Preserve Samsung. Show corrective action (resent + called client). Remove 'thông cảm'. Add prevention measure.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I apologize for sending the incorrect data report to Samsung this morning. I've already sent the corrected version and called the client directly to apologize. I'm implementing a double-check process before sending any client reports to prevent this from happening again.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "apologize",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3261,
+      "loma_length_reduction_pct": -20
+    },
+    {
+      "id": "S42",
+      "intent": "apologize",
+      "platform": "gmail",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "medium",
+      "input": "Em sorry anh, cái bug trên production do em merge code mà không run full test suite. Em đã hotfix rồi, deploy xong lúc 3pm. Root cause: missing null check ở payment module. Em sẽ add pre-merge checklist để prevent tương lai.",
+      "expected_output_qualities": "Preserve all technical terms. One apology. Structure: what happened → fix → root cause → prevention. Accountable and forward-looking.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I apologize for the production bug caused by merging code without running the full test suite. I've deployed a hotfix that went live at 3pm. The root cause was a missing null check in the payment module, and I'm adding a pre-merge checklist to prevent this from happening again.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "apologize",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2834,
+      "loma_length_reduction_pct": -24
+    },
+    {
+      "id": "S43",
+      "intent": "apologize",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "medium",
+      "input": "Em biết em sai, em hứa sẽ không lặp lại. Em đã trễ deadline 3 ngày vì em đánh giá sai khối lượng công việc. Em đã hoàn thành và gửi anh rồi.",
+      "expected_output_qualities": "Remove 'em biết em sai'. One clean acknowledgment. State: 3 days late, cause (workload underestimation), fix (delivered now), prevention.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I missed the deadline by 3 days due to underestimating the workload. I've completed the task and sent it to you. This won't happen again.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2351,
+      "loma_length_reduction_pct": 2
+    },
+    {
+      "id": "S44",
+      "intent": "apologize",
+      "platform": "gmail",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Em mong anh thông cảm và bỏ qua cho em lần này. Dữ liệu bị sai do em copy nhầm từ file cũ. Em đã sửa lại đúng rồi.",
+      "expected_output_qualities": "Remove 'thông cảm và bỏ qua'. Acknowledge error (copied from wrong file), state fix (corrected), add prevention.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I apologize for the error in the data, which occurred when I copied from an old file by mistake. I've corrected it now.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 2469,
+      "loma_length_reduction_pct": -4
+    },
+    {
+      "id": "S45",
+      "intent": "apologize",
+      "platform": "slack",
+      "code_switched": false,
+      "vi_ratio": 1,
+      "difficulty": "low",
+      "input": "Em xin lỗi đã reply trễ, tuần qua em bận quá. Về câu hỏi của anh: em đồng ý với phương án 2.",
+      "expected_output_qualities": "Replace apology with 'thanks for your patience' or just skip to the answer. Short — it's Slack.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "I apologize for the delayed response due to last week's heavy workload. Regarding your question, I agree with option 2.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "haiku",
+      "loma_response_time_ms": 1555,
+      "loma_length_reduction_pct": -29
+    },
+    {
+      "id": "S46",
+      "intent": "ai_prompt",
+      "platform": "chatgpt",
+      "code_switched": true,
+      "vi_ratio": 0.5,
+      "difficulty": "high",
+      "input": "Viết giúp em cái function Python để parse CSV file, skip header row, extract column 3 và 5, filter những row có value column 3 > 1000, rồi output ra JSON format. Handle error nếu file not found hoặc format sai.",
+      "expected_output_qualities": "Restructured as clear prompt: Context → Task → Constraints → Expected output. Preserve all technical terms. No greeting. No politeness.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "**Context:** Processing CSV data with specific filtering requirements.\n\n**Task:** Create a Python function that parses CSV files, extracts specific columns with filtering, and outputs JSON.\n\n**Constraints:**\n- Skip header row\n- Extract columns 3 and 5 only\n- Filter rows where column 3 value > 1000\n- Handle file not found and format errors\n- Return JSON format output\n\n**Expected output:** Complete Python function with error handling for CSV parsing and JSON conversion.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "ai_prompt",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3560,
+      "loma_length_reduction_pct": -125
+    },
+    {
+      "id": "S47",
+      "intent": "ai_prompt",
+      "platform": "chatgpt",
+      "code_switched": true,
+      "vi_ratio": 0.6,
+      "difficulty": "medium",
+      "input": "Em muốn viết cái email marketing cho sản phẩm mới, target audience là CTO và VP Engineering ở các công ty SaaS, tone professional nhưng không boring, khoảng 150 từ. Sản phẩm là AI code review tool tên CodeLens.",
+      "expected_output_qualities": "Restructured prompt: role/audience (CTO/VP Eng at SaaS), task (marketing email), constraints (150 words, professional not boring), product details (CodeLens, AI code review). Preserve all English terms.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "You need to write a marketing email for CodeLens, an AI code review tool. Target audience: CTOs and VP Engineering at SaaS companies. Tone: professional but engaging. Length: approximately 150 words.\n\n**Task:** Create email copy that positions CodeLens as essential for engineering leadership.\n\n**Constraints:**\n- Address pain points relevant to engineering executives\n- Demonstrate clear ROI and efficiency gains\n- Avoid technical jargon that doesn't serve the message\n- Include compelling subject line\n- Professional tone without corporate speak\n- Exactly 150 words maximum\n\n**Expected output:** Complete marketing email with subject line and body copy, structured for executive decision-makers in SaaS environments.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "ai_prompt",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 5765,
+      "loma_length_reduction_pct": -242
+    },
+    {
+      "id": "S48",
+      "intent": "ai_prompt",
+      "platform": "chatgpt",
+      "code_switched": true,
+      "vi_ratio": 0.7,
+      "difficulty": "medium",
+      "input": "Phân tích giúp em cái dataset bán hàng Q4, so sánh revenue theo region, tìm top 5 sản phẩm bán chạy nhất, và đưa ra 3 insight chính. Output format: bullet points với numbers.",
+      "expected_output_qualities": "Restructured analysis prompt: task (Q4 sales analysis), specific asks (revenue by region, top 5 products, 3 key insights), output format (bullet points with numbers). Preserve Q4, revenue, region, insight.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "**Context:** Q4 sales dataset requiring comprehensive analysis.\n\n**Task:** Analyze Q4 sales dataset. Compare revenue by region. Identify top 5 best-selling products. Generate 3 key insights.\n\n**Constraints:** \n- Focus on regional revenue comparison\n- Rank products by sales volume\n- Limit insights to 3 most significant findings\n\n**Expected output:** Bullet points with numerical data and metrics.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "ai_prompt",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3170,
+      "loma_length_reduction_pct": -128
+    },
+    {
+      "id": "S49",
+      "intent": "ai_prompt",
+      "platform": "github",
+      "code_switched": true,
+      "vi_ratio": 0.4,
+      "difficulty": "low",
+      "input": "Viết cái GitHub issue cho bug: user upload avatar nhưng image không resize đúng, khi upload file > 5MB thì server trả 500 error. Expected behavior: auto resize to 200x200px, max file size 10MB with proper error message.",
+      "expected_output_qualities": "Structured GitHub issue: Bug description → Steps to reproduce → Expected vs Actual behavior → Environment. Preserve all technical details. Markdown formatted.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "**Bug: Avatar upload fails to resize images and returns 500 error for files >5MB**\n\n**Current behavior:**\n- Images don't resize correctly when users upload avatars\n- Server returns 500 error for files larger than 5MB\n\n**Expected behavior:**\n- Auto-resize uploaded images to 200x200px\n- Support files up to 10MB maximum\n- Display proper error message when file size limit is exceeded\n\n**Steps to reproduce:**\n1. Upload avatar image >5MB\n2. Observe 500 error response",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "general",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3535,
+      "loma_length_reduction_pct": -112
+    },
+    {
+      "id": "S50",
+      "intent": "ai_prompt",
+      "platform": "chatgpt",
+      "code_switched": true,
+      "vi_ratio": 0.5,
+      "difficulty": "high",
+      "input": "Em cần viết cái technical spec cho feature mới: real-time notification system. Requirements: support WebSocket và SSE fallback, handle 10K concurrent connections, notification types gồm: mention, comment, assignment. Cần consider edge cases như user offline, notification deduplication, và rate limiting. Em muốn Claude review cái spec này luôn sau khi viết xong.",
+      "expected_output_qualities": "Full technical spec prompt: system requirements, scale constraints (10K concurrent), protocol choices (WebSocket + SSE), notification types, edge cases listed explicitly. Two-part ask: write spec + review. Preserve all technical terms.",
+      "chatgpt_output": "",
+      "chatgpt_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "loma_output": "**CONTEXT:** Developing a real-time notification system feature requiring technical specification documentation.\n\n**TASK:** Write a technical specification covering:\n- WebSocket implementation with SSE fallback mechanism\n- 10K concurrent connection capacity\n- Three notification types: mention, comment, assignment\n- Edge case handling: offline users, notification deduplication, rate limiting\n\n**CONSTRAINTS:**\n- Must support both WebSocket and SSE protocols\n- System must scale to 10,000 simultaneous connections\n- Include comprehensive edge case scenarios\n- Specification requires review upon completion\n\n**EXPECTED OUTPUT:** Complete technical specification document ready for Claude review and implementation guidance.",
+      "loma_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 0,
+        "tone_calibration": 0,
+        "entity_preservation": 0,
+        "conciseness": 0
+      },
+      "winner": "",
+      "loma_detected_intent": "ai_prompt",
+      "loma_routing_tier": "sonnet",
+      "loma_response_time_ms": 3962,
+      "loma_length_reduction_pct": -99
+    }
+  ]
+}
