@@ -6,11 +6,17 @@
 
 const DEFAULT_API_BASE = 'https://api.loma.app';
 
+// Supabase public config (anon key is designed to be public — protected by RLS)
+const SUPABASE_URL = 'https://tfdonfihxyjwaptqbeea.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_yRHHHQDtdTy7sl2yQp57Bg_e8iE2TFr';
+
 chrome.runtime.onInstalled.addListener((details) => {
-  chrome.storage.local.get(['loma_api_base'], (data) => {
-    if (!data.loma_api_base) {
-      chrome.storage.local.set({ loma_api_base: DEFAULT_API_BASE });
-    }
+  chrome.storage.local.get(['loma_api_base', 'loma_supabase_url', 'loma_supabase_anon_key'], (data) => {
+    const defaults = {};
+    if (!data.loma_api_base) defaults.loma_api_base = DEFAULT_API_BASE;
+    if (!data.loma_supabase_url) defaults.loma_supabase_url = SUPABASE_URL;
+    if (!data.loma_supabase_anon_key) defaults.loma_supabase_anon_key = SUPABASE_ANON_KEY;
+    if (Object.keys(defaults).length) chrome.storage.local.set(defaults);
   });
   if (details.reason === 'install') {
     chrome.tabs.create({ url: chrome.runtime.getURL('welcome.html') });
@@ -19,6 +25,8 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 const STORAGE_KEYS = {
   api_base: 'loma_api_base',
+  supabase_url: 'loma_supabase_url',
+  supabase_anon_key: 'loma_supabase_anon_key',
   auth_token: 'loma_auth_token',
   user_id: 'loma_user_id',
   user_email: 'loma_user_email',
@@ -55,6 +63,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === 'GET_API_BASE') {
     chrome.storage.local.get([STORAGE_KEYS.api_base], (data) => {
       sendResponse({ apiBase: data[STORAGE_KEYS.api_base] || DEFAULT_API_BASE });
+    });
+    return true;
+  }
+
+  if (msg.type === 'GET_SUPABASE_CONFIG') {
+    chrome.storage.local.get([STORAGE_KEYS.supabase_url, STORAGE_KEYS.supabase_anon_key], (data) => {
+      sendResponse({
+        url: data[STORAGE_KEYS.supabase_url] || SUPABASE_URL,
+        anonKey: data[STORAGE_KEYS.supabase_anon_key] || SUPABASE_ANON_KEY,
+      });
     });
     return true;
   }
