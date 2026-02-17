@@ -60,9 +60,9 @@
     }
     btn.addEventListener('click', () => {
       if (undoState && undoState.field && undoState.originalText !== undefined) {
-        const isGmail = typeof getPlatform === 'function' && getPlatform() === 'gmail';
+        const lomaPlatform = typeof getPlatform === 'function' ? getPlatform() : 'generic';
         if (typeof LomaTextIsolation !== 'undefined' && LomaTextIsolation.replaceUserText) {
-          LomaTextIsolation.replaceUserText(undoState.field, undoState.originalText, isGmail);
+          LomaTextIsolation.replaceUserText(undoState.field, undoState.originalText, lomaPlatform);
         } else {
           const tag = (undoState.field.tagName || '').toLowerCase();
           if (tag === 'textarea' || tag === 'input') undoState.field.value = undoState.originalText;
@@ -88,9 +88,9 @@
   }
 
   function getFieldText(field) {
-    const isGmail = typeof getPlatform === 'function' && getPlatform() === 'gmail';
+    const lomaPlatform = typeof getPlatform === 'function' ? getPlatform() : 'generic';
     if (typeof LomaTextIsolation !== 'undefined' && LomaTextIsolation.extractUserTextFromElement) {
-      const out = LomaTextIsolation.extractUserTextFromElement(field, isGmail);
+      const out = LomaTextIsolation.extractUserTextFromElement(field, lomaPlatform);
       return out.userText || (field.value || field.innerText || field.textContent || '').trim();
     }
     const tag = (field.tagName || '').toLowerCase();
@@ -189,9 +189,9 @@
                     const out = (data.output_text || '').trim();
                     const original = (data.original_text || text || '').trim();
                     if (out) {
-                      const isGmail = typeof getPlatform === 'function' && getPlatform() === 'gmail';
+                      const lomaPlatform = typeof getPlatform === 'function' ? getPlatform() : 'generic';
                       if (typeof LomaTextIsolation !== 'undefined' && LomaTextIsolation.replaceUserText) {
-                        LomaTextIsolation.replaceUserText(field, out, isGmail);
+                        LomaTextIsolation.replaceUserText(field, out, lomaPlatform);
                       } else {
                         if ((field.tagName || '').toLowerCase() === 'textarea' || (field.tagName || '').toLowerCase() === 'input') {
                           field.value = out;
@@ -269,7 +269,9 @@
       const textareas = document.querySelectorAll('textarea');
       const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
       const fields = [...textareas, ...inputs];
-      if (typeof getPlatform === 'function' && getPlatform() === 'gmail') {
+      // Platforms that use contenteditable compose fields
+      const platform = typeof getPlatform === 'function' ? getPlatform() : 'generic';
+      if (['gmail', 'outlook', 'teams', 'google_docs', 'notion', 'jira', 'slack'].indexOf(platform) !== -1) {
         const contenteditables = document.querySelectorAll('div[contenteditable="true"], [role="textbox"][contenteditable="true"]');
         contenteditables.forEach((el) => {
           if (el.offsetHeight >= 38 && el.offsetParent !== null) fields.push(el);

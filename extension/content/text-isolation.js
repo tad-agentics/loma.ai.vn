@@ -45,24 +45,32 @@
     return { userText: text.trim(), method: 'full_field' };
   }
 
+  // Platform-specific DOM selectors for reply quotes and signatures
+  var PLATFORM_QUOTE_SELECTORS = {
+    gmail: '.gmail_quote, blockquote, .gmail_signature',
+    outlook: '#divRplyFwdMsg, #Signature, [id^="divRpl"], .BodyFragment > blockquote, div[id="appendonsend"]',
+  };
+
   /**
    * Extract user-written text from a field (textarea, input, or contenteditable).
-   * On Gmail, removes .gmail_quote and .gmail_signature from a clone, then applies heuristic.
+   * On Gmail/Outlook, removes reply quotes and signatures from a clone, then applies heuristic.
    * @param {Element} el - The field element
-   * @param {boolean} isGmail - Whether we're on mail.google.com
+   * @param {boolean|string} platformHint - true for Gmail (backward compat) or platform name string
    * @returns {{ userText: string, method: string }}
    */
-  function extractUserTextFromElement(el, isGmail) {
-    const tag = (el.tagName || '').toLowerCase();
+  function extractUserTextFromElement(el, platformHint) {
+    var platform = platformHint === true ? 'gmail' : (platformHint || '');
+    var tag = (el.tagName || '').toLowerCase();
     if (tag === 'textarea' || tag === 'input') {
-      const full = (el.value || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      var full = (el.value || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
       return heuristicBoundary(full);
     }
     if (el.contentEditable === 'true' || el.isContentEditable) {
-      let full;
-      if (isGmail) {
-        const clone = el.cloneNode(true);
-        clone.querySelectorAll('.gmail_quote, blockquote, .gmail_signature').forEach(function (n) { n.remove(); });
+      var full;
+      var quoteSelector = PLATFORM_QUOTE_SELECTORS[platform];
+      if (quoteSelector) {
+        var clone = el.cloneNode(true);
+        clone.querySelectorAll(quoteSelector).forEach(function (n) { n.remove(); });
         full = (clone.textContent || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
       } else {
         full = (el.innerText || el.textContent || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
@@ -73,35 +81,39 @@
   }
 
   /**
-   * Replace content with new text. For Gmail contenteditable, replace only the user portion
-   * (before .gmail_quote / .gmail_signature) so signature and quote are preserved.
+   * Replace content with new text. For Gmail/Outlook contenteditable, replace only the user
+   * portion (before quote/signature boundary) so signature and quote are preserved.
+   * @param {Element} el - The field element
+   * @param {string} newText - Replacement text
+   * @param {boolean|string} platformHint - true for Gmail (backward compat) or platform name
    */
-  function replaceUserText(el, newText, isGmail) {
-    const tag = (el.tagName || '').toLowerCase();
+  function replaceUserText(el, newText, platformHint) {
+    var platform = platformHint === true ? 'gmail' : (platformHint || '');
+    var tag = (el.tagName || '').toLowerCase();
     if (tag === 'textarea' || tag === 'input') {
       el.value = newText;
       el.dispatchEvent(new Event('input', { bubbles: true }));
       return;
     }
     if (el.contentEditable === 'true' || el.isContentEditable) {
-      if (!isGmail) {
+      var quoteSelector = PLATFORM_QUOTE_SELECTORS[platform];
+      if (!quoteSelector) {
         el.innerText = newText;
         el.dispatchEvent(new Event('input', { bubbles: true }));
         return;
       }
-      const quote = el.querySelector('.gmail_quote');
-      const sig = el.querySelector('.gmail_signature');
-      const boundary = quote || sig;
+      // Find the first quote/signature boundary element
+      var boundary = el.querySelector(quoteSelector);
       if (boundary) {
-        const userNodes = [];
-        let sibling = el.firstChild;
+        var userNodes = [];
+        var sibling = el.firstChild;
         while (sibling) {
           if (sibling === boundary) break;
           userNodes.push(sibling);
           sibling = sibling.nextSibling;
         }
         userNodes.forEach(function (n) { n.remove(); });
-        const wrap = document.createElement('div');
+        var wrap = document.createElement('div');
         wrap.innerHTML = newText.split('\n').join('<br>');
         el.insertBefore(wrap, boundary);
       } else {
