@@ -97,7 +97,11 @@ def get_user_subscription(user_id: str) -> dict:
 
 
 def increment_rewrite_count(user_id: str) -> None:
-    """Increment daily rewrite counter. Deduct PAYG credit if applicable."""
+    """Increment daily rewrite counter. Deduct PAYG credit atomically if applicable.
+
+    Uses an RPC function for PAYG deduction to prevent race conditions.
+    Falls back to read-then-write if the RPC is not available.
+    """
     client = _get_client()
     if not client:
         return
@@ -105,13 +109,30 @@ def increment_rewrite_count(user_id: str) -> None:
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         sub = get_user_subscription(user_id)
         new_count = sub["rewrites_today"] + 1
-        updates: dict[str, Any] = {
+
+        if sub["tier"] == "payg" and sub["payg_balance"] > 0:
+            # Atomic: decrement balance and update count in one operation
+            # Uses Postgres: UPDATE ... SET payg_balance = GREATEST(payg_balance - 1, 0)
+            try:
+                client.rpc("decrement_payg_and_count", {
+                    "p_user_id": user_id,
+                    "p_new_count": new_count,
+                    "p_date": today,
+                }).execute()
+                return
+            except Exception:
+                # RPC not available — fall back to conditional update
+                client.table("users").update({
+                    "rewrites_today": new_count,
+                    "last_rewrite_date": today,
+                    "payg_balance": max(sub["payg_balance"] - 1, 0),
+                }).eq("id", user_id).gte("payg_balance", 1).execute()
+                return
+
+        client.table("users").update({
             "rewrites_today": new_count,
             "last_rewrite_date": today,
-        }
-        if sub["tier"] == "payg" and sub["payg_balance"] > 0:
-            updates["payg_balance"] = sub["payg_balance"] - 1
-        client.table("users").update(updates).eq("id", user_id).execute()
+        }).eq("id", user_id).execute()
     except Exception as e:
         logger.error("increment_rewrite_count failed: %s", e)
 

@@ -1,0 +1,9 @@
+# Development and testing dependencies
+-r requirements.txt
+
+# Testing
+pytest==9.0.2
+pytest-cov==7.0.0
+
+# Linting (optional)
+ruff>=0.4.0

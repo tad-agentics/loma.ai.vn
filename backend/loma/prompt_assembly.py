@@ -5,8 +5,11 @@ Loads prompts from backend/prompts/ (or env/path relative to package).
 from __future__ import annotations
 
 import json
+import logging
 import random
 from pathlib import Path
+
+logger = logging.getLogger("loma.prompt_assembly")
 
 # When deployed as Lambda, prompts live next to handler or in package
 _PROMPTS_DIR = Path(__file__).resolve().parent.parent / "prompts"
@@ -135,7 +138,10 @@ def build_system_prompt(
     parts.append(PERSONA.get("system_prompt", "You are Loma, a professional English rewriting engine."))
 
     # 2. Intent-specific instructions + tone variant
-    intent_data = INTENTS.get(intent, INTENTS.get("general", {}))
+    intent_data = INTENTS.get(intent)
+    if intent_data is None:
+        logger.warning("No prompt file for intent '%s' — falling back to 'general'", intent)
+        intent_data = INTENTS.get("general", {})
     tones = intent_data.get("tones", {})
     tone_key = tone if tone in tones else "professional"
     parts.append(tones.get(tone_key, "Produce clear, professional English."))

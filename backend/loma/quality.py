@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import logging
 import re
+import unicodedata
 
 logger = logging.getLogger("loma.quality")
 
@@ -95,15 +96,15 @@ def check_entity_preservation(
     Returns {"missing": [...], "total_checked": int, "preserved_pct": float}.
     """
     entities = extract_entities(original_text)
-    output_lower = output_text.lower()
+    output_lower = unicodedata.normalize("NFC", output_text.lower())
     missing = []
     total = 0
 
     for category, items in entities.items():
         for item in items:
             total += 1
-            # Normalize for comparison: strip whitespace, lowercase
-            normalized = item.strip().lower()
+            # Normalize for comparison: Unicode NFC, strip whitespace, lowercase
+            normalized = unicodedata.normalize("NFC", item.strip().lower())
             if normalized not in output_lower:
                 # For money: also check without comma formatting
                 alt = normalized.replace(",", "")

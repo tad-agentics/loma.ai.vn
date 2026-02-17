@@ -18,6 +18,8 @@ Globals:
         PAYOS_CLIENT_ID: !Ref PayosClientId
         PAYOS_API_KEY: !Ref PayosApiKey
         PAYOS_CHECKSUM_KEY: !Ref PayosChecksumKey
+        FREE_REWRITES_PER_DAY: !Ref FreeRewritesPerDay
+        LOG_LEVEL: !Ref LogLevel
 
 Parameters:
   AnthropicApiKey:
@@ -42,6 +44,17 @@ Parameters:
     Type: String
     NoEcho: true
     Default: ""
+  FreeRewritesPerDay:
+    Type: Number
+    Default: 5
+  LogLevel:
+    Type: String
+    Default: INFO
+    AllowedValues:
+      - DEBUG
+      - INFO
+      - WARNING
+      - ERROR
 
 Resources:
   LomaApi:
@@ -66,6 +79,7 @@ Resources:
       FunctionName: loma-rewrite
       Handler: handler.handler
       CodeUri: ../backend/
+      ReservedConcurrentExecutions: 50
       Events:
         Rewrite:
           Type: HttpApi
@@ -109,6 +123,58 @@ Resources:
             ApiId: !Ref LomaApi
             Path: /api/v1/payment/create
             Method: POST
+
+  # CloudWatch Alarms
+  LambdaErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: loma-lambda-errors
+      AlarmDescription: Lambda error rate exceeds 5 errors per minute
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref RewriteFunction
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+
+  ApiGateway5xxAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: loma-api-5xx
+      AlarmDescription: API Gateway 5xx error rate exceeds 1%
+      Namespace: AWS/ApiGateway
+      MetricName: 5xx
+      Dimensions:
+        - Name: ApiId
+          Value: !Ref LomaApi
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 0.01
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+
+  LambdaDurationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: loma-lambda-duration-p99
+      AlarmDescription: Lambda p99 duration exceeds 10 seconds
+      Namespace: AWS/Lambda
+      MetricName: Duration
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref RewriteFunction
+      ExtendedStatistic: p99
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 10000
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
 
 Outputs:
   ApiUrl:

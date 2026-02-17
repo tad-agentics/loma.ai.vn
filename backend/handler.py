@@ -9,11 +9,30 @@ import json
 import logging
 
 from loma import analytics, auth, billing, db, payment
+from loma.intent import INTENT_PATTERNS
 from loma.pipeline import run_rewrite
 
 logger = logging.getLogger("loma.handler")
 
-_JSON_HEADERS = {"Content-Type": "application/json"}
+_JSON_HEADERS = {
+    "Content-Type": "application/json",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+}
+
+# Valid values for input validation
+_VALID_TONES = frozenset({"professional", "direct", "warm", "formal"})
+_VALID_PLATFORMS = frozenset({
+    "gmail", "outlook", "teams", "google_docs", "slack", "github",
+    "linkedin", "jira", "notion", "chatgpt", "claude", "generic",
+})
+_VALID_INTENTS = frozenset(INTENT_PATTERNS.keys())
+
+# Anonymous rate limiting (per-IP, in-memory for Lambda)
+_anon_ip_counts: dict[str, list] = {}  # ip -> [count, reset_timestamp]
+_ANON_RATE_LIMIT = 20  # requests per window
+_ANON_RATE_WINDOW_S = 3600  # 1 hour
 
 
 def handler(event: dict, context: object) -> dict:
@@ -84,6 +103,16 @@ def _handle_rewrite(event: dict) -> dict:
             "remaining": quota["remaining"],
         })
 
+    # Anonymous rate limiting (per-IP)
+    if not user_id:
+        client_ip = _extract_client_ip(event)
+        if client_ip and not _check_anon_rate_limit(client_ip):
+            return _json_response(429, {
+                "error": "rate_limited",
+                "message": "Too many requests. Please try again later.",
+                "message_vi": "Quá nhiều yêu cầu. Vui lòng thử lại sau.",
+            })
+
     # Extract params
     input_text = body.get("input_text") or ""
     platform = body.get("platform")
@@ -92,6 +121,26 @@ def _handle_rewrite(event: dict) -> dict:
     intent_override = body.get("intent")
     output_language = body.get("output_language")
     output_language_source = body.get("output_language_source")
+
+    # Input validation
+    if tone not in _VALID_TONES:
+        return _json_response(400, {
+            "error": "invalid_tone",
+            "message": f"Invalid tone: {tone}. Must be one of: {', '.join(sorted(_VALID_TONES))}.",
+            "message_vi": f"Tone không hợp lệ: {tone}.",
+        })
+    if platform and platform not in _VALID_PLATFORMS:
+        return _json_response(400, {
+            "error": "invalid_platform",
+            "message": f"Invalid platform: {platform}.",
+            "message_vi": f"Platform không hợp lệ: {platform}.",
+        })
+    if intent_override and intent_override not in _VALID_INTENTS:
+        return _json_response(400, {
+            "error": "invalid_intent",
+            "message": f"Invalid intent: {intent_override}.",
+            "message_vi": f"Intent không hợp lệ: {intent_override}.",
+        })
 
     # Run pipeline
     try:
@@ -194,6 +243,8 @@ def _handle_payos_webhook(event: dict) -> dict:
         return _json_response(400, {"error": "invalid_json"})
 
     result = payment.process_webhook(body)
+    if result.get("signature_invalid"):
+        return _json_response(401, result)
     if result.get("ok"):
         # Track successful payment
         analytics.track(
@@ -246,6 +297,27 @@ def _handle_create_payment(event: dict) -> dict:
         })
 
     return _json_response(200, {"ok": True, **result})
+
+
+def _extract_client_ip(event: dict) -> str | None:
+    """Extract client IP from API Gateway event."""
+    rc = event.get("requestContext", {})
+    http_info = rc.get("http", {})
+    return http_info.get("sourceIp") or rc.get("identity", {}).get("sourceIp")
+
+
+def _check_anon_rate_limit(ip: str) -> bool:
+    """Returns True if request is allowed, False if rate limited."""
+    import time
+    now = time.time()
+    entry = _anon_ip_counts.get(ip)
+    if entry is None or now > entry[1]:
+        _anon_ip_counts[ip] = [1, now + _ANON_RATE_WINDOW_S]
+        return True
+    if entry[0] >= _ANON_RATE_LIMIT:
+        return False
+    entry[0] += 1
+    return True
 
 
 def _json_response(status: int, body: dict) -> dict:
