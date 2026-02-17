@@ -25,7 +25,7 @@
   chrome.runtime.onMessage.addListener((msg) => {
     if (msg.type === 'TRIGGER_REWRITE' && lastFocusedField) {
       const text = getFieldText(lastFocusedField);
-      if (text && text.length >= 10 && containsVietnamese(text)) {
+      if (text && text.length >= 5 && containsVietnamese(text)) {
         onRewrite(lastFocusedField, text);
       }
     }
@@ -102,7 +102,7 @@
     const text = getFieldText(field);
     const minHeight = 38;
     const height = field.offsetHeight || 0;
-    const shouldShow = height >= minHeight && text.length >= 10 && containsVietnamese(text);
+    const shouldShow = height >= minHeight && text.length >= 5 && containsVietnamese(text);
     let btn = buttons.get(field);
     if (shouldShow && !btn) {
       btn = document.createElement('loma-button');

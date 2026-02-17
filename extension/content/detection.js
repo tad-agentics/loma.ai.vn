@@ -6,7 +6,7 @@
  * - Romanized Vietnamese detection (no diacritics): common bigrams
  *   that are unambiguously Vietnamese even without diacritics.
  */
-const VI_CHARS = /[ăắằẳẵặâấầẩẫậđêếềểễệôốồổỗộơớờởỡợưứừửữự]/i;
+const VI_CHARS = /[àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]/i;
 const VI_FUNCTION_WORDS = /\b(ơi|ạ|nhé|nha|đã|đang|sẽ|chưa|rồi|cái|của|cho|với|được|không|này|đó|thì|mà|là|và|hay|hoặc|nhưng|nếu|vì|để)\b/i;
 
 // Romanized Vietnamese bigrams — unambiguously Vietnamese even without diacritics
@@ -16,10 +16,10 @@ const VI_ROMANIZED_BIGRAMS = /\b(anh oi|chi oi|em oi|xin chao|cam on|xin loi|duo
 const VI_ROMANIZED_WORDS = /\b(khong|chua|duoc|nhung|hoac|vay|gui|xin|moi)\b/gi;
 
 function containsVietnamese(text) {
-  if (!text || text.length < 10) return false;
-  // Check 1: Vietnamese diacritics
-  const viCharMatches = (text.match(VI_CHARS) || []).length;
-  if (viCharMatches >= 3) return true;
+  if (!text || text.length < 5) return false;
+  // Check 1: Vietnamese diacritics (even one is a strong signal)
+  const viCharMatches = (text.match(new RegExp(VI_CHARS.source, 'gi')) || []).length;
+  if (viCharMatches >= 1) return true;
   // Check 2: Vietnamese function words with diacritics
   const viWordMatches = (text.match(new RegExp(VI_FUNCTION_WORDS.source, 'gi')) || []).length;
   if (viWordMatches >= 2) return true;
