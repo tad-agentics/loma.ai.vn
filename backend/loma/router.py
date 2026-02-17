@@ -6,6 +6,9 @@ from __future__ import annotations
 # Intents that can be handled by rules for very short/simple text
 LOW_COMPLEXITY_INTENTS = frozenset({"follow_up", "say_no", "apologize", "general"})
 
+# Vietnamese output intents — these output Vietnamese, not English
+_VN_OUTPUT_INTENTS = frozenset({"write_to_gov", "write_formal_vn", "write_report_vn", "write_proposal_vn"})
+
 
 def can_rules_handle(input_text: str, intent: str) -> bool:
     """
@@ -42,9 +45,10 @@ def route_rewrite(
 
     vi_ratio = language_mix.get("vi_ratio", 0.0)
 
-    # Vietnamese casual/formal short text → Haiku (Tech Spec v1.5)
-    if output_language in ("vi_casual", "vi_formal") and len(input_text) < 150:
-        return "haiku"
+    # Vietnamese output intents: short text → haiku (cheaper), long → sonnet
+    if intent in _VN_OUTPUT_INTENTS or output_language in ("vi_casual", "vi_formal"):
+        if len(input_text) < 150:
+            return "haiku"
 
     # Pure English rough text → Haiku
     if vi_ratio < 0.1 and intent == "general":

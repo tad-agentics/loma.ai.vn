@@ -69,6 +69,57 @@ class TestRunRewrite:
         assert isinstance(result["risk_flags"], list)
 
 
+class TestVietnameseOutputIntents:
+    """Test Vietnamese output intent pipeline: write_to_gov, write_formal_vn, write_report_vn, write_proposal_vn."""
+
+    def test_write_to_gov_auto_detection(self):
+        """write_to_gov triggers vi_admin output_language and routes to rules."""
+        result = run_rewrite(
+            "Kính gửi Sở Kế hoạch và Đầu tư, căn cứ nghị định 01, đề nghị cấp giấy phép kinh doanh",
+        )
+        assert "error" not in result
+        assert result.get("output_language") == "vi_admin"
+        assert result.get("routing_tier") == "rules"
+        assert "Kính gửi" in result.get("output_text", "")
+
+    def test_write_to_gov_with_override(self):
+        """Explicit intent override for write_to_gov."""
+        result = run_rewrite(
+            "Xin cấp giấy phép cho công ty mới",
+            intent_override="write_to_gov",
+        )
+        assert result.get("detected_intent") == "write_to_gov"
+        assert result.get("output_language") == "vi_admin"
+        assert result.get("routing_tier") == "rules"
+
+    def test_output_language_vi_formal(self):
+        """Client-specified vi_formal output language is respected."""
+        result = run_rewrite(
+            "Viết email cho giám đốc về tiến độ dự án",
+            output_language_in="vi_formal",
+        )
+        assert result.get("output_language") == "vi_formal"
+
+    def test_output_language_vi_casual(self):
+        """Client-specified vi_casual output language is respected."""
+        result = run_rewrite(
+            "Nhắn team về buổi họp mai",
+            output_language_in="vi_casual",
+        )
+        assert result.get("output_language") == "vi_casual"
+
+    def test_vi_output_response_shape(self):
+        """Vietnamese output responses have the same shape as English rewrites."""
+        result = run_rewrite(
+            "Cần xin giấy phép kinh doanh",
+            output_language_in="vi_admin",
+        )
+        for key in ("rewrite_id", "output_text", "original_text", "detected_intent",
+                     "intent_confidence", "routing_tier", "scores", "language_mix",
+                     "response_time_ms", "output_language", "output_language_source"):
+            assert key in result, f"Missing key: {key}"
+
+
 class TestRunRewriteAuth:
     """Test that pipeline still works without auth (backward compatible)."""
 

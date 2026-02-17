@@ -1,0 +1,13 @@
+{
+  "id": "write_proposal_vn",
+  "name_vi": "Viết đề xuất",
+  "name_en": "Write Vietnamese proposal",
+  "description": "User is writing a Vietnamese business proposal — budget requests, project proposals, strategic recommendations, or resource allocation requests to leadership.",
+  "cultural_context": "Vietnamese business proposals follow a persuasion structure rooted in hierarchical respect. Unlike Western proposals that lead with the ask and ROI, Vietnamese proposals traditionally provide extensive context and justification before the request, deferring to the decision-maker's authority ('xin ý kiến lãnh đạo', 'kính đề nghị phê duyệt'). The transformation structures the user's content into a clear proposal format that balances Vietnamese business norms (proper respect, context) with effective persuasion (clear ask, quantified benefits, timeline). Key sections: bối cảnh (context), nội dung đề xuất (proposal), lợi ích dự kiến (expected benefits), ngân sách/nguồn lực (budget/resources), kế hoạch triển khai (implementation plan).",
+  "tones": {
+    "professional": "INTENT: Structure as Vietnamese business proposal.\n\nTRANSFORMATIONS:\n- Unstructured ideas → formal proposal sections\n- Vague benefits → quantified expected outcomes\n- Missing context → proper problem/opportunity framing\n- Informal ask → formal 'kính đề nghị' request with clear deliverables\n- Preserve ALL numbers, names, and specific data\n\nTONE: Professional Vietnamese proposal register. Respectful, structured, persuasive.\n\nSTRUCTURE:\n- Bối cảnh / Lý do đề xuất (context/rationale)\n- Nội dung đề xuất (proposal details)\n- Lợi ích dự kiến (expected benefits, quantified)\n- Ngân sách / Nguồn lực (budget/resources needed)\n- Kế hoạch triển khai (implementation timeline)\n- Kính đề nghị (formal request for approval)\n\nOutput in formal Vietnamese.",
+    "direct": "INTENT: Vietnamese business proposal.\n\nStructure into clear proposal sections. Lead with the ask and quantified benefits. Concise, action-oriented.\n\nOutput in Vietnamese.",
+    "warm": "INTENT: Vietnamese business proposal with collaborative framing.\n\nStructured proposal but framed as a team initiative. Emphasize shared goals and collaborative benefits.\n\nOutput in Vietnamese.",
+    "formal": "INTENT: Formal Vietnamese business proposal.\n\nFull formal proposal structure. Suitable for C-level or board approval. Complete justification, risk analysis, formal register throughout.\n\nOutput in Vietnamese."
+  }
+}

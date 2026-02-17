@@ -33,3 +33,24 @@ class TestRouteRewrite:
         text = "A" * 250
         tier = route_rewrite(text, {"vi_ratio": 0.5, "en_ratio": 0.5}, "say_no", 0.8, "en")
         assert tier == "sonnet"
+
+    def test_short_vi_formal_routes_to_haiku(self):
+        """Short text with vi_formal output should route to haiku for cost savings."""
+        tier = route_rewrite("Viết email cho sếp", {"vi_ratio": 1.0, "en_ratio": 0.0}, "write_formal_vn", 0.7, "vi_formal")
+        assert tier == "haiku"
+
+    def test_long_vi_formal_routes_to_sonnet(self):
+        """Long Vietnamese formal text should still route to sonnet."""
+        text = "Viết báo cáo chi tiết " * 20
+        tier = route_rewrite(text, {"vi_ratio": 1.0, "en_ratio": 0.0}, "write_formal_vn", 0.7, "vi_formal")
+        assert tier == "sonnet"
+
+    def test_short_write_report_vn_routes_to_haiku(self):
+        """Short Vietnamese report intent routes to haiku."""
+        tier = route_rewrite("Tổng kết Q2", {"vi_ratio": 1.0, "en_ratio": 0.0}, "write_report_vn", 0.7, "vi_formal")
+        assert tier == "haiku"
+
+    def test_short_write_proposal_vn_routes_to_haiku(self):
+        """Short Vietnamese proposal intent routes to haiku."""
+        tier = route_rewrite("Đề xuất ngân sách", {"vi_ratio": 1.0, "en_ratio": 0.0}, "write_proposal_vn", 0.7, "vi_formal")
+        assert tier == "haiku"

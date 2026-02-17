@@ -31,6 +31,12 @@ _INTENT_TO_CATEGORY: dict[str, list[str]] = {
     "apologize": ["apologize"],
     "ai_prompt": [],  # AI prompts don't benefit from cultural pattern examples
     "general": ["general_professional", "greeting_opening"],
+    # Vietnamese output intents — no cultural pattern examples needed
+    # (output is Vietnamese, not English; no Vi→En transformation)
+    "write_to_gov": [],
+    "write_formal_vn": [],
+    "write_report_vn": [],
+    "write_proposal_vn": [],
 }
 
 _MAX_EXAMPLES = 3
