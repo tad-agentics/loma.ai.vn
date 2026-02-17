@@ -55,6 +55,65 @@ class TestComputeIntentScores:
         assert result["intent"] == "write_to_gov"
         assert result["output_language"] == "vi_admin"
 
+    def test_apologize(self):
+        result = compute_intent_scores(
+            "Em xin lỗi anh, lỗi hoàn toàn là do em, em rất tiếc đã deploy bug lên production",
+            {"vi_ratio": 0.7, "en_ratio": 0.3},
+            "slack",
+        )
+        assert result["intent"] == "apologize"
+
+    def test_cold_outreach(self):
+        result = compute_intent_scores(
+            "Em tự giới thiệu, em muốn explore cơ hội hợp tác, xin giới thiệu platform của bên em",
+            {"vi_ratio": 0.6, "en_ratio": 0.4},
+            "gmail",
+        )
+        assert result["intent"] == "cold_outreach"
+
+    def test_give_feedback(self):
+        result = compute_intent_scores(
+            "Anh đánh giá performance review của em, code có nhiều code duplication cần refactor, nhưng client satisfaction tăng",
+            {"vi_ratio": 0.5, "en_ratio": 0.5},
+            "gmail",
+        )
+        assert result["intent"] == "give_feedback"
+
+    def test_request_senior(self):
+        result = compute_intent_scores(
+            "Anh ơi, xin phép nhờ anh review và approve cái PR deploy lên production",
+            {"vi_ratio": 0.6, "en_ratio": 0.4},
+            "slack",
+        )
+        assert result["intent"] == "request_senior"
+
+    def test_write_formal_vn(self):
+        result = compute_intent_scores(
+            "Kính gửi ban lãnh đạo, trân trọng báo cáo kết quả, kính mời quý anh/chị",
+            {"vi_ratio": 1.0, "en_ratio": 0.0},
+            "generic",
+        )
+        assert result["intent"] == "write_formal_vn"
+        assert result["output_language"] == "vi_formal"
+
+    def test_write_report_vn(self):
+        result = compute_intent_scores(
+            "Báo cáo tổng kết kết quả quý Q2, tình hình tiến độ đánh giá mục tiêu KPI",
+            {"vi_ratio": 0.9, "en_ratio": 0.1},
+            "generic",
+        )
+        assert result["intent"] == "write_report_vn"
+        assert result["output_language"] == "vi_formal"
+
+    def test_write_proposal_vn(self):
+        result = compute_intent_scores(
+            "Đề xuất phương án triển khai kế hoạch ngân sách mới, kiến nghị phê duyệt mục tiêu",
+            {"vi_ratio": 0.9, "en_ratio": 0.1},
+            "generic",
+        )
+        assert result["intent"] == "write_proposal_vn"
+        assert result["output_language"] == "vi_formal"
+
     def test_empty_text(self):
         result = compute_intent_scores(
             "",

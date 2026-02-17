@@ -138,5 +138,9 @@ def _category_to_intent(category: str | None) -> str | None:
         "escalate": "escalate",
         "apologize": "apologize",
         "general_professional": "general",
+        "write_to_gov": "write_to_gov",
+        "write_formal_vn": "write_formal_vn",
+        "write_report_vn": "write_report_vn",
+        "write_proposal_vn": "write_proposal_vn",
     }
     return m.get(category)

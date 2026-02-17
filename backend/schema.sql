@@ -102,6 +102,26 @@ CREATE POLICY rewrites_self_read ON rewrites FOR SELECT
 CREATE POLICY payments_self_read ON payments FOR SELECT
     USING (auth.uid() = user_id);
 
+-- ============================================================
+-- RPC: Atomic PAYG deduction + rewrite count increment
+-- Prevents race conditions on concurrent requests
+-- ============================================================
+CREATE OR REPLACE FUNCTION decrement_payg_and_count(
+    p_user_id UUID,
+    p_new_count INTEGER,
+    p_date DATE
+) RETURNS VOID AS $$
+BEGIN
+    UPDATE users
+    SET payg_balance = GREATEST(payg_balance - 1, 0),
+        rewrites_today = p_new_count,
+        last_rewrite_date = p_date,
+        updated_at = NOW()
+    WHERE id = p_user_id
+      AND payg_balance > 0;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
 -- Service role can do everything (backend uses service key)
 CREATE POLICY service_all_users ON users FOR ALL
     USING (auth.role() = 'service_role');

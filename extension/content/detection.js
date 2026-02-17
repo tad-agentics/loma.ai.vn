@@ -58,12 +58,21 @@ function detectGrammarly(textField) {
 
 function getPlatform() {
   const host = window.location.hostname;
+  // Google Workspace
   if (host.includes('mail.google.com')) return 'gmail';
+  if (host.includes('docs.google.com')) return 'google_docs';
+  // Microsoft Office
+  if (host.includes('outlook.office.com') || host.includes('outlook.live.com') || host.includes('outlook.office365.com')) return 'outlook';
+  if (host.includes('teams.microsoft.com') || host.includes('teams.live.com')) return 'teams';
+  // Dev & professional
   if (host.includes('app.slack.com')) return 'slack';
   if (host.includes('github.com')) return 'github';
+  if (host.includes('linkedin.com')) return 'linkedin';
+  if (host.endsWith('.atlassian.net') || host.includes('jira')) return 'jira';
+  if (host.includes('notion.so') || host.includes('notion.site')) return 'notion';
+  // AI chat
   if (host.includes('chat.openai.com')) return 'chatgpt';
   if (host.includes('claude.ai')) return 'claude';
-  if (host.includes('linkedin.com')) return 'linkedin';
   return 'generic';
 }
 

@@ -90,10 +90,10 @@ def process_webhook(payload: dict) -> dict[str, Any]:
     data = payload.get("data", {})
     signature = payload.get("signature", "")
 
-    # Verify signature
+    # Verify signature — reject with 401-triggering flag on mismatch
     if PAYOS_CHECKSUM_KEY and not verify_webhook_signature(data, signature):
         logger.warning("Invalid PayOS webhook signature for order %s", data.get("orderCode"))
-        return {"ok": False, "message": "Invalid signature", "action": None}
+        return {"ok": False, "message": "Invalid signature", "action": None, "signature_invalid": True}
 
     description = data.get("description", "")
     order_code = data.get("orderCode")

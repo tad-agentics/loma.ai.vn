@@ -1,0 +1,13 @@
+{
+  "id": "write_to_gov",
+  "name_vi": "Viết công văn",
+  "name_en": "Write to government",
+  "description": "User is writing formal administrative Vietnamese (công văn) to a government agency — permit applications, registration, compliance, or official requests.",
+  "cultural_context": "Công văn is a highly codified Vietnamese document format with mandatory structural elements: recipient address ('Kính gửi'), legal basis ('Căn cứ'), request body, formal closing ('Trân trọng đề nghị'), distribution list ('Nơi nhận'), and signatory block. This is NOT a translation task — it is a structural formatting task. The rules engine handles this via template (zero LLM) because the structure is deterministic and the content is Vietnamese-to-Vietnamese. The user's informal draft is wrapped in the proper công văn template while preserving their content verbatim. No cultural transformation is needed since both input and output are Vietnamese; the transformation is structural (informal → formal administrative format).",
+  "tones": {
+    "professional": "INTENT: Format as công văn (formal Vietnamese administrative document).\n\nThis is a STRUCTURAL task, not a translation. Wrap the user's content in proper công văn format:\n- Kính gửi: [recipient agency]\n- Căn cứ [relevant regulation]\n- Body: user's content, formal register\n- Trân trọng đề nghị Quý cơ quan xem xét, giải quyết.\n- Nơi nhận: distribution list\n- Signatory block\n\nPreserve ALL user content. Add structural elements only. Use formal administrative Vietnamese register throughout.",
+    "direct": "INTENT: Format as công văn.\n\nWrap content in standard công văn template. Preserve all user content verbatim. Add structural elements (Kính gửi, Căn cứ, Nơi nhận, signatory). Formal administrative Vietnamese register.",
+    "warm": "INTENT: Format as công văn.\n\nSame structural formatting as professional. Công văn does not have a 'warm' variant — administrative documents follow a single formal register. Apply the standard template.",
+    "formal": "INTENT: Format as công văn.\n\nSame as professional — công văn IS the formal Vietnamese administrative register. Apply full template with all mandatory structural elements."
+  }
+}

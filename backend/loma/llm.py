@@ -13,9 +13,9 @@ logger = logging.getLogger("loma.llm")
 USER_MESSAGE_TEMPLATE = "Rewrite this:\n\n{input_text}"
 
 # Retry config
-MAX_RETRIES = 1
+MAX_RETRIES = 3
 RETRY_DELAY_S = 1.0
-REQUEST_TIMEOUT_S = 15.0
+REQUEST_TIMEOUT_S = 20.0
 
 
 def call_claude(

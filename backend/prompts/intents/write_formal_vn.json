@@ -1,0 +1,13 @@
+{
+  "id": "write_formal_vn",
+  "name_vi": "Viết email trang trọng",
+  "name_en": "Write formal Vietnamese",
+  "description": "User is writing formal Vietnamese for professional contexts — email to superiors, official correspondence, or communication with senior leadership.",
+  "cultural_context": "Unlike English rewrites (where the task is Vietnamese → English cultural transformation), this intent is Vietnamese → Vietnamese register elevation. The user writes casual or semi-formal Vietnamese and needs it elevated to formal Vietnamese register suitable for superiors or official channels. Key transformations: casual pronouns (tôi/mình/tao) → formal (em/chúng tôi), casual sentence structure → formal complete sentences, slang/abbreviations → full formal vocabulary, missing honorifics → proper honorifics (kính thưa, trân trọng), and proper email/letter structure for Vietnamese business contexts.",
+  "tones": {
+    "professional": "INTENT: Elevate Vietnamese register to formal professional.\n\nThis is a Vietnamese → Vietnamese register transformation, NOT a translation.\n\nTRANSFORMATIONS:\n- Casual pronouns (tôi, mình) → formal (em kính gửi, chúng tôi)\n- Casual sentence fragments → complete formal sentences\n- Slang/abbreviations → full formal Vietnamese vocabulary\n- Add proper honorifics where missing (kính thưa, trân trọng)\n- Structure: greeting, body, formal closing\n- Preserve ALL meaning and content\n\nTONE: Formal Vietnamese professional register. Respectful, structured, suitable for email to superiors.\n\nOutput in Vietnamese.",
+    "direct": "INTENT: Elevate Vietnamese register.\n\nClean up casual Vietnamese into concise formal Vietnamese. Remove slang, add honorifics, use complete sentences. Preserve all content.\n\nOutput in Vietnamese.",
+    "warm": "INTENT: Elevate Vietnamese register with warmth.\n\nElevate to formal but keep a warm, respectful tone. Not cold corporate — more like a well-mannered professional writing to a respected colleague.\n\nOutput in Vietnamese.",
+    "formal": "INTENT: Maximum formal Vietnamese register.\n\nFull formal Vietnamese business correspondence. Proper honorifics, complete formal structure, no casual language whatsoever. Suitable for board-level or external official communication.\n\nOutput in Vietnamese."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "write_report_vn",
+  "name_vi": "Viết báo cáo",
+  "name_en": "Write Vietnamese report",
+  "description": "User is writing a Vietnamese business report — quarterly results, project status, KPI updates, or performance summaries for internal stakeholders.",
+  "cultural_context": "Vietnamese business reports have a specific expected structure that differs from Western reports. Vietnamese reports emphasize collective achievement ('chúng ta đã', 'phòng ban đã'), include contextual framing before data ('trong bối cảnh thị trường khó khăn'), and use respectful framing for challenges ('một số hạn chế cần khắc phục' rather than blunt failure statements). The transformation elevates casual notes or bullet points into structured Vietnamese report format with proper sections: tổng quan (overview), kết quả (results), đánh giá (assessment), đề xuất (recommendations). Metrics should be highlighted clearly and compared to targets (mục tiêu).",
+  "tones": {
+    "professional": "INTENT: Structure as Vietnamese business report.\n\nTRANSFORMATIONS:\n- Casual notes/bullets → structured report sections\n- Raw numbers → contextualized metrics with target comparison\n- Missing structure → Tổng quan | Kết quả | Đánh giá | Đề xuất sections\n- Informal language → professional Vietnamese report register\n- Preserve ALL data points, names, and numbers exactly\n\nTONE: Professional Vietnamese report register. Clear, data-driven, structured.\n\nSTRUCTURE:\n- Tổng quan (overview/context)\n- Kết quả (results with metrics)\n- Đánh giá (assessment)\n- Đề xuất (recommendations/next steps)\n\nOutput in formal Vietnamese.",
+    "direct": "INTENT: Vietnamese business report.\n\nStructure content into clear report sections. Lead with results, follow with assessment. Concise, data-driven.\n\nOutput in Vietnamese.",
+    "warm": "INTENT: Vietnamese business report with collaborative tone.\n\nStructured report format but framed collaboratively. Acknowledge team contributions. Frame challenges as shared opportunities.\n\nOutput in Vietnamese.",
+    "formal": "INTENT: Formal Vietnamese business report.\n\nFull formal report structure with all sections. Suitable for board or external stakeholders. Complete sentences, formal register, data-driven.\n\nOutput in Vietnamese."
+  }
+}
