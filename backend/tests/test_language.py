@@ -1,4 +1,4 @@
-"""Tests for loma.language — Vietnamese detection and language mix."""
+"""Tests for loma.language — Vietnamese detection with romanized support and language mix."""
 import pytest
 from loma.language import contains_vietnamese, compute_language_mix
 
@@ -31,6 +31,30 @@ class TestContainsVietnamese:
     def test_english_with_single_vi_word(self):
         # Should not trigger with just 1 function word
         assert contains_vietnamese("Please send the report chưa finish") is False
+
+
+class TestRomanizedVietnamese:
+    """Test detection of Vietnamese typed without diacritics."""
+
+    def test_romanized_bigram_thanh_toan(self):
+        assert contains_vietnamese("anh oi, thanh toan invoice thang 1 di") is True
+
+    def test_romanized_bigram_xin_chao(self):
+        assert contains_vietnamese("xin chao anh, em muon hoi ve project") is True
+
+    def test_romanized_bigram_bao_cao(self):
+        assert contains_vietnamese("em gui bao cao cho anh review nhe") is True
+
+    def test_romanized_multiple_words(self):
+        """Three romanized single words should trigger detection."""
+        assert contains_vietnamese("khong duoc roi, chua xong, gui lai") is True
+
+    def test_romanized_false_positive_guard(self):
+        """Normal English should not trigger romanized detection."""
+        assert contains_vietnamese("The quick brown fox jumps over the lazy dog") is False
+
+    def test_romanized_de_xuat(self):
+        assert contains_vietnamese("em co de xuat moi cho project nay anh") is True
 
 
 class TestComputeLanguageMix:

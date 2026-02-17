@@ -104,6 +104,14 @@ def run_rewrite(
     end_ms = int(time.time() * 1000)
     response_time_ms = end_ms - start_ms
 
+    # Risk flags: surface entity preservation issues
+    risk_flags = []
+    if scores.get("entity_missing"):
+        risk_flags.append({
+            "type": "entity_missing",
+            "details": scores["entity_missing"],
+        })
+
     return {
         "rewrite_id": str(uuid.uuid4()),
         "output_text": output_text,
@@ -115,7 +123,7 @@ def run_rewrite(
         "ner_entities": None,
         "routing_tier": tier,
         "scores": scores,
-        "risk_flags": [],
+        "risk_flags": risk_flags,
         "language_mix": language_mix,
         "response_time_ms": response_time_ms,
         "payg_balance_remaining": None,

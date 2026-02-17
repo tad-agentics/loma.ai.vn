@@ -9,15 +9,17 @@ LOW_COMPLEXITY_INTENTS = frozenset({"follow_up", "say_no", "apologize", "general
 
 def can_rules_handle(input_text: str, intent: str) -> bool:
     """
-    Rules engine only for high-confidence, short, simple cases.
+    Rules engine for high-confidence, short, simple cases that match cultural patterns.
     When in doubt, route up (Haiku/Sonnet).
     """
     if len(input_text) > 200:
         return False
     if intent not in LOW_COMPLEXITY_INTENTS:
         return False
-    # Could add: exact pattern match in cultural library
-    return False  # Conservative: no rules-only at launch until we tune
+    # Enable rules matching for short, low-complexity intents.
+    # The rules engine returns None if no pattern matches, so pipeline
+    # will fall through to LLM automatically.
+    return True
 
 
 def route_rewrite(
