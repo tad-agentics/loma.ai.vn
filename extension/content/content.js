@@ -109,8 +109,15 @@
       btn.setField(field);
       if (typeof detectGrammarly === 'function' && detectGrammarly(field)) btn.setAttribute('grammarly-offset', '');
       btn.addEventListener('loma-rewrite', () => onRewrite(field, getFieldText(field)));
-      field.style.position = field.style.position || 'relative';
-      field.appendChild(btn);
+      // For contenteditable fields (Gmail, Outlook, etc.) insert the button as a
+      // sibling rather than a child so it doesn't become part of the editable content.
+      if (field.isContentEditable && field.parentNode) {
+        field.parentNode.style.position = field.parentNode.style.position || 'relative';
+        field.parentNode.appendChild(btn);
+      } else {
+        field.style.position = field.style.position || 'relative';
+        field.appendChild(btn);
+      }
       buttons.set(field, btn);
     } else if (!shouldShow && btn) {
       btn.remove();
@@ -288,6 +295,24 @@
 
   document.addEventListener('input', debouncedScan);
   document.addEventListener('change', debouncedScan);
+  // Gmail (and similar SPAs) create compose fields dynamically — rescan on focus
+  document.addEventListener('focusin', debouncedScan);
+
+  // Observe DOM for dynamically-added compose fields (Gmail, Outlook, etc.)
+  const mo = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      for (const node of m.addedNodes) {
+        if (node.nodeType === 1 &&
+            (node.isContentEditable ||
+             node.querySelector && node.querySelector('[contenteditable="true"]'))) {
+          debouncedScan();
+          return;
+        }
+      }
+    }
+  });
+  mo.observe(document.body || document.documentElement, { childList: true, subtree: true });
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', scan);
   } else {
