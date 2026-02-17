@@ -234,6 +234,35 @@
       font-style: italic;
     }
     .compare-card.loma .verdict { color: var(--brand-subtle); }
+    .tested-strip {
+      text-align: center; margin-bottom: 48px;
+      padding: 28px 24px; border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(216,210,200,0.1);
+    }
+    .tested-label {
+      font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+      color: var(--text-muted); margin-bottom: 16px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .tested-competitors {
+      display: flex; justify-content: center; gap: 12px;
+      flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .tested-badge {
+      font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+      color: var(--text-on-dark); padding: 6px 16px;
+      border-radius: 9999px; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(216,210,200,0.12);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .tested-badge .check {
+      color: var(--brand); font-weight: 700; font-size: 14px;
+    }
+    .tested-result {
+      font-family: var(--font-body); font-size: 15px;
+      color: var(--brand); font-weight: 500;
+    }
     .compare-points {
       display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
     }
@@ -625,7 +654,7 @@
   <section class="comparison" id="comparison">
     <div class="container">
       <h2 class="animate-on-scroll">Tại sao không dùng ChatGPT?</h2>
-      <p class="subtitle animate-on-scroll">Vâng, bạn có thể dùng ChatGPT. Đây là lý do chuyên gia chuyển sang Loma.</p>
+      <p class="subtitle animate-on-scroll">Hay Gemini, Claude, Copilot? Chúng tôi đã thử cả 4. Đây là lý do chuyên gia chọn Loma.</p>
 
       <div class="compare-grid animate-on-scroll">
         <div class="compare-card chatgpt">
@@ -640,33 +669,44 @@
         </div>
       </div>
 
+      <div class="tested-strip animate-on-scroll">
+        <div class="tested-label">Kiểm chứng với 50 tình huống giao tiếp thực tế</div>
+        <div class="tested-competitors">
+          <span class="tested-badge">ChatGPT (GPT-4o) <span class="check">&check;</span></span>
+          <span class="tested-badge">Gemini 2.0 Pro <span class="check">&check;</span></span>
+          <span class="tested-badge">Claude 3.5 Sonnet <span class="check">&check;</span></span>
+          <span class="tested-badge">Microsoft Copilot <span class="check">&check;</span></span>
+        </div>
+        <div class="tested-result">Loma dẫn đầu ở mọi cuộc so sánh 1-1</div>
+      </div>
+
       <div class="compare-points animate-on-scroll">
         <div class="compare-point">
           <div class="num">1</div>
           <div>
             <h4>Hiểu bạn muốn gì</h4>
-            <p>ChatGPT không biết bạn đang từ chối hay nhắc thanh toán. Loma phát hiện 14 tình huống và viết khác nhau cho từng loại.</p>
+            <p>AI tổng quát không biết bạn đang từ chối hay nhắc thanh toán. Loma phát hiện 14 tình huống và viết khác nhau cho từng loại.</p>
           </div>
         </div>
         <div class="compare-point">
           <div class="num">2</div>
           <div>
             <h4>Chuyển đổi văn hóa</h4>
-            <p>ChatGPT dịch nguyên 3 câu xin lỗi. Loma biến thành 1 câu chuyên nghiệp &mdash; vì văn hóa phương Tây cần thế.</p>
+            <p>ChatGPT, Gemini, Claude đều dịch nguyên 3 câu xin lỗi. Loma biến thành 1 câu chuyên nghiệp &mdash; vì văn hóa phương Tây cần thế.</p>
           </div>
         </div>
         <div class="compare-point">
           <div class="num">3</div>
           <div>
             <h4>Nhanh hơn 15 lần</h4>
-            <p>ChatGPT: mở tab, paste, viết prompt, copy, quay lại &mdash; 8 bước. Loma: bấm 1 nút ngay trong Gmail. 2 giây.</p>
+            <p>AI chatbot: mở tab, paste, viết prompt, copy, quay lại &mdash; 8 bước. Loma: bấm 1 nút ngay trong Gmail. 2 giây.</p>
           </div>
         </div>
         <div class="compare-point">
           <div class="num">4</div>
           <div>
             <h4>Giá rẻ hơn</h4>
-            <p>ChatGPT Plus: $20/tháng cho AI đa dụng. Loma Pro: 149K VND (~$6) cho viết chuyên nghiệp không giới hạn.</p>
+            <p>ChatGPT Plus $20, Gemini Advanced $20, Copilot Pro $20/tháng. Loma Pro: 149K VND (~$6) cho viết chuyên nghiệp không giới hạn.</p>
           </div>
         </div>
       </div>
@@ -692,7 +732,7 @@
         <div class="feature-card animate-on-scroll">
           <div class="icon">&#x26A1;</div>
           <h3>Dưới 2 giây</h3>
-          <p>Không cần mở tab mới. Không cần viết prompt. Bấm 1 nút ngay trong text field &mdash; nhanh hơn ChatGPT 15 lần.</p>
+          <p>Không cần mở tab mới. Không cần viết prompt. Bấm 1 nút ngay trong text field &mdash; nhanh hơn bất kỳ AI chatbot nào 15 lần.</p>
         </div>
         <div class="feature-card animate-on-scroll">
           <div class="icon">&#x1F1FB;&#x1F1F3;</div>
