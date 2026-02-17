@@ -730,7 +730,7 @@
         "structural_completeness": 1,
         "tone_calibration": 0,
         "entity_preservation": 2,
-        "conciseness": 0
+        "conciseness": 1
       },
       "loma_output": "Dear Valued Clients,\n\nWe are pleased to introduce TalentVN's HR consulting services. With 8 years of industry experience and over 200 trusted clients, we are confident in delivering value to your company.",
       "loma_score": {
@@ -1315,7 +1315,7 @@
       "expected_output_qualities": "Preserve all technical terms. One apology. Structure: what happened → fix → root cause → prevention. Accountable and forward-looking.",
       "chatgpt_output": "I'm sorry, the bug in production was caused by me merging code without running the full test suite. I've already hotfixed it and deployed it at 3pm. Root cause: a missing null check in the payment module. I will add a pre-merge checklist to prevent this in the future.",
       "chatgpt_score": {
-        "cultural_accuracy": 1,
+        "cultural_accuracy": 2,
         "structural_completeness": 2,
         "tone_calibration": 2,
         "entity_preservation": 2,
