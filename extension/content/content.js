@@ -107,17 +107,11 @@
     if (shouldShow && !btn) {
       btn = document.createElement('loma-button');
       btn.setField(field);
-      if (typeof detectGrammarly === 'function' && detectGrammarly(field)) btn.setAttribute('grammarly-offset', '');
+      if (typeof detectGrammarly === 'function' && detectGrammarly(field)) btn.setGrammarlyOffset(true);
       btn.addEventListener('loma-rewrite', () => onRewrite(field, getFieldText(field)));
-      // For contenteditable fields (Gmail, Outlook, etc.) insert the button as a
-      // sibling rather than a child so it doesn't become part of the editable content.
-      if (field.isContentEditable && field.parentNode) {
-        field.parentNode.style.position = field.parentNode.style.position || 'relative';
-        field.parentNode.appendChild(btn);
-      } else {
-        field.style.position = field.style.position || 'relative';
-        field.appendChild(btn);
-      }
+      // Always append to document.body with position:fixed so the button is
+      // never clipped by Gmail/Outlook overflow:hidden containers.
+      document.body.appendChild(btn);
       buttons.set(field, btn);
     } else if (!shouldShow && btn) {
       btn.remove();
@@ -279,9 +273,11 @@
       // Platforms that use contenteditable compose fields
       const platform = typeof getPlatform === 'function' ? getPlatform() : 'generic';
       if (['gmail', 'outlook', 'teams', 'google_docs', 'notion', 'jira', 'slack'].indexOf(platform) !== -1) {
-        const contenteditables = document.querySelectorAll('div[contenteditable="true"], [role="textbox"][contenteditable="true"]');
+        // Use broad selector — Gmail may use contenteditable="" or "plaintext-only",
+        // not just "true". Filter with isContentEditable to catch all variants.
+        const contenteditables = document.querySelectorAll('[contenteditable]:not([contenteditable="false"]), [role="textbox"]');
         contenteditables.forEach((el) => {
-          if (el.offsetHeight >= 38 && el.offsetParent !== null) fields.push(el);
+          if (el.isContentEditable && el.offsetHeight >= 38 && el.offsetParent !== null) fields.push(el);
         });
       }
       fields.forEach((el) => showOrHideButton(el));
@@ -304,7 +300,7 @@
       for (const node of m.addedNodes) {
         if (node.nodeType === 1 &&
             (node.isContentEditable ||
-             node.querySelector && node.querySelector('[contenteditable="true"]'))) {
+             (node.querySelector && node.querySelector('[contenteditable]')))) {
           debouncedScan();
           return;
         }
