@@ -26,7 +26,7 @@ def _load_patterns() -> list[dict]:
 def _apply_cong_van_template(input_text: str) -> str:
     """
     Minimal công văn (administrative Vietnamese) template — rules-based, zero LLM.
-    Wraps user content in standard header/footer. Phase 2: expand with real templates.
+    Wraps user content in standard header/footer.
     """
     content = input_text.strip()
     return (
@@ -41,6 +41,47 @@ def _apply_cong_van_template(input_text: str) -> str:
     )
 
 
+# Pattern-based rewrite templates for short, common messages.
+# Each maps a regex pattern to a rewrite template with optional captures.
+import re as _re
+
+_FOLLOW_UP_PATTERNS = [
+    # "ping lại về X" → "Following up on X"
+    (_re.compile(r"(?:em\s+)?ping\s+lại\s+(?:về\s+)?(.+)", _re.IGNORECASE),
+     lambda m: f"Following up on {m.group(1).strip().rstrip('.')}. Could you provide an update?"),
+    # "anh đã xem ... chưa" → "Have you had a chance to review ...?"
+    (_re.compile(r".*(?:đã\s+xem|xem\s+giúp|review)\s+(.+?)\s*(?:chưa|được không|chưa ạ).*", _re.IGNORECASE),
+     lambda m: f"Have you had a chance to review {m.group(1).strip().rstrip('.')}?"),
+    # "nhắc lại" → "Just a reminder about"
+    (_re.compile(r"(?:em\s+)?nhắc\s+lại\s+(?:về\s+)?(.+)", _re.IGNORECASE),
+     lambda m: f"Just a reminder about {m.group(1).strip().rstrip('.')}."),
+]
+
+_SAY_NO_PATTERNS = [
+    # "em sợ là không thể / không được" → "Unfortunately, I won't be able to..."
+    (_re.compile(r".*(?:em\s+sợ\s+là|em\s+sợ)\s+(.+)", _re.IGNORECASE),
+     lambda m: f"Unfortunately, {m.group(1).strip().rstrip('.')}." if "không" in m.group(1) else None),
+    # "chưa phù hợp" → "This isn't the right fit at the moment."
+    (_re.compile(r".*chưa\s+(?:phù hợp|sẵn sàng).*", _re.IGNORECASE),
+     lambda _: "This isn't the right fit at the moment. I'll reach out if things change."),
+]
+
+_APOLOGIZE_PATTERNS = [
+    # "xin lỗi đã reply trễ" → "Thanks for your patience. Regarding..."
+    (_re.compile(r".*xin\s+lỗi\s+(?:đã\s+)?reply\s+trễ.*(?:về\s+)?(.+)?", _re.IGNORECASE),
+     lambda m: f"Thanks for your patience. {m.group(1).strip().capitalize() if m.group(1) else ''}".strip()),
+    # "mong anh thông cảm" → strip it (this is a closing hedge, not content)
+    (_re.compile(r"(.+?)\s*\.?\s*(?:em\s+)?mong\s+anh\s+thông\s+cảm.*", _re.IGNORECASE),
+     lambda m: m.group(1).strip()),
+]
+
+_INTENT_TEMPLATES = {
+    "follow_up": _FOLLOW_UP_PATTERNS,
+    "say_no": _SAY_NO_PATTERNS,
+    "apologize": _APOLOGIZE_PATTERNS,
+}
+
+
 def apply_rules(
     input_text: str, intent: str, output_language: str | None = None
 ) -> str | None:
@@ -50,6 +91,15 @@ def apply_rules(
     """
     if output_language == "vi_admin" or intent == "write_to_gov":
         return _apply_cong_van_template(input_text)
+
+    # Try pattern-based templates for common short messages
+    templates = _INTENT_TEMPLATES.get(intent, [])
+    for pattern, formatter in templates:
+        match = pattern.match(input_text.strip())
+        if match:
+            result = formatter(match)
+            if result:
+                return result
 
     patterns = _load_patterns()
     text_stripped = input_text.strip().lower()
