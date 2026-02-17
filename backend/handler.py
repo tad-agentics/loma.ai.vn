@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 import logging
 
-from loma import analytics, auth, billing, db
+from loma import analytics, auth, billing, db, payment
 from loma.pipeline import run_rewrite
 
 logger = logging.getLogger("loma.handler")
@@ -35,6 +35,14 @@ def handler(event: dict, context: object) -> dict:
     # Acceptance rates (analytics dashboard)
     if path.endswith("/stats/acceptance"):
         return _handle_acceptance_rates(event)
+
+    # PayOS payment webhook
+    if path.endswith("/webhook/payos"):
+        return _handle_payos_webhook(event)
+
+    # Create payment link
+    if path.endswith("/payment/create"):
+        return _handle_create_payment(event)
 
     # Rewrite endpoint (default)
     return _handle_rewrite(event)
@@ -174,6 +182,70 @@ def _handle_acceptance_rates(event: dict) -> dict:
             "message": "Database not configured — acceptance rates unavailable.",
         })
     return _json_response(200, {"ok": True, **rates})
+
+
+def _handle_payos_webhook(event: dict) -> dict:
+    """Handle POST /api/v1/webhook/payos — PayOS payment confirmation."""
+    try:
+        body = event.get("body") or "{}"
+        if isinstance(body, str):
+            body = json.loads(body)
+    except json.JSONDecodeError:
+        return _json_response(400, {"error": "invalid_json"})
+
+    result = payment.process_webhook(body)
+    if result.get("ok"):
+        # Track successful payment
+        analytics.track(
+            "loma_payment",
+            user_id=result.get("user_id"),
+            properties={
+                "action": result.get("action"),
+                "credits": result.get("credits"),
+            },
+        )
+    return _json_response(200, result)
+
+
+def _handle_create_payment(event: dict) -> dict:
+    """Handle POST /api/v1/payment/create — generate PayOS checkout link."""
+    try:
+        body = event.get("body") or "{}"
+        if isinstance(body, str):
+            body = json.loads(body)
+    except json.JSONDecodeError:
+        return _json_response(400, {"error": "invalid_json"})
+
+    headers = event.get("headers") or {}
+    token = auth.get_bearer_token(headers)
+    user_id = auth.extract_user_id(token)
+
+    if not user_id:
+        return _json_response(401, {
+            "error": "auth_required",
+            "message": "Sign in to purchase credits.",
+            "message_vi": "Đăng nhập để mua lượt viết lại.",
+        })
+
+    product_key = body.get("product", "")
+    return_url = body.get("return_url", "")
+    cancel_url = body.get("cancel_url", "")
+
+    result = payment.create_payment_link(
+        user_id=user_id,
+        product_key=product_key,
+        return_url=return_url,
+        cancel_url=cancel_url,
+    )
+
+    if not result:
+        return _json_response(500, {
+            "error": "payment_error",
+            "message": "Could not create payment link. Try again later.",
+            "message_vi": "Không thể tạo link thanh toán. Vui lòng thử lại.",
+        })
+
+    return _json_response(200, {"ok": True, **result})
 
 
 def _json_response(status: int, body: dict) -> dict:

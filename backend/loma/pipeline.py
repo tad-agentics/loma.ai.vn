@@ -13,7 +13,7 @@ from .intent import compute_intent_scores
 from .language import compute_language_mix
 from .llm import call_claude
 from .prompt_assembly import build_system_prompt
-from .quality import score_rewrite
+from .quality import extract_entities, score_rewrite
 from .router import route_rewrite
 
 # Model IDs (adjust to latest if needed)
@@ -83,11 +83,19 @@ def run_rewrite(
             original_text, detected_intent, output_language=output_language
         )
     if output_text is None:
+        # Extract entities from input to inject into prompt for preservation
+        raw_entities = extract_entities(original_text)
+        entity_list = []
+        for category, items in raw_entities.items():
+            for item in items:
+                entity_list.append({"text": item, "label": category})
+
         system_prompt = build_system_prompt(
             intent=detected_intent,
             tone=tone,
             language_mix=language_mix,
             platform=platform,
+            entities=entity_list if entity_list else None,
             output_language=output_language,
         )
         model = SONNET_MODEL if tier == "sonnet" else HAIKU_MODEL

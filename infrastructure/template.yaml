@@ -15,6 +15,9 @@ Globals:
         SUPABASE_SERVICE_KEY: !Ref SupabaseServiceKey
         SUPABASE_JWT_SECRET: !Ref SupabaseJwtSecret
         ALLOWED_ORIGINS: "chrome-extension://,https://loma.app"
+        PAYOS_CLIENT_ID: !Ref PayosClientId
+        PAYOS_API_KEY: !Ref PayosApiKey
+        PAYOS_CHECKSUM_KEY: !Ref PayosChecksumKey
 
 Parameters:
   AnthropicApiKey:
@@ -28,6 +31,17 @@ Parameters:
   SupabaseJwtSecret:
     Type: String
     NoEcho: true
+  PayosClientId:
+    Type: String
+    Default: ""
+  PayosApiKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+  PayosChecksumKey:
+    Type: String
+    NoEcho: true
+    Default: ""
 
 Resources:
   LomaApi:
@@ -70,6 +84,30 @@ Resources:
           Properties:
             ApiId: !Ref LomaApi
             Path: /api/v1/events
+            Method: POST
+        UserEdit:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /api/v1/user-edit
+            Method: POST
+        AcceptanceStats:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /api/v1/stats/acceptance
+            Method: GET
+        PaymentWebhook:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /api/v1/webhook/payos
+            Method: POST
+        PaymentCreate:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref LomaApi
+            Path: /api/v1/payment/create
             Method: POST
 
 Outputs:
