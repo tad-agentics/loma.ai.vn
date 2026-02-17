@@ -1,0 +1,552 @@
+[
+  {
+    "id": "S01",
+    "gemini_output": "Dear Hùng,\n\nI hope this message finds you well. I'd like to request your assistance in reviewing the Q4 report, if your schedule permits. I understand you have a very busy workload, so I hesitate to impose, but the deadline is this Friday. I would greatly appreciate your help.\n\nWarm regards",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S02",
+    "gemini_output": "Hi, could you please review PR #347 as soon as possible? The sprint ends Wednesday, and we need to deploy before Friday.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S03",
+    "gemini_output": "Dear Linh,\n\nI'm not entirely sure if this is appropriate to bring up, but I'd like to propose joining the project with the Singapore team. I believe I can make a meaningful contribution, as I have two years of experience working with international partners. Of course, if you feel this isn't the right fit, I completely understand.\n\nBest regards",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S04",
+    "gemini_output": "Dear Tuấn,\n\nI would like to request permission to take this Friday off due to a family commitment. I have already coordinated the handover of my responsibilities to Hoa.\n\nThank you for your understanding.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S05",
+    "gemini_output": "Hi,\n\nI'm requesting approval for a $12,000 budget for the Q1 marketing campaign. Here's the breakdown:\n- Paid ads: $5K\n- Content production: $4K\n- Influencer marketing: $3K\n\nThe estimated ROI is approximately 3.2x, based on last quarter's data. Could you please sign off on this before Wednesday?\n\nThanks",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S06",
+    "gemini_output": "Dear Minh,\n\nI sincerely apologize for the inconvenience, but I wanted to bring to your attention that the January invoice for $5,000 USD remains unpaid and is now 2 weeks overdue. I would appreciate it if you could look into this at your earliest convenience.\n\nThank you very much.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S07",
+    "gemini_output": "Hi,\n\nI'm writing to follow up on invoice #INV-2024-031 for $8,500, which has not yet been processed. It is now 3 weeks past the net 30 payment terms. Could you please confirm the expected payment date?\n\nThank you.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S08",
+    "gemini_output": "I feel very reluctant to bring this up for the third time, but the $15,000 payment from last November's contract remains outstanding. I understand your side may also be facing financial challenges, but we need these funds to pay our own suppliers. I sincerely hope for your understanding.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S09",
+    "gemini_output": "Hello,\n\nI'm reaching out from the accounting department at TechVina regarding the payment for invoice TV-2025-089 in the amount of $3,200 USD. The payment due date was January 15.\n\nPlease let me know if you have any questions.\n\nBest regards",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S10",
+    "gemini_output": "Whenever it's convenient for you, could you kindly transfer the remaining $2,500 from the second payment installment? I've attached the invoice for your reference.\n\nThank you.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S11",
+    "gemini_output": "I'm not sure whether you've had a chance to review the email I sent last Monday regarding the Đà Nẵng market expansion proposal. I'd appreciate hearing your thoughts when you have a moment.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S12",
+    "gemini_output": "Quick follow-up — have you had a chance to review the design mockup I shared on Figma last week? We need to finalize before sprint planning on Wednesday.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S13",
+    "gemini_output": "I'm sorry to bother you again, but the contract with the Japanese partner that I sent two weeks ago still hasn't been signed. The partner has been asking about it repeatedly. I imagine you've been busy and it may have slipped your mind, so I wanted to send a gentle reminder.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S14",
+    "gemini_output": "Following up on the headcount request — HR needs your final approval by end of week to process the offer letter for the candidate.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S15",
+    "gemini_output": "I'm following up on this matter. I'm wondering if Khoa from the legal department has provided any feedback regarding the contract. We need to have this finalized by February 20 to stay on track with the project timeline.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S16",
+    "gemini_output": "Thank you for thinking of me. Unfortunately, I'm currently at full capacity with my existing workload, so I'm afraid I won't be able to take on any additional tasks at this time. I truly wish I could help, and I sincerely apologize for having to decline. I hope you understand.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S17",
+    "gemini_output": "I don't think our team can handle this scope with the current resources. If we proceed with Plan A, the timeline will be delayed by at least 3 sprints. I'd suggest we either reduce the scope or push back the deadline.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S18",
+    "gemini_output": "It's probably not the best fit at this point in time. We're still focused on our core product and aren't quite ready to take on new partnerships. Let me give it some more thought and I'll circle back with you.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S19",
+    "gemini_output": "I'm concerned that this timeline isn't feasible. We would need at least 3 additional weeks to deliver this with the quality it requires.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S20",
+    "gemini_output": "Thank you for the detailed collaboration proposal. After careful review, we don't currently have a need for this particular service. Should our situation change in the future, I'll be sure to reach out.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S21",
+    "gemini_output": "Allow me to introduce myself. I am Nguyễn Văn Đức, Business Director at DataSoft, a company founded in 2018 that specializes in data analytics solutions for small and medium-sized enterprises in Vietnam. I have great admiration for your work and would welcome the opportunity to explore a collaboration.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S22",
+    "gemini_output": "Hi, I came across your profile on LinkedIn. I'm the founder of CloudBase — we're building a developer tools platform for the Vietnamese market. I'd love to explore a partnership opportunity, as your team has strong distribution channels. Would you be open to connecting?",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S23",
+    "gemini_output": "Dear Valued Customer,\n\nWe are pleased to introduce the HR consulting services of TalentVN. With 8 years of experience in the industry and a trusted portfolio of over 200 clients, we are confident in our ability to deliver value to your organization.\n\nWe would welcome the opportunity to discuss how we can assist you.\n\nBest regards",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S24",
+    "gemini_output": "Dear Trần Bảo Long,\n\nMy name is Phạm Thị Mai, and I'm with GreenTech. I understand you're leading the sustainability efforts at VinGroup. I'd welcome the opportunity to meet with you and present our solar energy solutions, which we're currently deploying for commercial buildings.\n\nI look forward to hearing from you.\n\nBest regards,\nPhạm Thị Mai",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S25",
+    "gemini_output": "I'd like to invite you to speak at the TechConnect 2026 technology conference, taking place on April 15 in Hà Nội. The topic is AI in Vietnamese enterprises, and we're expecting approximately 500 attendees. Would you be interested?",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S26",
+    "gemini_output": "Overall, you performed well this past quarter. However, you need to put more effort into improving your customer communication skills. Your technical abilities are satisfactory. Keep it up.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S27",
+    "gemini_output": "The PR logic is solid, but there are a few areas that need attention:\n\n1. **Authentication module** — needs refactoring due to significant code duplication\n2. **Naming convention** — inconsistent; mixing camelCase and snake_case\n3. **Performance** — N+1 query issue at the `/api/users` endpoint needs optimization",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S28",
+    "gemini_output": "I don't want to be too harsh, but this report falls below the expected standard. Specifically:\n- The data contains inaccuracies\n- The analysis section is underdeveloped\n- The conclusions are not clearly stated\n\nPlease revise and resubmit before Friday.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S29",
+    "gemini_output": "Your overall Q4 performance was quite strong — you exceeded the revenue target by 15% and achieved high client satisfaction scores. However, the area where you need to improve is your leadership skills, particularly around delegation. You're still tending to micromanage the team, which is something to work on going forward.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S30",
+    "gemini_output": "Your presentation today was very well done, particularly how you handled the questions from the board of directors. That said, the slides were a bit text-heavy — consider using more visuals next time to make the content more engaging.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S31",
+    "gemini_output": "I have a slightly different perspective on this. I'm not entirely confident that transitioning to microservices at this stage is the optimal choice. Our team consists of only 4 people, whereas microservices typically require at least 8-10 people to maintain effectively. If I may be candid, I believe we should maintain the monolith for another 6 months.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 2,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S32",
+    "gemini_output": "I respect your decision, but I see this approach as risky. Last month's A/B test data shows the conversion rate dropped 12% with the new pricing model. I'd recommend we continue testing for another 2 weeks before moving to a full rollout.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S33",
+    "gemini_output": "I agree with you on most points, but I think one area warrants further discussion. A 30% cut to the marketing budget would directly impact the Q2 pipeline. Based on last year's data, every dollar spent on marketing generated $4.20 in revenue — so this reduction could have significant downstream effects.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S34",
+    "gemini_output": "I'm hesitant to bring this up, but I see an issue with this direction. Hiring 3 additional people right now while revenue is still unstable carries considerable risk.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S35",
+    "gemini_output": "This strategy doesn't align with the Q1 OKRs we've already committed to. Key result #2 targets a 15% increase in retention, but this new feature is focused on acquisition. My concern is that splitting resources across both will mean neither OKR hits its target.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S36",
+    "gemini_output": "I don't want to escalate this unnecessarily, but the project has been blocked for 5 days because the Platform team hasn't delivered the API. I've reached out to them 3 times with no response. If this isn't resolved this week, we'll miss the customer delivery deadline on February 28.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S37",
+    "gemini_output": "I need to escalate this issue urgently. The production server has been down since 2 AM, and we're now at 6 hours of downtime. Our 99.9% uptime SLA with Grab is currently in breach. The DevOps team is investigating, but the root cause hasn't been identified yet. I need your authorization to pull in emergency resources from the Cloud team.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S38",
+    "gemini_output": "I don't want to point fingers, but the Marketing team has failed to deliver the advertising materials on two separate occasions despite committing to do so. We're unable to launch the campaign without these materials. I've attempted to resolve this on my own, but it's beyond what I can manage at my level.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S39",
+    "gemini_output": "This issue was first reported at the beginning of January but remains unresolved. The legacy server is experiencing frequent failures — approximately 3 times per week — affecting 200 internal users. I'm requesting budget approval of $5,000 for a system upgrade.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S40",
+    "gemini_output": "I'm worried that if this isn't addressed promptly, the client will terminate the contract. ABC Company has already filed two complaints about our service quality this month.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S41",
+    "gemini_output": "I sincerely apologize — I'm very sorry for sending the incorrect data report to the Samsung client this morning. The mistake was entirely mine. I have already sent the corrected version and personally called the client to apologize. I hope you can understand.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 0
+    }
+  },
+  {
+    "id": "S42",
+    "gemini_output": "Apologies — the production bug was caused by my merging code without running the full test suite. I've applied a hotfix, which was deployed at 3pm. Root cause was a missing null check in the payment module. Going forward, I'll implement a pre-merge checklist to prevent recurrence.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S43",
+    "gemini_output": "I acknowledge my mistake and promise it won't happen again. I missed the deadline by 3 days due to an inaccurate assessment of the workload involved. The work is now complete and has been sent to you.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S44",
+    "gemini_output": "I sincerely hope you can forgive me for this. The data error occurred because I mistakenly copied from an outdated file. I've since corrected it.",
+    "gemini_score": {
+      "cultural_accuracy": 0,
+      "structural_completeness": 1,
+      "tone_calibration": 0,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S45",
+    "gemini_output": "Sorry for the delayed reply — I was swamped last week. To answer your question: I'm on board with option 2.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S46",
+    "gemini_output": "Write a Python function that:\n1. Parses a CSV file and skips the header row\n2. Extracts columns 3 and 5\n3. Filters rows where column 3 value > 1000\n4. Outputs the result in JSON format\n\nThe function should include error handling for file not found and invalid format scenarios.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S47",
+    "gemini_output": "Write a marketing email for a new product called CodeLens, an AI code review tool. The target audience is CTOs and VPs of Engineering at SaaS companies. The tone should be professional yet engaging — not dry or boring. Aim for approximately 150 words.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S48",
+    "gemini_output": "Analyze the Q4 sales dataset with the following tasks:\n- Compare revenue by region\n- Identify the top 5 best-selling products\n- Provide 3 key insights\n\nFormat the output as bullet points with numerical data.",
+    "gemini_score": {
+      "cultural_accuracy": 2,
+      "structural_completeness": 2,
+      "tone_calibration": 2,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S49",
+    "gemini_output": "Please write a GitHub issue for the following bug:\n\nWhen a user uploads an avatar, the image is not resized correctly. Additionally, uploading files larger than 5MB results in a 500 server error.\n\n**Expected behavior:**\n- Images should be automatically resized to 200x200px\n- Maximum file size should be 10MB\n- A proper error message should be displayed when limits are exceeded",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S50",
+    "gemini_output": "I need to write a technical specification for a new feature: a real-time notification system.\n\n**Requirements:**\n- Support WebSocket with SSE fallback\n- Handle 10K concurrent connections\n- Notification types: mention, comment, assignment\n\n**Edge cases to consider:**\n- User offline handling\n- Notification deduplication\n- Rate limiting\n\nPlease also review the spec once it's written.",
+    "gemini_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  }
+]

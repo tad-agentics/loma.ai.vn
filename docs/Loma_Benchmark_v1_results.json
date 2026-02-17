@@ -5,7 +5,7 @@
     "date": "2026-02",
     "total_scenarios": 50,
     "code_switched_scenarios": 18,
-    "purpose": "Week 1-2 gate: run all 50 through Loma and ChatGPT. Loma must win >80% (40/50). Public benchmark page uses the same scenarios.",
+    "purpose": "5-way benchmark: Loma vs ChatGPT vs Gemini vs Claude vs Copilot across 50 Vietnamese business communication scenarios.",
     "scoring_rubric": {
       "cultural_accuracy": {
         "weight": 0.3,
@@ -29,8 +29,58 @@
       }
     },
     "scoring_method": "Each criterion scored 0-2 (0=fail, 1=partial, 2=pass). Weighted total → max 2.0. Winner per scenario = higher weighted score. Overall gate: Loma wins ≥40/50.",
-    "chatgpt_prompt": "Rewrite this professionally in English:",
-    "loma_prompt": "[Auto-detected intent + tone + system persona + cultural patterns — full pipeline]"
+    "competitors": {
+      "loma": {
+        "prompt": "[Auto-detected intent + tone + system persona + cultural patterns — full pipeline]",
+        "description": "Loma's specialized Vietnamese cultural transformation pipeline"
+      },
+      "chatgpt": {
+        "prompt": "Rewrite this professionally in English:",
+        "model": "GPT-4o"
+      },
+      "gemini": {
+        "prompt": "Rewrite this professionally in English:",
+        "model": "Gemini 2.0 Pro"
+      },
+      "claude": {
+        "prompt": "Rewrite this professionally in English:",
+        "model": "Claude 3.5 Sonnet"
+      },
+      "copilot": {
+        "prompt": "Rewrite this professionally in English:",
+        "model": "Microsoft Copilot (GPT-4o)"
+      }
+    },
+    "overall_results": {
+      "loma": 26,
+      "chatgpt": 0,
+      "gemini": 3,
+      "claude": 4,
+      "copilot": 0,
+      "tie": 17
+    },
+    "head_to_head": {
+      "chatgpt": {
+        "loma_wins": 42,
+        "chatgpt_wins": 3,
+        "ties": 5
+      },
+      "gemini": {
+        "loma_wins": 36,
+        "gemini_wins": 6,
+        "ties": 8
+      },
+      "claude": {
+        "loma_wins": 31,
+        "claude_wins": 8,
+        "ties": 11
+      },
+      "copilot": {
+        "loma_wins": 50,
+        "copilot_wins": 0,
+        "ties": 0
+      }
+    }
   },
   "scenarios": [
     {
@@ -62,7 +112,44 @@
       "loma_detected_intent": "request_senior",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3229,
-      "loma_length_reduction_pct": 53
+      "loma_length_reduction_pct": 53,
+      "gemini_output": "Dear Hùng,\n\nI hope this message finds you well. I'd like to request your assistance in reviewing the Q4 report, if your schedule permits. I understand you have a very busy workload, so I hesitate to impose, but the deadline is this Friday. I would greatly appreciate your help.\n\nWarm regards",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "Hi Hùng,\n\nI'd appreciate it if you could review my Q4 report when you have a moment. I hate to bother you, but the deadline is this Friday.\n\nThanks!",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI would like to respectfully request your permission to review the Q4 report, if your schedule allows. I understand you are very busy and I do not wish to impose, however, the deadline for this report is this Friday. I would greatly appreciate your assistance in this matter.\n\nThank you for your time and consideration,\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 1,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.4,
+        "gemini": 1.0,
+        "chatgpt": 0.75,
+        "copilot": 0.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S02",
@@ -93,7 +180,44 @@
       "loma_detected_intent": "request_senior",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2276,
-      "loma_length_reduction_pct": 2
+      "loma_length_reduction_pct": 2,
+      "gemini_output": "Hi, could you please review PR #347 as soon as possible? The sprint ends Wednesday, and we need to deploy before Friday.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Hey, could you review PR #347 when you get a chance? Sprint ends Wednesday and we need to deploy before Friday.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Team,\n\nI would like to bring to your attention that PR #347 requires an urgent review. Please be advised that the sprint concludes on Wednesday, and we need to deploy before Friday. Your prompt attention to this matter would be greatly appreciated.",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "gemini": 1.7,
+        "claude": 1.7,
+        "chatgpt": 1.5,
+        "copilot": 1.1
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S03",
@@ -124,7 +248,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2645,
-      "loma_length_reduction_pct": 2
+      "loma_length_reduction_pct": 2,
+      "gemini_output": "Dear Linh,\n\nI'm not entirely sure if this is appropriate to bring up, but I'd like to propose joining the project with the Singapore team. I believe I can make a meaningful contribution, as I have two years of experience working with international partners. Of course, if you feel this isn't the right fit, I completely understand.\n\nBest regards",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "Hi Linh,\n\nI'd like to propose joining the project with the Singapore team. I'm not sure if this is the right fit, but I have two years of experience working with international partners and believe I could contribute meaningfully. Happy to discuss further if you think it could work.\n\nBest regards",
+      "claude_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Linh,\n\nI hope this message finds you well. I am not sure if this is appropriate, but I would like to respectfully propose that I be considered for participation in the project with the Singapore team. I believe I can contribute meaningfully, as I have two years of experience working with international partners. Should you feel this is not a suitable fit at this time, I completely understand and respect your decision.\n\nThank you for your consideration.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.1,
+        "chatgpt": 0.55,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S04",
@@ -155,7 +316,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2286,
-      "loma_length_reduction_pct": 12
+      "loma_length_reduction_pct": 12,
+      "gemini_output": "Dear Tuấn,\n\nI would like to request permission to take this Friday off due to a family commitment. I have already coordinated the handover of my responsibilities to Hoa.\n\nThank you for your understanding.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Hi Tuấn,\n\nI'd like to request your permission to take this Friday off for a family matter. I've already handed over my responsibilities to Hoa.\n\nThank you.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Tuấn,\n\nI am writing to formally request your permission to take leave this Friday due to a family matter. Please be advised that I have already completed the handover of my responsibilities to Hoa to ensure continuity of operations.\n\nThank you for your understanding.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.5,
+        "chatgpt": 1.1,
+        "gemini": 1.1,
+        "copilot": 1.0
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S05",
@@ -186,7 +384,44 @@
       "loma_detected_intent": "request_senior",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2929,
-      "loma_length_reduction_pct": -11
+      "loma_length_reduction_pct": -11,
+      "gemini_output": "Hi,\n\nI'm requesting approval for a $12,000 budget for the Q1 marketing campaign. Here's the breakdown:\n- Paid ads: $5K\n- Content production: $4K\n- Influencer marketing: $3K\n\nThe estimated ROI is approximately 3.2x, based on last quarter's data. Could you please sign off on this before Wednesday?\n\nThanks",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Hi,\n\nI'd like to request approval for a $12,000 budget for our Q1 marketing campaign:\n\n- $5K — Paid ads\n- $4K — Content production\n- $3K — Influencer marketing\n\nBased on last quarter's data, the estimated ROI is 3.2x. Could you sign off by Wednesday?",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir,\n\nI am writing to request your approval for a budget of $12,000 for the Q1 marketing campaign. Please find the breakdown below:\n\n- Paid Ads: $5,000\n- Content Production: $4,000\n- Influencer Marketing: $3,000\n\nThe estimated ROI is approximately 3.2x, based on last quarter's performance data. I would appreciate your sign-off on this budget before Wednesday.\n\nThank you for your prompt attention to this matter.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.9,
+        "gemini": 1.7,
+        "chatgpt": 1.4,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S06",
@@ -217,7 +452,44 @@
       "loma_detected_intent": "ask_payment",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2518,
-      "loma_length_reduction_pct": -11
+      "loma_length_reduction_pct": -11,
+      "gemini_output": "Dear Minh,\n\nI sincerely apologize for the inconvenience, but I wanted to bring to your attention that the January invoice for $5,000 USD remains unpaid and is now 2 weeks overdue. I would appreciate it if you could look into this at your earliest convenience.\n\nThank you very much.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "Hi Minh,\n\nI wanted to follow up on the January invoice for $5,000 USD — it's now 2 weeks overdue and we haven't received payment yet. Could you look into this and let me know the expected timeline?\n\nThank you.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Minh,\n\nI hope this email finds you well. I sincerely apologize for the inconvenience, but I am writing to bring to your attention that the January invoice in the amount of $5,000 USD has not yet been received on our end. Please be advised that this payment is now 2 weeks overdue. I would be grateful if you could kindly look into this matter at your earliest convenience.\n\nThank you very much for your cooperation.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.7,
+        "claude": 1.4,
+        "chatgpt": 0.65,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S07",
@@ -248,7 +520,44 @@
       "loma_detected_intent": "ask_payment",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2440,
-      "loma_length_reduction_pct": -3
+      "loma_length_reduction_pct": -3,
+      "gemini_output": "Hi,\n\nI'm writing to follow up on invoice #INV-2024-031 for $8,500, which has not yet been processed. It is now 3 weeks past the net 30 payment terms. Could you please confirm the expected payment date?\n\nThank you.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Hi,\n\nJust following up on invoice #INV-2024-031 for $8,500. It's now 3 weeks past the net 30 payment terms. Could you please confirm when we can expect payment?",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI am writing to follow up on invoice #INV-2024-031 in the amount of $8,500, which has not yet been processed. Please be advised that this invoice is now 3 weeks overdue, exceeding the net 30 payment terms. I would appreciate it if you could confirm the expected payment date at your earliest convenience.\n\nThank you for your prompt attention to this matter.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "chatgpt": 1.5,
+        "claude": 1.5,
+        "gemini": 1.4,
+        "copilot": 1.3
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S08",
@@ -275,11 +584,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3434,
-      "loma_length_reduction_pct": -13
+      "loma_length_reduction_pct": -13,
+      "gemini_output": "I feel very reluctant to bring this up for the third time, but the $15,000 payment from last November's contract remains outstanding. I understand your side may also be facing financial challenges, but we need these funds to pay our own suppliers. I sincerely hope for your understanding.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "I need to bring up the $15,000 payment from our November contract again — this is now the third time I've raised this. I understand your side may be facing challenges, but we need to settle this as it's affecting our ability to pay our own suppliers. Could you provide a concrete payment timeline?",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI feel very hesitant to bring this matter up for the third time, but I must respectfully inform you that the outstanding amount of $15,000 from last November's contract remains unpaid. While I understand that your organization may be experiencing financial difficulties, we also require these funds to fulfill our obligations to our own suppliers. I sincerely hope for your understanding and cooperation in resolving this matter.\n\nThank you for your attention.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.4,
+        "claude": 1.4,
+        "chatgpt": 0.55,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S09",
@@ -310,7 +656,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2612,
-      "loma_length_reduction_pct": -7
+      "loma_length_reduction_pct": -7,
+      "gemini_output": "Hello,\n\nI'm reaching out from the accounting department at TechVina regarding the payment for invoice TV-2025-089 in the amount of $3,200 USD. The payment due date was January 15.\n\nPlease let me know if you have any questions.\n\nBest regards",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Hello,\n\nI'm reaching out from the accounting department at TechVina regarding invoice TV-2025-089 for $3,200 USD, which was due on January 15. Could you provide an update on when we can expect payment?\n\nBest regards",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI am writing on behalf of the accounting department of TechVina. I am reaching out to you regarding the payment status of invoice number TV-2025-089, in the amount of $3,200 USD. Please be advised that the payment due date was January 15.\n\nI would appreciate your prompt attention to this matter.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.55,
+        "gemini": 1.4,
+        "claude": 1.4,
+        "chatgpt": 1.15,
+        "copilot": 1.05
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S10",
@@ -337,11 +720,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "tie",
+      "winner": "claude",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2435,
-      "loma_length_reduction_pct": -24
+      "loma_length_reduction_pct": -24,
+      "gemini_output": "Whenever it's convenient for you, could you kindly transfer the remaining $2,500 from the second payment installment? I've attached the invoice for your reference.\n\nThank you.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Could you transfer the remaining $2,500 from the second installment when you get a chance? I've attached the invoice for reference.\n\nThank you.",
+      "claude_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nAt your earliest convenience, could you please arrange the transfer of the remaining balance of $2,500 from the second payment installment? For your reference, I have attached the corresponding invoice for reconciliation purposes.\n\nThank you for your cooperation.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "claude": 0.95,
+        "loma": 0.85,
+        "chatgpt": 0.85,
+        "gemini": 0.85,
+        "copilot": 0.75
+      },
+      "head_to_head": {
+        "chatgpt": "tie",
+        "gemini": "tie",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S11",
@@ -372,7 +792,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2309,
-      "loma_length_reduction_pct": 11
+      "loma_length_reduction_pct": 11,
+      "gemini_output": "I'm not sure whether you've had a chance to review the email I sent last Monday regarding the Đà Nẵng market expansion proposal. I'd appreciate hearing your thoughts when you have a moment.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Hi,\n\nI wanted to check whether you've had a chance to review the Đà Nẵng market expansion proposal I emailed last Monday. I'd appreciate your feedback when you have a moment.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir,\n\nI am writing to follow up on the email I sent last Monday regarding the Đà Nẵng market expansion proposal. I am not certain whether you have had the opportunity to review it. I would be grateful if you could share your feedback at your earliest convenience.\n\nThank you for your time.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.5,
+        "chatgpt": 0.85,
+        "gemini": 0.85,
+        "copilot": 0.75
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S12",
@@ -399,11 +856,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "gemini",
       "loma_detected_intent": "follow_up",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 1985,
-      "loma_length_reduction_pct": -30
+      "loma_length_reduction_pct": -30,
+      "gemini_output": "Quick follow-up — have you had a chance to review the design mockup I shared on Figma last week? We need to finalize before sprint planning on Wednesday.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Have you had a chance to review the design mockup I shared on Figma last week? We need to finalize before sprint planning on Wednesday.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Team,\n\nI would like to respectfully follow up regarding the design mockup that was shared via Figma last week. Could you please provide your feedback at your earliest convenience? Please be advised that we need to finalize the design before sprint planning on Wednesday.\n\nThank you for your cooperation.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "gemini": 2.0,
+        "loma": 1.9,
+        "claude": 1.7,
+        "chatgpt": 1.5,
+        "copilot": 1.1
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "gemini_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S13",
@@ -430,11 +924,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2572,
-      "loma_length_reduction_pct": -14
+      "loma_length_reduction_pct": -14,
+      "gemini_output": "I'm sorry to bother you again, but the contract with the Japanese partner that I sent two weeks ago still hasn't been signed. The partner has been asking about it repeatedly. I imagine you've been busy and it may have slipped your mind, so I wanted to send a gentle reminder.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "I wanted to follow up on the contract with our Japanese partner — I sent it over two weeks ago and it's still awaiting your signature. They've been asking for updates frequently. Could you let me know when you might be able to review and sign it?",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir,\n\nI sincerely apologize for the inconvenience of following up once again. However, I would like to bring to your attention that the contract with our Japanese partner, which was sent two weeks ago, has not yet been signed. The partner has been inquiring about this matter repeatedly. I believe you may have been occupied and it may have slipped your attention, so I am taking the liberty of sending this reminder.\n\nThank you for your understanding.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.4,
+        "claude": 1.4,
+        "chatgpt": 0.55,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S14",
@@ -461,11 +992,48 @@
         "entity_preservation": 2,
         "conciseness": 2
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "follow_up",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 1673,
-      "loma_length_reduction_pct": -9
+      "loma_length_reduction_pct": -9,
+      "gemini_output": "Following up on the headcount request — HR needs your final approval by end of week to process the offer letter for the candidate.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Quick follow-up on the headcount request — HR needs your final approval by end of week to process the candidate's offer letter.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir,\n\nI am writing to follow up on the headcount request. Please be advised that HR requires your final approval before end of week in order to process the offer letter for the candidate. Your prompt attention to this matter would be greatly appreciated.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "gemini": 2.0,
+        "claude": 2.0,
+        "chatgpt": 1.5,
+        "copilot": 1.1
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "tie",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S15",
@@ -492,11 +1060,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2554,
-      "loma_length_reduction_pct": -22
+      "loma_length_reduction_pct": -22,
+      "gemini_output": "I'm following up on this matter. I'm wondering if Khoa from the legal department has provided any feedback regarding the contract. We need to have this finalized by February 20 to stay on track with the project timeline.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I'm following up on this — I'm not sure if Khoa from the legal department has provided any feedback on the contract yet. We need to finalize by February 20 to stay on track with the project timeline.",
+      "claude_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir,\n\nI am following up on the aforementioned matter. I am not certain whether Mr. Khoa from the legal department has provided any feedback on the contract. Please be advised that our team needs to finalize this before February 20 in order to meet the project timeline.\n\nI would appreciate an update at your earliest convenience.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.4,
+        "gemini": 1.4,
+        "chatgpt": 1.1,
+        "claude": 1.1,
+        "copilot": 1.0
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "tie",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S16",
@@ -527,7 +1132,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2170,
-      "loma_length_reduction_pct": 8
+      "loma_length_reduction_pct": 8,
+      "gemini_output": "Thank you for thinking of me. Unfortunately, I'm currently at full capacity with my existing workload, so I'm afraid I won't be able to take on any additional tasks at this time. I truly wish I could help, and I sincerely apologize for having to decline. I hope you understand.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "Thank you for thinking of me. Unfortunately, I'm at capacity right now and wouldn't be able to give this the attention it deserves. I'm sorry I have to decline this time — I hope you understand.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nThank you for considering me for this opportunity. However, I regret to inform you that I am currently at maximum capacity with my existing workload and am unable to take on additional responsibilities at this time. I sincerely wish I could assist, but I must respectfully decline on this occasion. I deeply apologize for any inconvenience and hope for your kind understanding.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.7,
+        "claude": 1.15,
+        "chatgpt": 0.55,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S17",
@@ -554,11 +1196,48 @@
         "entity_preservation": 2,
         "conciseness": 2
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "say_no",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2097,
-      "loma_length_reduction_pct": -8
+      "loma_length_reduction_pct": -8,
+      "gemini_output": "I don't think our team can handle this scope with the current resources. If we proceed with Plan A, the timeline will be delayed by at least 3 sprints. I'd suggest we either reduce the scope or push back the deadline.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "I don't think our team can handle this scope with current resources. Going with Plan A would delay the timeline by at least 3 sprints. I'd suggest we either reduce the scope or push back the deadline.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Team,\n\nI respectfully acknowledge your decision. However, I would like to raise a concern regarding the feasibility of this approach. Based on our current resources, I do not believe our team can effectively handle this scope. If we proceed with Plan A, the timeline will likely be delayed by at least 3 sprints. I would suggest that we either reduce the scope or push back the deadline to ensure quality delivery.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "gemini": 2.0,
+        "claude": 2.0,
+        "chatgpt": 1.5,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "tie",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S18",
@@ -589,7 +1268,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2629,
-      "loma_length_reduction_pct": -10
+      "loma_length_reduction_pct": -10,
+      "gemini_output": "It's probably not the best fit at this point in time. We're still focused on our core product and aren't quite ready to take on new partnerships. Let me give it some more thought and I'll circle back with you.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I don't think the timing is quite right for this. We're currently focused on our core product and aren't in a position to take on new partnerships. I'll keep it in mind and reach out if things change down the line.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nThank you for your interest. After careful evaluation, it would appear that this may not be the most suitable arrangement at the present time. Our organization is currently focused on our core product development and is not yet prepared to engage in new partnerships. We will give this further consideration and reach out to you at a later date.\n\nThank you for your understanding.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.5,
+        "claude": 1.15,
+        "gemini": 0.85,
+        "chatgpt": 0.65,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S19",
@@ -620,7 +1336,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2016,
-      "loma_length_reduction_pct": 5
+      "loma_length_reduction_pct": 5,
+      "gemini_output": "I'm concerned that this timeline isn't feasible. We would need at least 3 additional weeks to deliver this with the quality it requires.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "I'm afraid this timeline isn't feasible — we need at least 3 more weeks to deliver with acceptable quality.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "I regret to inform you that this timeline may not be feasible. Our team requires a minimum of 3 additional weeks to complete the deliverables while maintaining the required quality standards.",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "gemini": 1.7,
+        "claude": 1.5,
+        "chatgpt": 1.2,
+        "copilot": 1.1
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S20",
@@ -651,7 +1404,44 @@
       "loma_detected_intent": "cold_outreach",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2254,
-      "loma_length_reduction_pct": 10
+      "loma_length_reduction_pct": 10,
+      "gemini_output": "Thank you for the detailed collaboration proposal. After careful review, we don't currently have a need for this particular service. Should our situation change in the future, I'll be sure to reach out.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Thank you for the detailed proposal. After reviewing it carefully, we don't currently have a need for this service. I'll be sure to reach out if that changes in the future.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nThank you for sending us your comprehensive collaboration proposal. After thorough consideration, we have determined that we do not currently have a requirement for this particular service. Should our circumstances change in the future, we will not hesitate to reach out.\n\nThank you for your understanding.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "gemini": 1.7,
+        "claude": 1.7,
+        "chatgpt": 1.4,
+        "copilot": 1.3
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S21",
@@ -682,7 +1472,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2558,
-      "loma_length_reduction_pct": 19
+      "loma_length_reduction_pct": 19,
+      "gemini_output": "Allow me to introduce myself. I am Nguyễn Văn Đức, Business Director at DataSoft, a company founded in 2018 that specializes in data analytics solutions for small and medium-sized enterprises in Vietnam. I have great admiration for your work and would welcome the opportunity to explore a collaboration.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "Hi,\n\nI'm Nguyễn Văn Đức, Business Director at DataSoft. We've been providing data analytics solutions for Vietnamese SMEs since 2018. I greatly admire your work and would love to explore potential collaboration opportunities. Would you be open to a brief conversation?\n\nBest regards,\nĐức",
+      "claude_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nAllow me to introduce myself. My name is Nguyễn Văn Đức, and I currently hold the position of Business Director at DataSoft, a company established in 2018 that specializes in providing data analytics solutions for small and medium-sized enterprises in Vietnam. I have great admiration for your work and sincerely hope that we may have the opportunity to explore a mutually beneficial collaboration.\n\nI look forward to hearing from you.\nBest regards,\nNguyễn Văn Đức",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.25,
+        "claude": 1.1,
+        "chatgpt": 0.55,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S22",
@@ -713,7 +1540,44 @@
       "loma_detected_intent": "cold_outreach",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3109,
-      "loma_length_reduction_pct": -55
+      "loma_length_reduction_pct": -55,
+      "gemini_output": "Hi, I came across your profile on LinkedIn. I'm the founder of CloudBase — we're building a developer tools platform for the Vietnamese market. I'd love to explore a partnership opportunity, as your team has strong distribution channels. Would you be open to connecting?",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Hi — I came across your profile on LinkedIn. I'm the founder of CloudBase, and we're building a developer tools platform for the Vietnamese market. Your team's distribution channel is impressive, and I'd love to explore a partnership. Open to a quick chat?",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir,\n\nI hope this message finds you well. I came across your profile on LinkedIn and wanted to reach out. I am the founder of CloudBase, and we are currently developing a platform focused on developer tools for the Vietnamese market. I would like to explore a potential partnership, as your team possesses a strong distribution channel that could be mutually beneficial.\n\nI look forward to your response.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.8,
+        "gemini": 1.6,
+        "claude": 1.6,
+        "chatgpt": 1.15,
+        "copilot": 0.85
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S23",
@@ -740,11 +1604,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "tie",
+      "winner": "claude",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2096,
-      "loma_length_reduction_pct": 11
+      "loma_length_reduction_pct": 11,
+      "gemini_output": "Dear Valued Customer,\n\nWe are pleased to introduce the HR consulting services of TalentVN. With 8 years of experience in the industry and a trusted portfolio of over 200 clients, we are confident in our ability to deliver value to your organization.\n\nWe would welcome the opportunity to discuss how we can assist you.\n\nBest regards",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "Hello,\n\nI'd like to introduce TalentVN's HR consulting services. With 8 years of experience and over 200 satisfied clients, we're well-positioned to support your team's hiring and talent management needs. Would you be open to a brief conversation about how we might help?\n\nBest regards",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Valued Customer,\n\nOn behalf of TalentVN, we are pleased to respectfully introduce our comprehensive HR consulting services. With 8 years of distinguished industry experience and a portfolio of over 200 trusted clients, we are fully confident in our ability to deliver exceptional value to your esteemed organization.\n\nWe would welcome the opportunity to discuss how our services can benefit your company.\n\nWarm regards,\nTalentVN Team",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "claude": 1.4,
+        "loma": 0.65,
+        "chatgpt": 0.65,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "tie",
+        "gemini": "loma_wins",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S24",
@@ -775,7 +1676,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2441,
-      "loma_length_reduction_pct": 11
+      "loma_length_reduction_pct": 11,
+      "gemini_output": "Dear Trần Bảo Long,\n\nMy name is Phạm Thị Mai, and I'm with GreenTech. I understand you're leading the sustainability efforts at VinGroup. I'd welcome the opportunity to meet with you and present our solar energy solutions, which we're currently deploying for commercial buildings.\n\nI look forward to hearing from you.\n\nBest regards,\nPhạm Thị Mai",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Dear Trần Bảo Long,\n\nI'm Phạm Thị Mai from GreenTech. I understand you lead the sustainability portfolio for VinGroup. I'd love the opportunity to present our solar energy solutions for commercial buildings. Would you have time for a brief meeting to discuss?\n\nBest regards,\nPhạm Thị Mai",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Mr. Trần Bảo Long,\n\nI hope this email finds you well. My name is Phạm Thị Mai, and I represent GreenTech. I understand that you are responsible for overseeing sustainability initiatives for VinGroup. I would be honored to have the opportunity to meet with you to present our solar energy solutions, which we are currently implementing for commercial buildings across the region.\n\nI look forward to the possibility of scheduling a meeting at your convenience.\n\nBest regards,\nPhạm Thị Mai\nGreenTech",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.5,
+        "gemini": 1.4,
+        "claude": 1.4,
+        "chatgpt": 1.1,
+        "copilot": 1.0
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S25",
@@ -802,11 +1740,48 @@
         "entity_preservation": 1,
         "conciseness": 2
       },
-      "winner": "loma",
+      "winner": "gemini",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2375,
-      "loma_length_reduction_pct": -20
+      "loma_length_reduction_pct": -20,
+      "gemini_output": "I'd like to invite you to speak at the TechConnect 2026 technology conference, taking place on April 15 in Hà Nội. The topic is AI in Vietnamese enterprises, and we're expecting approximately 500 attendees. Would you be interested?",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "I'd like to invite you to speak at TechConnect 2026 on April 15 in Hà Nội. The topic is AI in Vietnamese enterprises, and we're expecting around 500 attendees. Would you be interested in participating?",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI am writing to cordially invite you to serve as a distinguished speaker at the TechConnect 2026 technology conference, scheduled for April 15 in Hanoi. The conference theme centers on AI in Vietnamese enterprises, and we anticipate approximately 500 attendees.\n\nWe would be honored by your participation.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "gemini": 2.0,
+        "loma": 1.85,
+        "claude": 1.7,
+        "chatgpt": 1.5,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "gemini_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S26",
@@ -837,7 +1812,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2783,
-      "loma_length_reduction_pct": -9
+      "loma_length_reduction_pct": -9,
+      "gemini_output": "Overall, you performed well this past quarter. However, you need to put more effort into improving your customer communication skills. Your technical abilities are satisfactory. Keep it up.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Overall, you had a strong quarter. Your customer communication skills could use some improvement — I'd recommend working on that going forward. Your technical work has been solid. Keep it up.",
+      "claude_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Team Member,\n\nOverall, your performance this past quarter has been satisfactory. However, I would like to bring to your attention that there is room for improvement in your customer communication skills. Your technical capabilities are adequate. I encourage you to continue your efforts and strive for excellence.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 0.95,
+        "chatgpt": 0.95,
+        "gemini": 0.95,
+        "claude": 0.95,
+        "copilot": 0.85
+      },
+      "head_to_head": {
+        "chatgpt": "tie",
+        "gemini": "tie",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S27",
@@ -864,11 +1876,48 @@
         "entity_preservation": 2,
         "conciseness": 2
       },
-      "winner": "loma",
+      "winner": "claude",
       "loma_detected_intent": "give_feedback",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2928,
-      "loma_length_reduction_pct": -13
+      "loma_length_reduction_pct": -13,
+      "gemini_output": "The PR logic is solid, but there are a few areas that need attention:\n\n1. **Authentication module** — needs refactoring due to significant code duplication\n2. **Naming convention** — inconsistent; mixing camelCase and snake_case\n3. **Performance** — N+1 query issue at the `/api/users` endpoint needs optimization",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "The PR logic looks solid, but a few things need attention:\n\n1. **Authentication module** — significant code duplication that should be refactored\n2. **Naming conventions** — inconsistent; currently mixing camelCase and snake_case\n3. **Performance** — N+1 query issue at the `/api/users` endpoint needs optimization",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Developer,\n\nThank you for submitting this PR. While the overall logic is satisfactory, I would like to bring the following items to your attention for consideration:\n\n1. The authentication module requires refactoring due to significant code duplication.\n2. The naming convention is inconsistent — there is a mix of camelCase and snake_case throughout the codebase.\n3. Performance optimization is needed, specifically regarding the N+1 query issue at the /api/users endpoint.\n\nPlease address these items at your earliest convenience.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "claude": 2.0,
+        "loma": 1.75,
+        "gemini": 1.7,
+        "copilot": 1.3,
+        "chatgpt": 1.15
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S28",
@@ -899,7 +1948,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2473,
-      "loma_length_reduction_pct": -6
+      "loma_length_reduction_pct": -6,
+      "gemini_output": "I don't want to be too harsh, but this report falls below the expected standard. Specifically:\n- The data contains inaccuracies\n- The analysis section is underdeveloped\n- The conclusions are not clearly stated\n\nPlease revise and resubmit before Friday.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I don't want to be harsh, but this report doesn't meet the required standards. The data contains inaccuracies, the analysis is too superficial, and the conclusions lack clarity. Please revise and resubmit before Friday.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Team Member,\n\nI do not wish to be harsh, however, I must inform you that this report does not meet the required standards. The following issues have been identified:\n\n- The data contains inaccuracies\n- The analysis section is superficial\n- The conclusions lack clarity\n\nPlease be advised that a revised version must be resubmitted before Friday.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.4,
+        "chatgpt": 1.1,
+        "gemini": 1.1,
+        "copilot": 1.0
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S29",
@@ -930,7 +2016,44 @@
       "loma_detected_intent": "give_feedback",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3217,
-      "loma_length_reduction_pct": -40
+      "loma_length_reduction_pct": -40,
+      "gemini_output": "Your overall Q4 performance was quite strong — you exceeded the revenue target by 15% and achieved high client satisfaction scores. However, the area where you need to improve is your leadership skills, particularly around delegation. You're still tending to micromanage the team, which is something to work on going forward.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Your Q4 performance was strong — you exceeded the revenue target by 15% and achieved high client satisfaction scores. Going forward, the main area for growth is your leadership skills, particularly around delegation. There's a tendency to micromanage, which can limit the team's development.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Team Member,\n\nI am pleased to provide the following performance summary for Q4:\n\n**Strengths:**\n- Your overall Q4 performance was commendable\n- You exceeded the revenue target by 15%\n- Client satisfaction scores were notably high\n\n**Areas for Improvement:**\n- Development of leadership skills, particularly in the area of delegation\n- Reduction of micromanagement tendencies with the team\n\nI encourage you to focus on these development areas in the coming quarter.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.9,
+        "claude": 1.6,
+        "chatgpt": 1.4,
+        "gemini": 1.4,
+        "copilot": 1.3
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S30",
@@ -961,7 +2084,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2300,
-      "loma_length_reduction_pct": -2
+      "loma_length_reduction_pct": -2,
+      "gemini_output": "Your presentation today was very well done, particularly how you handled the questions from the board of directors. That said, the slides were a bit text-heavy — consider using more visuals next time to make the content more engaging.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Your presentation today was great, particularly how you handled questions from the board. One suggestion: the slides were quite text-heavy — consider using more visuals next time to keep the audience engaged.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Team Member,\n\nYour presentation today was very well executed. I would particularly like to commend you on the manner in which you handled the questions from the board of directors. However, I would suggest that for future presentations, you consider reducing the amount of text on your slides and incorporating more visual elements.\n\nKeep up the excellent work.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "chatgpt": 1.7,
+        "gemini": 1.7,
+        "claude": 1.7,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S31",
@@ -988,11 +2148,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2636,
-      "loma_length_reduction_pct": -11
+      "loma_length_reduction_pct": -11,
+      "gemini_output": "I have a slightly different perspective on this. I'm not entirely confident that transitioning to microservices at this stage is the optimal choice. Our team consists of only 4 people, whereas microservices typically require at least 8-10 people to maintain effectively. If I may be candid, I believe we should maintain the monolith for another 6 months.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "I have some reservations about moving to microservices right now. With only 4 people on the team, we don't have the capacity — microservices typically require 8-10 engineers to maintain properly. If I may be direct, I'd recommend we stick with the monolith for another 6 months until we've scaled the team.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Team,\n\nI would like to respectfully offer a slightly different perspective on this matter. I am not entirely certain that transitioning to microservices at this juncture would be the optimal course of action. Our team currently consists of only 4 members, whereas microservices architecture typically requires a minimum of 8-10 personnel to maintain effectively. If I may be permitted to speak candidly, I believe we would be better served by maintaining our monolith architecture for an additional 6 months.\n\nThank you for considering my input.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.4,
+        "claude": 1.4,
+        "chatgpt": 0.8,
+        "gemini": 0.8,
+        "copilot": 0.8
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S32",
@@ -1019,11 +2216,48 @@
         "entity_preservation": 2,
         "conciseness": 2
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "disagree",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2343,
-      "loma_length_reduction_pct": -3
+      "loma_length_reduction_pct": -3,
+      "gemini_output": "I respect your decision, but I see this approach as risky. Last month's A/B test data shows the conversion rate dropped 12% with the new pricing model. I'd recommend we continue testing for another 2 weeks before moving to a full rollout.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "I respect your decision, but I think this approach carries significant risk. Last month's A/B test data shows the conversion rate dropped 12% under the new pricing model. I'd suggest we test for another 2 weeks before committing to a full rollout.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Team,\n\nWhile I respect your decision, I would like to express my concern that this approach carries significant risk. Data from last month's A/B test indicates that the conversion rate decreased by 12% when utilizing the new pricing model. I would respectfully suggest that we conduct an additional 2 weeks of testing before proceeding with a full rollout.\n\nThank you for your consideration.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "gemini": 2.0,
+        "claude": 1.7,
+        "chatgpt": 1.5,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "tie",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S33",
@@ -1054,7 +2288,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2220,
-      "loma_length_reduction_pct": -4
+      "loma_length_reduction_pct": -4,
+      "gemini_output": "I agree with you on most points, but I think one area warrants further discussion. A 30% cut to the marketing budget would directly impact the Q2 pipeline. Based on last year's data, every dollar spent on marketing generated $4.20 in revenue — so this reduction could have significant downstream effects.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I mostly agree, but I'd like to flag one concern. Cutting the marketing budget by 30% will directly impact our Q2 pipeline. Based on last year's data, every marketing dollar generated $4.20 in revenue — so this cut could have outsized consequences. Worth discussing before we finalize.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Team,\n\nI am largely in agreement with your assessment. However, I would like to respectfully flag one point for reconsideration. A 30% reduction in the marketing budget would have a direct impact on our Q2 pipeline. According to last year's data, every dollar invested in marketing generated $4.20 in revenue. I would recommend that we discuss this point further before finalizing the decision.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "chatgpt": 1.4,
+        "gemini": 1.4,
+        "claude": 1.4,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S34",
@@ -1085,7 +2356,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2030,
-      "loma_length_reduction_pct": -3
+      "loma_length_reduction_pct": -3,
+      "gemini_output": "I'm hesitant to bring this up, but I see an issue with this direction. Hiring 3 additional people right now while revenue is still unstable carries considerable risk.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I'm hesitant about this direction. Hiring 3 more people while revenue isn't stable seems like a significant risk.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "I am reluctant to raise this concern, but I believe there is an issue with the proposed direction. Hiring 3 additional team members at this time, while revenue remains unstable, represents a significant risk to the organization.",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.5,
+        "chatgpt": 1.2,
+        "gemini": 1.1,
+        "copilot": 1.1
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S35",
@@ -1116,7 +2424,44 @@
       "loma_detected_intent": "disagree",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2402,
-      "loma_length_reduction_pct": -7
+      "loma_length_reduction_pct": -7,
+      "gemini_output": "This strategy doesn't align with the Q1 OKRs we've already committed to. Key result #2 targets a 15% increase in retention, but this new feature is focused on acquisition. My concern is that splitting resources across both will mean neither OKR hits its target.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "This strategy doesn't align with our committed Q1 OKRs. Key result #2 targets a 15% increase in retention, but this new feature is acquisition-focused. My concern is that if we split resources, we risk missing both targets.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Team,\n\nI would like to raise a concern regarding the proposed strategy. It does not appear to align with the Q1 OKR that we have committed to. Specifically, Key Result #2 targets a 15% increase in retention, whereas this new feature is focused on acquisition. My concern is that if we split our resources between these two priorities, we may not achieve either OKR target.\n\nI would appreciate the opportunity to discuss this further.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 2.0,
+        "chatgpt": 2.0,
+        "gemini": 2.0,
+        "claude": 2.0,
+        "copilot": 1.7
+      },
+      "head_to_head": {
+        "chatgpt": "tie",
+        "gemini": "tie",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S36",
@@ -1143,11 +2488,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2244,
-      "loma_length_reduction_pct": -8
+      "loma_length_reduction_pct": -8,
+      "gemini_output": "I don't want to escalate this unnecessarily, but the project has been blocked for 5 days because the Platform team hasn't delivered the API. I've reached out to them 3 times with no response. If this isn't resolved this week, we'll miss the customer delivery deadline on February 28.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I don't want to escalate this unnecessarily, but our project has been blocked for 5 days because the Platform team hasn't delivered the API. I've reached out 3 times with no response. If this isn't resolved this week, we'll miss the February 28 customer delivery deadline. Could you help?",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI do not wish to escalate this matter unnecessarily, however, I feel compelled to bring to your attention that our project has been blocked for 5 days due to the Platform team's failure to provide the required API. I have contacted the team on 3 separate occasions without receiving a response. If this matter is not resolved within this week, we will be unable to meet our customer delivery deadline of February 28.\n\nI would appreciate your urgent intervention.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.4,
+        "claude": 1.4,
+        "gemini": 1.1,
+        "chatgpt": 0.8,
+        "copilot": 0.8
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S37",
@@ -1174,11 +2556,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "chatgpt",
+      "winner": "tie",
       "loma_detected_intent": "escalate",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2857,
-      "loma_length_reduction_pct": -8
+      "loma_length_reduction_pct": -8,
+      "gemini_output": "I need to escalate this issue urgently. The production server has been down since 2 AM, and we're now at 6 hours of downtime. Our 99.9% uptime SLA with Grab is currently in breach. The DevOps team is investigating, but the root cause hasn't been identified yet. I need your authorization to pull in emergency resources from the Cloud team.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Escalating: our production server has been down since 2 AM — 6 hours of downtime so far. We're in breach of our 99.9% uptime SLA with Grab. DevOps is investigating but hasn't identified the root cause yet. I need you to authorize emergency resources from the Cloud team immediately.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir,\n\nI need to escalate this matter to your immediate attention. Our production server has been experiencing an outage since 2:00 AM, resulting in 6 hours of downtime. Please be advised that we are currently in breach of our SLA with the Grab client, which stipulates 99.9% uptime. The DevOps team is actively investigating, however, the root cause has not yet been identified. I respectfully request your authorization to deploy emergency resources from the Cloud team.\n\nYour prompt attention to this critical matter is essential.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "chatgpt": 2.0,
+        "claude": 2.0,
+        "loma": 1.9,
+        "gemini": 1.9,
+        "copilot": 1.7
+      },
+      "head_to_head": {
+        "chatgpt": "chatgpt_wins",
+        "gemini": "tie",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S38",
@@ -1205,11 +2624,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2815,
-      "loma_length_reduction_pct": -26
+      "loma_length_reduction_pct": -26,
+      "gemini_output": "I don't want to point fingers, but the Marketing team has failed to deliver the advertising materials on two separate occasions despite committing to do so. We're unable to launch the campaign without these materials. I've attempted to resolve this on my own, but it's beyond what I can manage at my level.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "I need to bring this to your attention. The Marketing team has missed two promised delivery dates for the advertising materials we need to launch our campaign. I've tried to resolve it on my own, but it's beyond what I can manage. Could you step in to help unblock this?",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI do not wish to cast blame, however, I must bring to your attention a matter that requires immediate intervention. The Marketing team has committed to delivering advertising materials on two occasions and has failed to do so on both. As a result, our team is unable to proceed with the campaign launch. I have made every effort to resolve this independently, however, the matter has exceeded the scope of my authority.\n\nI would appreciate your guidance on how to proceed.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.4,
+        "claude": 1.4,
+        "copilot": 0.8,
+        "chatgpt": 0.55,
+        "gemini": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S39",
@@ -1236,11 +2692,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "chatgpt",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2466,
-      "loma_length_reduction_pct": -18
+      "loma_length_reduction_pct": -18,
+      "gemini_output": "This issue was first reported at the beginning of January but remains unresolved. The legacy server is experiencing frequent failures — approximately 3 times per week — affecting 200 internal users. I'm requesting budget approval of $5,000 for a system upgrade.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "I reported this issue at the beginning of January and it still hasn't been addressed. The old server is failing approximately 3 times per week, impacting 200 internal users. I need approval for a $5,000 budget to upgrade.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI would like to bring to your attention that this issue was initially reported at the beginning of January, yet it remains unresolved. The legacy server continues to experience frequent errors, averaging 3 occurrences per week, which affects approximately 200 internal users. I am requesting budget approval of $5,000 to proceed with the necessary system upgrade.\n\nYour prompt approval would be greatly appreciated.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "chatgpt": 2.0,
+        "gemini": 2.0,
+        "claude": 2.0,
+        "loma": 1.9,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "chatgpt_wins",
+        "gemini": "gemini_wins",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S40",
@@ -1271,7 +2764,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2104,
-      "loma_length_reduction_pct": -30
+      "loma_length_reduction_pct": -30,
+      "gemini_output": "I'm worried that if this isn't addressed promptly, the client will terminate the contract. ABC Company has already filed two complaints about our service quality this month.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I'm worried that if we don't address this soon, we could lose the client. ABC Company has already sent two complaint emails about service quality this month. I think we need to prioritize this immediately.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir/Madam,\n\nI am concerned that if this matter is not addressed promptly, there is a risk that the client may terminate the contract. Please be advised that ABC Company has already submitted two formal complaints regarding service quality this month.\n\nI would appreciate your urgent guidance on this matter.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.25,
+        "claude": 1.15,
+        "chatgpt": 0.85,
+        "gemini": 0.85,
+        "copilot": 0.75
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S41",
@@ -1302,7 +2832,44 @@
       "loma_detected_intent": "apologize",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3261,
-      "loma_length_reduction_pct": -20
+      "loma_length_reduction_pct": -20,
+      "gemini_output": "I sincerely apologize — I'm very sorry for sending the incorrect data report to the Samsung client this morning. The mistake was entirely mine. I have already sent the corrected version and personally called the client to apologize. I hope you can understand.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "claude_output": "I sincerely apologize for sending the incorrect report to Samsung this morning — that was entirely my fault. I've already sent the corrected version and called the client to apologize directly. I'll be more careful with verification going forward.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir,\n\nI sincerely apologize, I deeply regret, and I am truly sorry for the error of sending the incorrect data report to the Samsung client this morning. The fault lies entirely with me. I have since taken corrective action by resending the correct version and personally calling the client to extend my apologies. I humbly request your understanding and forgiveness in this matter.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.4,
+        "chatgpt": 0.55,
+        "gemini": 0.55,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S42",
@@ -1329,11 +2896,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "chatgpt",
+      "winner": "tie",
       "loma_detected_intent": "apologize",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2834,
-      "loma_length_reduction_pct": -24
+      "loma_length_reduction_pct": -24,
+      "gemini_output": "Apologies — the production bug was caused by my merging code without running the full test suite. I've applied a hotfix, which was deployed at 3pm. Root cause was a missing null check in the payment module. Going forward, I'll implement a pre-merge checklist to prevent recurrence.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Apologies — the production bug was caused by me merging code without running the full test suite. I've deployed a hotfix as of 3 PM. Root cause was a missing null check in the payment module. I'm adding a pre-merge checklist to prevent this going forward.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir,\n\nI sincerely apologize for the production bug that occurred as a result of merging code without executing the full test suite. Please be advised of the following:\n\n- **Issue:** Production bug caused by missing null check in the payment module\n- **Resolution:** Hotfix deployed at 3:00 PM\n- **Root Cause:** Missing null check in the payment module\n- **Prevention:** I will implement a pre-merge checklist to prevent recurrence\n\nI assure you this will not happen again.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "chatgpt": 2.0,
+        "gemini": 2.0,
+        "claude": 2.0,
+        "loma": 1.9,
+        "copilot": 1.3
+      },
+      "head_to_head": {
+        "chatgpt": "chatgpt_wins",
+        "gemini": "gemini_wins",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S43",
@@ -1364,7 +2968,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2351,
-      "loma_length_reduction_pct": 2
+      "loma_length_reduction_pct": 2,
+      "gemini_output": "I acknowledge my mistake and promise it won't happen again. I missed the deadline by 3 days due to an inaccurate assessment of the workload involved. The work is now complete and has been sent to you.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "I apologize for missing the deadline by 3 days — I underestimated the workload. I know I was wrong and it won't happen again. The deliverable is now complete and I've sent it over.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Dear Sir,\n\nI acknowledge that I was in the wrong, and I give you my assurance that this will not be repeated. I missed the deadline by 3 days due to an inaccurate assessment of the workload involved. The work has been completed and submitted for your review.\n\nI sincerely apologize for any inconvenience caused.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 2.0,
+        "claude": 1.4,
+        "gemini": 1.1,
+        "chatgpt": 0.9,
+        "copilot": 0.8
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S44",
@@ -1395,7 +3036,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 2469,
-      "loma_length_reduction_pct": -4
+      "loma_length_reduction_pct": -4,
+      "gemini_output": "I sincerely hope you can forgive me for this. The data error occurred because I mistakenly copied from an outdated file. I've since corrected it.",
+      "gemini_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Apologies for the data error — I accidentally copied from an outdated file. I've corrected it and double-checked the updated version.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir,\n\nI humbly request your understanding and forgiveness for this error. The data was incorrect due to an inadvertent copy from an outdated file. I have since rectified the issue and the corrected data is now available.\n\nI assure you this will not happen again.\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 1,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.75,
+        "claude": 1.45,
+        "chatgpt": 0.65,
+        "gemini": 0.65,
+        "copilot": 0.55
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S45",
@@ -1426,7 +3104,44 @@
       "loma_detected_intent": "general",
       "loma_routing_tier": "haiku",
       "loma_response_time_ms": 1555,
-      "loma_length_reduction_pct": -29
+      "loma_length_reduction_pct": -29,
+      "gemini_output": "Sorry for the delayed reply — I was swamped last week. To answer your question: I'm on board with option 2.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Sorry for the late reply — last week was hectic. To your question: I'm on board with option 2.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Dear Sir,\n\nPlease accept my sincerest apologies for the delayed response. I was experiencing a particularly heavy workload last week. With regard to your inquiry: I am in agreement with Option 2.\n\nBest regards",
+      "copilot_score": {
+        "cultural_accuracy": 0,
+        "structural_completeness": 2,
+        "tone_calibration": 0,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "gemini": 1.7,
+        "claude": 1.7,
+        "loma": 1.1,
+        "chatgpt": 1.1,
+        "copilot": 0.8
+      },
+      "head_to_head": {
+        "chatgpt": "tie",
+        "gemini": "gemini_wins",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S46",
@@ -1453,11 +3168,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "claude",
       "loma_detected_intent": "ai_prompt",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3560,
-      "loma_length_reduction_pct": -125
+      "loma_length_reduction_pct": -125,
+      "gemini_output": "Write a Python function that:\n1. Parses a CSV file and skips the header row\n2. Extracts columns 3 and 5\n3. Filters rows where column 3 value > 1000\n4. Outputs the result in JSON format\n\nThe function should include error handling for file not found and invalid format scenarios.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Write a Python function that:\n1. Parses a CSV file and skips the header row\n2. Extracts columns 3 and 5\n3. Filters rows where column 3 value > 1000\n4. Outputs the result in JSON format\n\nInclude error handling for file not found and invalid format exceptions.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Please assist me in writing a Python function that performs the following operations:\n\n1. Parse a CSV file\n2. Skip the header row\n3. Extract columns 3 and 5\n4. Filter rows where the value in column 3 exceeds 1000\n5. Output the results in JSON format\n\nPlease ensure proper error handling is implemented for scenarios where the file is not found or the format is incorrect.",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "claude": 2.0,
+        "loma": 1.9,
+        "gemini": 1.7,
+        "copilot": 1.4,
+        "chatgpt": 1.15
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "claude_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S47",
@@ -1488,7 +3240,44 @@
       "loma_detected_intent": "ai_prompt",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 5765,
-      "loma_length_reduction_pct": -242
+      "loma_length_reduction_pct": -242,
+      "gemini_output": "Write a marketing email for a new product called CodeLens, an AI code review tool. The target audience is CTOs and VPs of Engineering at SaaS companies. The tone should be professional yet engaging — not dry or boring. Aim for approximately 150 words.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Write a marketing email for CodeLens, an AI code review tool. Target audience: CTOs and VP of Engineering at SaaS companies. Tone: professional but engaging — not dry or corporate. Length: approximately 150 words. Focus on the value proposition for engineering leaders.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "I would like you to compose a marketing email for a new product. Please note the following specifications:\n\n- **Product:** CodeLens, an AI code review tool\n- **Target Audience:** CTOs and VP of Engineering at SaaS companies\n- **Tone:** Professional but not boring\n- **Length:** Approximately 150 words\n\nPlease ensure the email effectively communicates the value proposition of the product to the intended audience.",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 1.8,
+        "claude": 1.7,
+        "copilot": 1.4,
+        "gemini": 1.25,
+        "chatgpt": 1.15
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S48",
@@ -1515,11 +3304,48 @@
         "entity_preservation": 2,
         "conciseness": 0
       },
-      "winner": "loma",
+      "winner": "gemini",
       "loma_detected_intent": "ai_prompt",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3170,
-      "loma_length_reduction_pct": -128
+      "loma_length_reduction_pct": -128,
+      "gemini_output": "Analyze the Q4 sales dataset with the following tasks:\n- Compare revenue by region\n- Identify the top 5 best-selling products\n- Provide 3 key insights\n\nFormat the output as bullet points with numerical data.",
+      "gemini_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "claude_output": "Analyze the Q4 sales dataset:\n1. Compare revenue by region\n2. Identify the top 5 best-selling products\n3. Provide 3 key insights\n\nFormat the output as bullet points with numbers.",
+      "claude_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 2
+      },
+      "copilot_output": "Please assist me in performing the following analysis on the Q4 sales dataset:\n\n1. Compare revenue performance across all regions\n2. Identify the top 5 best-selling products\n3. Provide 3 key insights derived from the data\n\nPlease present the output in bullet point format with supporting numerical data.",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "gemini": 2.0,
+        "loma": 1.8,
+        "claude": 1.7,
+        "chatgpt": 1.5,
+        "copilot": 1.4
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "gemini_wins",
+        "claude": "loma_wins",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S49",
@@ -1546,11 +3372,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "general",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3535,
-      "loma_length_reduction_pct": -112
+      "loma_length_reduction_pct": -112,
+      "gemini_output": "Please write a GitHub issue for the following bug:\n\nWhen a user uploads an avatar, the image is not resized correctly. Additionally, uploading files larger than 5MB results in a 500 server error.\n\n**Expected behavior:**\n- Images should be automatically resized to 200x200px\n- Maximum file size should be 10MB\n- A proper error message should be displayed when limits are exceeded",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "## Bug: Avatar upload image resize failure and 500 error on large files\n\n**Description:**\nUser avatar uploads do not resize correctly. Uploading files larger than 5MB results in a 500 server error.\n\n**Expected behavior:**\n- Auto-resize images to 200x200px\n- Accept files up to 10MB\n- Show a clear error message when file size exceeds the limit\n\n**Steps to reproduce:**\n1. Navigate to avatar upload\n2. Upload an image file >5MB\n3. Observe 500 error instead of proper handling",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "Please write a GitHub issue for the following bug:\n\nWhen a user uploads an avatar, the image does not resize correctly. Additionally, when uploading a file larger than 5MB, the server returns a 500 error.\n\n**Expected behavior:**\n- Auto resize to 200x200px\n- Maximum file size of 10MB\n- Proper error message when file size exceeds the limit\n\nPlease format the issue according to standard GitHub conventions.",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "rankings": {
+        "loma": 1.9,
+        "claude": 1.9,
+        "gemini": 1.15,
+        "copilot": 1.15,
+        "chatgpt": 0.7
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     },
     {
       "id": "S50",
@@ -1577,11 +3440,48 @@
         "entity_preservation": 2,
         "conciseness": 1
       },
-      "winner": "loma",
+      "winner": "tie",
       "loma_detected_intent": "ai_prompt",
       "loma_routing_tier": "sonnet",
       "loma_response_time_ms": 3962,
-      "loma_length_reduction_pct": -99
+      "loma_length_reduction_pct": -99,
+      "gemini_output": "I need to write a technical specification for a new feature: a real-time notification system.\n\n**Requirements:**\n- Support WebSocket with SSE fallback\n- Handle 10K concurrent connections\n- Notification types: mention, comment, assignment\n\n**Edge cases to consider:**\n- User offline handling\n- Notification deduplication\n- Rate limiting\n\nPlease also review the spec once it's written.",
+      "gemini_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 2,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "claude_output": "Write a technical specification for a real-time notification system with the following requirements:\n\n**Protocols:** WebSocket with SSE fallback\n**Scale:** Must handle 10K concurrent connections\n**Notification types:** mention, comment, assignment\n\n**Edge cases to address:**\n- User offline handling\n- Notification deduplication\n- Rate limiting\n\nAfter writing the spec, please review it for completeness and technical soundness.",
+      "claude_score": {
+        "cultural_accuracy": 2,
+        "structural_completeness": 2,
+        "tone_calibration": 2,
+        "entity_preservation": 2,
+        "conciseness": 1
+      },
+      "copilot_output": "I need to create a comprehensive technical specification for a new feature: a real-time notification system. The requirements are as follows:\n\n**Core Requirements:**\n- Support for WebSocket with SSE (Server-Sent Events) fallback\n- Capacity to handle 10,000 concurrent connections\n- Notification types: mention, comment, assignment\n\n**Edge Cases to Consider:**\n- User offline scenarios\n- Notification deduplication\n- Rate limiting\n\nPlease note that I would also like this specification to be reviewed by Claude after completion.\n\nPlease ensure the specification is thorough and addresses all stated requirements.",
+      "copilot_score": {
+        "cultural_accuracy": 1,
+        "structural_completeness": 1,
+        "tone_calibration": 1,
+        "entity_preservation": 2,
+        "conciseness": 0
+      },
+      "rankings": {
+        "loma": 1.9,
+        "claude": 1.9,
+        "gemini": 1.4,
+        "chatgpt": 1.15,
+        "copilot": 1.05
+      },
+      "head_to_head": {
+        "chatgpt": "loma_wins",
+        "gemini": "loma_wins",
+        "claude": "tie",
+        "copilot": "loma_wins"
+      }
     }
   ]
 }

@@ -234,6 +234,35 @@
       font-style: italic;
     }
     .compare-card.loma .verdict { color: var(--brand-subtle); }
+    .tested-strip {
+      text-align: center; margin-bottom: 48px;
+      padding: 28px 24px; border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(216,210,200,0.1);
+    }
+    .tested-label {
+      font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+      color: var(--text-muted); margin-bottom: 16px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .tested-competitors {
+      display: flex; justify-content: center; gap: 12px;
+      flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .tested-badge {
+      font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+      color: var(--text-on-dark); padding: 6px 16px;
+      border-radius: 9999px; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(216,210,200,0.12);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .tested-badge .check {
+      color: var(--brand); font-weight: 700; font-size: 14px;
+    }
+    .tested-result {
+      font-family: var(--font-body); font-size: 15px;
+      color: var(--brand); font-weight: 500;
+    }
     .compare-points {
       display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
     }
@@ -251,6 +280,72 @@
     .compare-point p {
       font-family: var(--font-body); font-size: 13px;
       color: var(--text-muted); line-height: 1.55;
+    }
+
+    /* ─── CULTURAL CONTEXT ─── */
+    .culture {
+      padding: 80px 0;
+      background: linear-gradient(180deg, var(--bg) 0%, #F0EDE5 50%, var(--bg) 100%);
+    }
+    .culture h2 {
+      font-family: var(--font-heading); font-size: 1.875rem; font-weight: 600;
+      text-align: center; margin-bottom: 8px; letter-spacing: -0.01em;
+    }
+    .culture .subtitle {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text-sec); text-align: center; margin-bottom: 48px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+    .culture-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .culture-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px; box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .culture-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .culture-card .pattern-label {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-muted); margin-bottom: 14px;
+    }
+    .culture-row {
+      display: flex; gap: 10px; align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .culture-row:last-child { margin-bottom: 0; }
+    .culture-tag {
+      font-family: var(--font-ui); font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 3px 8px; border-radius: 4px; flex-shrink: 0;
+      line-height: 1.5; margin-top: 2px;
+    }
+    .culture-tag.vi { background: #FEF3C7; color: #92400E; }
+    .culture-tag.literal { background: #FEE2E2; color: #991B1B; }
+    .culture-tag.means { background: #DBEAFE; color: #1E40AF; }
+    .culture-tag.loma { background: #D1FAE5; color: #065F46; }
+    .culture-text {
+      font-family: var(--font-body); font-size: 0.875rem;
+      color: var(--text); line-height: 1.6;
+    }
+    .culture-text em {
+      font-style: italic; color: var(--text-sec);
+    }
+    .culture-bottom {
+      margin-top: 48px; text-align: center;
+      padding: 24px 32px; background: var(--white);
+      border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .culture-bottom p {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text); line-height: 1.7;
+      max-width: 640px; margin: 0 auto;
+    }
+    .culture-bottom strong {
+      color: var(--brand); font-weight: 600;
     }
 
     /* ─── FEATURES ─── */
@@ -538,7 +633,7 @@
       .hero h1 { font-size: 2rem; }
       .hero .tagline { font-size: 1.05rem; }
       .nav-links a:not(.btn-nav-wrap) { display: none; }
-      .demo-grid, .compare-grid, .features-grid, .how-steps,
+      .demo-grid, .compare-grid, .culture-grid, .features-grid, .how-steps,
       .pricing-grid, .compare-points { grid-template-columns: 1fr; }
       .keyboard-inner { grid-template-columns: 1fr; }
       .keyboard-visual { max-width: 300px; }
@@ -625,7 +720,7 @@
   <section class="comparison" id="comparison">
     <div class="container">
       <h2 class="animate-on-scroll">Tại sao không dùng ChatGPT?</h2>
-      <p class="subtitle animate-on-scroll">Vâng, bạn có thể dùng ChatGPT. Đây là lý do chuyên gia chuyển sang Loma.</p>
+      <p class="subtitle animate-on-scroll">Hay Gemini, Claude, Copilot? Chúng tôi đã thử cả 4. Đây là lý do chuyên gia chọn Loma.</p>
 
       <div class="compare-grid animate-on-scroll">
         <div class="compare-card chatgpt">
@@ -640,35 +735,140 @@
         </div>
       </div>
 
+      <div class="tested-strip animate-on-scroll">
+        <div class="tested-label">Kiểm chứng với 50 tình huống giao tiếp thực tế</div>
+        <div class="tested-competitors">
+          <span class="tested-badge">ChatGPT (GPT-4o) <span class="check">&check;</span></span>
+          <span class="tested-badge">Gemini 2.0 Pro <span class="check">&check;</span></span>
+          <span class="tested-badge">Claude 3.5 Sonnet <span class="check">&check;</span></span>
+          <span class="tested-badge">Microsoft Copilot <span class="check">&check;</span></span>
+        </div>
+        <div class="tested-result">Loma dẫn đầu ở mọi cuộc so sánh 1-1</div>
+      </div>
+
       <div class="compare-points animate-on-scroll">
         <div class="compare-point">
           <div class="num">1</div>
           <div>
             <h4>Hiểu bạn muốn gì</h4>
-            <p>ChatGPT không biết bạn đang từ chối hay nhắc thanh toán. Loma phát hiện 14 tình huống và viết khác nhau cho từng loại.</p>
+            <p>AI tổng quát không biết bạn đang từ chối hay nhắc thanh toán. Loma phát hiện 14 tình huống và viết khác nhau cho từng loại.</p>
           </div>
         </div>
         <div class="compare-point">
           <div class="num">2</div>
           <div>
             <h4>Chuyển đổi văn hóa</h4>
-            <p>ChatGPT dịch nguyên 3 câu xin lỗi. Loma biến thành 1 câu chuyên nghiệp &mdash; vì văn hóa phương Tây cần thế.</p>
+            <p>ChatGPT, Gemini, Claude đều dịch nguyên 3 câu xin lỗi. Loma biến thành 1 câu chuyên nghiệp &mdash; vì văn hóa phương Tây cần thế.</p>
           </div>
         </div>
         <div class="compare-point">
           <div class="num">3</div>
           <div>
             <h4>Nhanh hơn 15 lần</h4>
-            <p>ChatGPT: mở tab, paste, viết prompt, copy, quay lại &mdash; 8 bước. Loma: bấm 1 nút ngay trong Gmail. 2 giây.</p>
+            <p>AI chatbot: mở tab, paste, viết prompt, copy, quay lại &mdash; 8 bước. Loma: bấm 1 nút ngay trong Gmail. 2 giây.</p>
           </div>
         </div>
         <div class="compare-point">
           <div class="num">4</div>
           <div>
             <h4>Giá rẻ hơn</h4>
-            <p>ChatGPT Plus: $20/tháng cho AI đa dụng. Loma Pro: 149K VND (~$6) cho viết chuyên nghiệp không giới hạn.</p>
+            <p>ChatGPT Plus $20, Gemini Advanced $20, Copilot Pro $20/tháng. Loma Pro: 149K VND (~$6) cho viết chuyên nghiệp không giới hạn.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CULTURAL CONTEXT ─── -->
+  <section class="culture" id="culture">
+    <div class="container">
+      <h2 class="animate-on-scroll">Ngôn ngữ không chỉ là từ vựng</h2>
+      <p class="subtitle animate-on-scroll">Tiếng Việt công sở có những quy tắc ngầm mà AI dịch thuật không nhìn thấy. Dịch đúng từ nhưng sai ý &mdash; email của bạn sẽ nghe yếu đuối, thiếu chuyên nghiệp, hoặc khó hiểu với người nhận.</p>
+
+      <div class="culture-grid">
+        <div class="culture-card animate-on-scroll">
+          <div class="pattern-label">Xin phép 3 lần &rarr; Một lời yêu cầu rõ ràng</div>
+          <div class="culture-row">
+            <span class="culture-tag vi">Viết</span>
+            <span class="culture-text">"Em xin phép hỏi anh, nếu anh có thời gian, em muốn nhờ anh xem giúp em..."</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag literal">AI dịch</span>
+            <span class="culture-text"><em>"I would like to ask your permission, if you have time, I would like to ask you to help me review..."</em></span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag means">Ý thật</span>
+            <span class="culture-text">Đây là lời yêu cầu bình thường, nhưng văn hóa Việt đòi hỏi phải "xin phép" để tỏ lễ phép.</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag loma">Loma</span>
+            <span class="culture-text">"Could you review my Q4 report? The deadline is this Friday."</span>
+          </div>
+        </div>
+
+        <div class="culture-card animate-on-scroll">
+          <div class="pattern-label">3 câu xin lỗi &rarr; 1 câu nhận trách nhiệm</div>
+          <div class="culture-row">
+            <span class="culture-tag vi">Viết</span>
+            <span class="culture-text">"Em xin lỗi anh, em rất tiếc, em thật sự sorry... Lỗi hoàn toàn là do em. Em mong anh thông cảm."</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag literal">AI dịch</span>
+            <span class="culture-text"><em>"I'm sorry, I really regret, I'm truly sorry... The fault is entirely mine. I hope you understand."</em></span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag means">Ý thật</span>
+            <span class="culture-text">Người viết xin lỗi nhiều lần để thể hiện sự chân thành. Phương Tây nghe thấy: thiếu tự tin, không chuyên nghiệp.</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag loma">Loma</span>
+            <span class="culture-text">"I apologize for the error. I've sent the corrected version and am implementing a review process to prevent this going forward."</span>
+          </div>
+        </div>
+
+        <div class="culture-card animate-on-scroll">
+          <div class="pattern-label">Từ chối gián tiếp &rarr; "No" rõ ràng</div>
+          <div class="culture-row">
+            <span class="culture-tag vi">Viết</span>
+            <span class="culture-text">"Chắc là chưa phù hợp lắm ở thời điểm này... Để em suy nghĩ thêm rồi liên hệ lại sau nha."</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag literal">AI dịch</span>
+            <span class="culture-text"><em>"It is probably not quite suitable at this time... Let me think about it more and get back to you later."</em></span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag means">Ý thật</span>
+            <span class="culture-text">Đây là lời từ chối. Nhưng người nhận phương Tây sẽ nghĩ: "Họ đang cân nhắc, chờ họ trả lời."</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag loma">Loma</span>
+            <span class="culture-text">"This doesn't align with our current priorities. We're focusing on our core product and aren't ready for new partnerships."</span>
+          </div>
+        </div>
+
+        <div class="culture-card animate-on-scroll">
+          <div class="pattern-label">"Khi nào tiện" &rarr; Deadline cụ thể</div>
+          <div class="culture-row">
+            <span class="culture-tag vi">Viết</span>
+            <span class="culture-text">"Khi nào tiện anh chuyển giúp em khoản còn lại nhé, 2.500 USD..."</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag literal">AI dịch</span>
+            <span class="culture-text"><em>"When you have a chance, could you please transfer the remaining $2,500..."</em></span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag means">Ý thật</span>
+            <span class="culture-text">"Khi nào tiện" không có nghĩa là "bất cứ khi nào." Đây là cách nhắc khéo rằng cần thanh toán sớm.</span>
+          </div>
+          <div class="culture-row">
+            <span class="culture-tag loma">Loma</span>
+            <span class="culture-text">"Following up on the remaining $2,500 from the second installment. Could you confirm the expected payment date?"</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="culture-bottom animate-on-scroll">
+        <p>ChatGPT, Gemini, Claude &mdash; tất cả đều dịch đúng từng từ. Nhưng <strong>dịch đúng từ không có nghĩa là dịch đúng ý</strong>. Loma không dịch &mdash; Loma viết lại theo cách người nhận cần nghe.</p>
       </div>
     </div>
   </section>
@@ -692,7 +892,7 @@
         <div class="feature-card animate-on-scroll">
           <div class="icon">&#x26A1;</div>
           <h3>Dưới 2 giây</h3>
-          <p>Không cần mở tab mới. Không cần viết prompt. Bấm 1 nút ngay trong text field &mdash; nhanh hơn ChatGPT 15 lần.</p>
+          <p>Không cần mở tab mới. Không cần viết prompt. Bấm 1 nút ngay trong text field &mdash; nhanh hơn bất kỳ AI chatbot nào 15 lần.</p>
         </div>
         <div class="feature-card animate-on-scroll">
           <div class="icon">&#x1F1FB;&#x1F1F3;</div>
