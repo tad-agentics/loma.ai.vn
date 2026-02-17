@@ -4,182 +4,910 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Loma — Hết loay hoay với câu chữ</title>
-  <meta name="description" content="Viết tiếng Việt, nhận văn bản chuyên nghiệp. Tiếng Anh hoặc tiếng Việt. Một nút, đúng giọng.">
+  <meta name="description" content="Viết tiếng Việt, nhận văn bản chuyên nghiệp. Tiếng Anh hoặc tiếng Việt. Một nút, đúng giọng, dưới 2 giây.">
+  <meta name="theme-color" content="#F5F0E8">
+  <meta property="og:title" content="Loma — Hết loay hoay với câu chữ">
+  <meta property="og:description" content="Bạn lo phần ý. Loma lo phần lời. Viết lại chuyên nghiệp trong 2 giây.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root { --teal: #0d9488; --teal-dark: #0f766e; --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-500: #6b7280; --gray-900: #111827; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, sans-serif; color: var(--gray-900); line-height: 1.6; }
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --bg: #F5F0E8;
+      --bg-alt: #EDE8DD;
+      --bg-dark: #2C2825;
+      --white: #FFFFFF;
+      --text: #2C2825;
+      --text-sec: #6B6560;
+      --text-muted: #9C9590;
+      --text-on-dark: #F5F0E8;
+      --brand: #0D9488;
+      --brand-hover: #0F766E;
+      --brand-subtle: #CCFBF1;
+      --brand-subtle-text: #065F46;
+      --border: #D8D2C8;
+      --border-sub: #E8E2D8;
+      --shadow-sm: 0 1px 3px rgba(44,40,37,0.06);
+      --shadow-md: 0 4px 12px rgba(44,40,37,0.08);
+      --shadow-lg: 0 8px 24px rgba(44,40,37,0.12);
+      --font-display: 'Newsreader', Georgia, serif;
+      --font-heading: 'Newsreader', Georgia, serif;
+      --font-body: 'Source Serif 4', Georgia, serif;
+      --font-ui: 'Be Vietnam Pro', 'Helvetica Neue', sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { color: var(--brand-hover); }
+    img { max-width: 100%; display: block; }
+
+    /* ─── LAYOUT ─── */
     .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-    /* Hero */
-    .hero { padding: 80px 0 60px; text-align: center; background: linear-gradient(180deg, #f0fdfa 0%, #fff 100%); }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
-    .hero h1 em { font-style: normal; color: var(--teal); }
-    .hero p.tagline { font-size: 1.25rem; color: var(--gray-500); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .btn-primary { display: inline-block; background: var(--teal); color: #fff; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-size: 1rem; font-weight: 600; transition: background 0.2s; }
-    .btn-primary:hover { background: var(--teal-dark); }
-    .hero-sub { margin-top: 12px; font-size: 0.875rem; color: var(--gray-500); }
+    /* ─── ANIMATIONS ─── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes typing-cursor {
+      0%, 100% { border-color: var(--brand); }
+      50% { border-color: transparent; }
+    }
+    @keyframes slide-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    /* Demo */
-    .demo { padding: 60px 0; }
-    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-    .demo-card { background: var(--gray-50); border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; }
-    .demo-card .label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
-    .demo-card .input { font-size: 0.875rem; color: var(--gray-500); margin-bottom: 16px; line-height: 1.5; }
-    .demo-card .output { font-size: 0.9375rem; color: var(--gray-900); line-height: 1.5; }
-    .demo-card .arrow { text-align: center; margin: 12px 0; font-size: 1.5rem; color: var(--teal); }
+    /* ─── NAV ─── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-sub);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--font-display); font-size: 24px; font-weight: 700;
+      color: var(--text); letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      font-family: var(--font-ui); font-size: 14px; font-weight: 500;
+      color: var(--text-sec); transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .btn-nav {
+      font-family: var(--font-ui); font-size: 13px; font-weight: 600;
+      padding: 8px 20px; border-radius: 8px; border: none;
+      background: var(--brand); color: #fff; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-nav:hover { background: var(--brand-hover); }
 
-    /* Features */
-    .features { padding: 60px 0; background: var(--gray-50); }
-    .features h2 { text-align: center; font-size: 1.75rem; margin-bottom: 40px; }
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .feature { text-align: center; padding: 24px; }
-    .feature .icon { font-size: 2rem; margin-bottom: 12px; }
-    .feature h3 { font-size: 1rem; margin-bottom: 8px; }
-    .feature p { font-size: 0.875rem; color: var(--gray-500); }
+    /* ─── HERO ─── */
+    .hero {
+      padding: 100px 0 80px; text-align: center;
+      background: linear-gradient(180deg, #F5F0E8 0%, #EDE8DD 50%, #F5F0E8 100%);
+    }
+    .hero h1 {
+      font-family: var(--font-display); font-size: 3rem; font-weight: 700;
+      line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 20px;
+      animation: fade-up 0.8s ease;
+    }
+    .hero h1 em { font-style: normal; color: var(--brand); }
+    .hero .tagline {
+      font-family: var(--font-body); font-size: 1.2rem;
+      color: var(--text-sec); margin-bottom: 36px;
+      max-width: 560px; margin-left: auto; margin-right: auto;
+      line-height: 1.65;
+      animation: fade-up 0.8s ease 0.1s both;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-ui); font-size: 16px; font-weight: 600;
+      padding: 16px 36px; border-radius: 12px; border: none;
+      background: var(--brand); color: #fff; cursor: pointer;
+      box-shadow: var(--shadow-md); transition: all 0.2s;
+      text-decoration: none;
+      animation: fade-up 0.8s ease 0.2s both;
+    }
+    .hero-cta:hover { background: var(--brand-hover); color: #fff; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+    .hero-sub {
+      margin-top: 14px; font-family: var(--font-ui); font-size: 13px;
+      color: var(--text-muted);
+      animation: fade-up 0.8s ease 0.3s both;
+    }
+    .hero-platforms {
+      margin-top: 40px; display: flex; justify-content: center; gap: 32px;
+      flex-wrap: wrap; animation: fade-up 0.8s ease 0.4s both;
+    }
+    .hero-platforms span {
+      font-family: var(--font-ui); font-size: 13px; color: var(--text-muted);
+      display: flex; align-items: center; gap: 6px;
+    }
 
-    /* Pricing */
-    .pricing { padding: 60px 0; }
-    .pricing h2 { text-align: center; font-size: 1.75rem; margin-bottom: 40px; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 800px; margin: 0 auto; }
-    .price-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 28px; text-align: center; }
-    .price-card.popular { border-color: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
-    .price-card h3 { font-size: 1.125rem; margin-bottom: 8px; }
-    .price-card .price { font-size: 2rem; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
-    .price-card .period { font-size: 0.875rem; color: var(--gray-500); margin-bottom: 16px; }
-    .price-card ul { list-style: none; text-align: left; margin-bottom: 20px; }
-    .price-card li { font-size: 0.875rem; padding: 4px 0; }
-    .price-card li::before { content: "✓ "; color: var(--teal); font-weight: 600; }
+    /* ─── DEMO ─── */
+    .demo { padding: 80px 0; }
+    .demo h2 {
+      font-family: var(--font-heading); font-size: 1.875rem; font-weight: 600;
+      text-align: center; margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .demo .subtitle {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text-sec); text-align: center; margin-bottom: 40px;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .demo-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px; box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .demo-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .demo-label {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+    }
+    .demo-label .badge {
+      padding: 3px 10px; border-radius: 9999px;
+      font-size: 11px; font-weight: 600;
+    }
+    .demo-input {
+      font-family: var(--font-body); font-size: 0.9375rem;
+      color: var(--text-sec); line-height: 1.65; margin-bottom: 16px;
+      padding: 16px; background: var(--bg); border-radius: 8px;
+      border: 1px solid var(--border-sub); font-style: italic;
+    }
+    .demo-arrow {
+      text-align: center; margin: 4px 0;
+      font-size: 1.25rem; color: var(--brand);
+    }
+    .demo-output {
+      font-family: var(--font-body); font-size: 0.9375rem;
+      color: var(--text); line-height: 1.65; padding: 16px;
+      background: var(--brand-subtle); border-radius: 8px;
+      border: 1px solid rgba(13,148,136,0.15);
+    }
+    .demo-intent {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 9999px;
+      font-family: var(--font-ui); font-size: 11px; font-weight: 500;
+      margin-top: 12px;
+    }
 
-    /* Footer */
-    .footer { padding: 40px 0; border-top: 1px solid #e5e7eb; text-align: center; font-size: 0.875rem; color: var(--gray-500); }
-    .footer a { color: var(--teal); text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
-    .footer-links { margin-bottom: 12px; }
-    .footer-links a { margin: 0 12px; }
+    /* ─── WHY NOT CHATGPT ─── */
+    .comparison {
+      padding: 80px 0;
+      background: var(--bg-dark); color: var(--text-on-dark);
+    }
+    .comparison h2 {
+      font-family: var(--font-heading); font-size: 1.875rem; font-weight: 600;
+      text-align: center; margin-bottom: 8px; letter-spacing: -0.01em;
+      color: var(--text-on-dark);
+    }
+    .comparison .subtitle {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text-muted); text-align: center; margin-bottom: 48px;
+    }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+    .compare-card {
+      border-radius: 12px; padding: 24px;
+      border: 1px solid rgba(216,210,200,0.15);
+    }
+    .compare-card.chatgpt { background: rgba(255,255,255,0.04); }
+    .compare-card.loma { background: rgba(13,148,136,0.12); border-color: rgba(13,148,136,0.3); }
+    .compare-card .tag {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 12px; display: inline-block;
+      padding: 3px 10px; border-radius: 9999px;
+    }
+    .compare-card.chatgpt .tag { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .compare-card.loma .tag { background: var(--brand); color: #fff; }
+    .compare-card .text {
+      font-family: var(--font-body); font-size: 0.9375rem;
+      line-height: 1.65; color: var(--text-on-dark); margin-bottom: 12px;
+    }
+    .compare-card .verdict {
+      font-family: var(--font-ui); font-size: 12px; color: var(--text-muted);
+      font-style: italic;
+    }
+    .compare-card.loma .verdict { color: var(--brand-subtle); }
+    .compare-points {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .compare-point {
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .compare-point .num {
+      font-family: var(--font-display); font-size: 28px; font-weight: 700;
+      color: var(--brand); line-height: 1; flex-shrink: 0;
+    }
+    .compare-point h4 {
+      font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+      color: var(--text-on-dark); margin-bottom: 4px;
+    }
+    .compare-point p {
+      font-family: var(--font-body); font-size: 13px;
+      color: var(--text-muted); line-height: 1.55;
+    }
 
+    /* ─── FEATURES ─── */
+    .features { padding: 80px 0; }
+    .features h2 {
+      font-family: var(--font-heading); font-size: 1.875rem; font-weight: 600;
+      text-align: center; margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .features .subtitle {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text-sec); text-align: center; margin-bottom: 48px;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .feature-card {
+      padding: 28px; background: var(--white);
+      border: 1px solid var(--border); border-radius: 12px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .feature-card .icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--brand-subtle); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-family: var(--font-heading); font-size: 1.125rem; font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-family: var(--font-body); font-size: 0.875rem;
+      color: var(--text-sec); line-height: 1.6;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how { padding: 80px 0; background: var(--bg-alt); }
+    .how h2 {
+      font-family: var(--font-heading); font-size: 1.875rem; font-weight: 600;
+      text-align: center; margin-bottom: 48px; letter-spacing: -0.01em;
+    }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .how-step { text-align: center; }
+    .how-step .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--brand); color: #fff;
+      font-family: var(--font-display); font-size: 22px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .how-step h3 {
+      font-family: var(--font-heading); font-size: 1.125rem; font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .how-step p {
+      font-family: var(--font-body); font-size: 0.875rem;
+      color: var(--text-sec); line-height: 1.6; max-width: 260px;
+      margin: 0 auto;
+    }
+    .how-step .step-visual {
+      margin-top: 20px; padding: 16px; background: var(--white);
+      border: 1px solid var(--border); border-radius: 10px;
+      font-family: var(--font-mono); font-size: 12px; color: var(--text-sec);
+      line-height: 1.65; text-align: left;
+    }
+    .how-step .step-visual .highlight {
+      color: var(--brand); font-weight: 500;
+    }
+
+    /* ─── KEYBOARD TEASER ─── */
+    .keyboard {
+      padding: 80px 0;
+      background: linear-gradient(180deg, var(--bg) 0%, #E8F5F3 50%, var(--bg) 100%);
+    }
+    .keyboard-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .keyboard-text h2 {
+      font-family: var(--font-heading); font-size: 1.875rem; font-weight: 600;
+      margin-bottom: 16px; letter-spacing: -0.01em;
+    }
+    .keyboard-text p {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text-sec); line-height: 1.7; margin-bottom: 16px;
+    }
+    .keyboard-text .coming {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-ui); font-size: 13px; font-weight: 600;
+      color: var(--brand); padding: 6px 16px; border-radius: 9999px;
+      background: var(--brand-subtle);
+    }
+    .keyboard-features {
+      list-style: none; margin: 20px 0;
+    }
+    .keyboard-features li {
+      font-family: var(--font-ui); font-size: 14px; color: var(--text);
+      padding: 8px 0; display: flex; align-items: center; gap: 10px;
+    }
+    .keyboard-features li::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--brand); flex-shrink: 0;
+    }
+    .keyboard-visual {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 0; overflow: hidden;
+      box-shadow: var(--shadow-lg); max-width: 340px; margin: 0 auto;
+    }
+    .keyboard-phone-header {
+      background: var(--bg-alt); padding: 12px 16px;
+      border-bottom: 1px solid var(--border-sub);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .keyboard-phone-header .app-icon {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: #4A90D9; display: flex; align-items: center;
+      justify-content: center; font-size: 12px; color: #fff;
+    }
+    .keyboard-phone-header .app-name {
+      font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--text);
+    }
+    .keyboard-phone-body {
+      padding: 16px;
+    }
+    .keyboard-phone-body .chat-bubble {
+      padding: 10px 14px; border-radius: 12px 12px 12px 4px;
+      background: var(--bg); font-family: var(--font-body);
+      font-size: 13px; color: var(--text); line-height: 1.5;
+      margin-bottom: 8px; max-width: 85%;
+    }
+    .keyboard-phone-input {
+      margin-top: 12px; padding: 10px 14px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--white);
+      font-family: var(--font-body); font-size: 13px;
+      color: var(--text-sec); line-height: 1.5;
+    }
+    .keyboard-suggestion {
+      margin-top: 8px; padding: 10px 14px;
+      background: var(--brand-subtle); border-radius: 10px;
+      border: 1px solid rgba(13,148,136,0.2);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .keyboard-suggestion .label {
+      font-family: var(--font-ui); font-size: 12px; font-weight: 500;
+      color: var(--brand-subtle-text);
+    }
+    .keyboard-suggestion .action {
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      color: #fff; background: var(--brand); border: none; cursor: pointer;
+      padding: 5px 12px; border-radius: 6px;
+    }
+    .keyboard-keys {
+      background: var(--bg-alt); padding: 10px 6px 14px;
+      border-top: 1px solid var(--border-sub);
+    }
+    .keyboard-row {
+      display: flex; justify-content: center; gap: 4px; margin-bottom: 4px;
+    }
+    .keyboard-row:last-child { margin-bottom: 0; }
+    .key {
+      width: 30px; height: 36px; border-radius: 5px;
+      background: var(--white); border: 1px solid var(--border);
+      box-shadow: 0 1px 2px rgba(44,40,37,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-ui); font-size: 13px; color: var(--text);
+    }
+    .key.wide { width: 44px; font-size: 11px; }
+    .key.space { flex: 1; max-width: 160px; font-size: 10px; color: var(--text-muted); }
+    .key.brand-key { background: var(--brand); color: #fff; font-size: 10px; font-weight: 600; width: 52px; }
+
+    /* ─── PRICING ─── */
+    .pricing { padding: 80px 0; }
+    .pricing h2 {
+      font-family: var(--font-heading); font-size: 1.875rem; font-weight: 600;
+      text-align: center; margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .pricing .subtitle {
+      font-family: var(--font-body); font-size: 1rem;
+      color: var(--text-sec); text-align: center; margin-bottom: 48px;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 840px; margin: 0 auto;
+    }
+    .price-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px 28px; text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .price-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .price-card.popular {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px var(--brand), var(--shadow-md);
+    }
+    .price-card .popular-tag {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+      background: var(--brand); color: #fff; padding: 4px 14px;
+      border-radius: 9999px; white-space: nowrap;
+    }
+    .price-card h3 {
+      font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .price-card .price {
+      font-family: var(--font-display); font-size: 2.25rem; font-weight: 700;
+      color: var(--brand); margin-bottom: 4px;
+    }
+    .price-card .period {
+      font-family: var(--font-ui); font-size: 13px; color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .price-card ul {
+      list-style: none; text-align: left; margin-bottom: 24px;
+    }
+    .price-card li {
+      font-family: var(--font-ui); font-size: 14px; padding: 6px 0;
+      display: flex; align-items: center; gap: 8px; color: var(--text);
+    }
+    .price-card li::before {
+      content: ""; width: 18px; height: 18px; border-radius: 50%;
+      background: var(--brand-subtle); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230D9488' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+    .price-card .btn-price {
+      font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+      padding: 12px 24px; border-radius: 10px; border: none;
+      cursor: pointer; width: 100%; transition: all 0.15s;
+    }
+    .price-card .btn-price.primary {
+      background: var(--brand); color: #fff;
+    }
+    .price-card .btn-price.primary:hover { background: var(--brand-hover); }
+    .price-card .btn-price.secondary {
+      background: transparent; color: var(--brand);
+      border: 1.5px solid var(--border);
+    }
+    .price-card .btn-price.secondary:hover { border-color: var(--brand); }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      padding: 80px 0; text-align: center;
+      background: var(--bg-alt);
+    }
+    .cta-section h2 {
+      font-family: var(--font-display); font-size: 2.25rem; font-weight: 700;
+      margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    .cta-section h2 em { font-style: normal; color: var(--brand); }
+    .cta-section p {
+      font-family: var(--font-body); font-size: 1.1rem;
+      color: var(--text-sec); margin-bottom: 32px;
+      max-width: 480px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      padding: 40px 0; border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-left .footer-logo {
+      font-family: var(--font-display); font-size: 18px; font-weight: 700;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .footer-left .footer-tagline {
+      font-family: var(--font-body); font-size: 13px; color: var(--text-muted);
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-family: var(--font-ui); font-size: 13px; color: var(--text-sec);
+    }
+    .footer-links a:hover { color: var(--brand); }
+
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 1.75rem; }
-      .demo-grid, .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .hero { padding: 64px 0 48px; }
+      .hero h1 { font-size: 2rem; }
+      .hero .tagline { font-size: 1.05rem; }
+      .nav-links a:not(.btn-nav-wrap) { display: none; }
+      .demo-grid, .compare-grid, .features-grid, .how-steps,
+      .pricing-grid, .compare-points { grid-template-columns: 1fr; }
+      .keyboard-inner { grid-template-columns: 1fr; }
+      .keyboard-visual { max-width: 300px; }
+      .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .hero-platforms { gap: 16px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.65rem; }
+      .container, .container-wide { padding: 0 16px; }
+      .hero-cta { padding: 14px 28px; font-size: 15px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ─── NAV ─── -->
+  <nav class="nav">
+    <div class="container-wide nav-inner">
+      <div class="nav-logo">Loma</div>
+      <div class="nav-links">
+        <a href="#demo">Demo</a>
+        <a href="#features">Tính năng</a>
+        <a href="#pricing">Bảng giá</a>
+        <span class="btn-nav-wrap">
+          <button class="btn-nav" onclick="document.getElementById('install-cta').scrollIntoView({behavior:'smooth'})">Cài miễn phí</button>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
   <section class="hero">
     <div class="container">
       <h1>Hết loay hoay với câu chữ.<br>Bạn lo phần ý. <em>Loma lo phần lời.</em></h1>
-      <p class="tagline">Viết tiếng Việt, nhận văn bản chuyên nghiệp — tiếng Anh hoặc tiếng Việt. Một nút, đúng giọng, dưới 2 giây.</p>
-      <a href="#" class="btn-primary" id="install-btn">Cài đặt miễn phí cho Chrome</a>
-      <p class="hero-sub">5 lượt viết lại miễn phí mỗi ngày. Không cần đăng ký.</p>
+      <p class="tagline">Viết tiếng Việt, nhận văn bản chuyên nghiệp&thinsp;&mdash;&thinsp;tiếng Anh hoặc tiếng Việt chuẩn. Một nút, đúng giọng, dưới 2 giây.</p>
+      <a href="#" class="hero-cta" id="install-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+        Cài đặt miễn phí cho Chrome
+      </a>
+      <p class="hero-sub">5 lượt viết lại miễn phí mỗi ngày &middot; Không cần đăng ký</p>
+      <div class="hero-platforms">
+        <span>Gmail</span>
+        <span>Slack</span>
+        <span>GitHub</span>
+        <span>LinkedIn</span>
+        <span>Zalo</span>
+        <span>ChatGPT</span>
+      </div>
     </div>
   </section>
 
-  <section class="demo">
+  <!-- ─── DEMO ─── -->
+  <section class="demo" id="demo">
     <div class="container">
+      <h2 class="animate-on-scroll">Một nút. Toàn bộ chuyển đổi.</h2>
+      <p class="subtitle animate-on-scroll">Không phải công cụ sửa lỗi. Không phải dịch thuật. Loma viết lại theo đúng cách người nhận cần nghe.</p>
       <div class="demo-grid">
-        <div class="demo-card">
-          <div class="label">English Output</div>
-          <div class="input">"anh Minh ơi, cái invoice tháng 1 chưa thanh toán, 5000 USD quá hạn 2 tuần rồi"</div>
-          <div class="arrow">↓</div>
-          <div class="output">"Hi Minh, following up on January's invoice for $5,000 — now 2 weeks overdue. Could you confirm the expected payment date by Friday?"</div>
+        <div class="demo-card animate-on-scroll">
+          <div class="demo-label">
+            <span class="badge" style="background:#D1FAE5; color:#065F46;">English Output</span>
+            <span class="badge" style="background:#FEF3C7; color:#92400E;">Payment follow-up</span>
+          </div>
+          <div class="demo-input">"anh Minh ơi, cái invoice tháng 1 chưa thanh toán, 5000 USD quá hạn 2 tuần rồi"</div>
+          <div class="demo-arrow">&#8595;</div>
+          <div class="demo-output">"Hi Minh, following up on January's invoice for $5,000 &mdash; now 2 weeks overdue. Could you confirm the expected payment date by Friday?"</div>
+          <div class="demo-intent" style="background:#D1FAE5; color:#065F46;">&#x1F4B0; Nhắc thanh toán &middot; <span style="opacity:0.65">Payment follow-up</span></div>
         </div>
-        <div class="demo-card">
-          <div class="label">Vietnamese Output</div>
-          <div class="input">"cần xin giấy phép kinh doanh cho công ty mới, gửi sở kế hoạch đầu tư"</div>
-          <div class="arrow">↓</div>
-          <div class="output">"Kính gửi Sở Kế hoạch và Đầu tư,<br>Căn cứ Luật Doanh nghiệp 2020, Công ty kính đề nghị Quý Sở xem xét cấp Giấy chứng nhận đăng ký kinh doanh..."</div>
+        <div class="demo-card animate-on-scroll">
+          <div class="demo-label">
+            <span class="badge" style="background:#DBEAFE; color:#1E40AF;">Vietnamese Output</span>
+            <span class="badge" style="background:#E0E7FF; color:#3730A3;">Công văn</span>
+          </div>
+          <div class="demo-input">"cần xin giấy phép kinh doanh cho công ty mới, gửi sở kế hoạch đầu tư"</div>
+          <div class="demo-arrow">&#8595;</div>
+          <div class="demo-output">"Kính gửi Sở Kế hoạch và Đầu tư,<br><br>Căn cứ Luật Doanh nghiệp 2020, Công ty kính đề nghị Quý Sở xem xét cấp Giấy chứng nhận đăng ký kinh doanh..."</div>
+          <div class="demo-intent" style="background:#E0E7FF; color:#3730A3;">&#x1F4DC; Văn bản hành chính</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="features">
+  <!-- ─── WHY NOT CHATGPT ─── -->
+  <section class="comparison" id="comparison">
     <div class="container">
-      <h2>Tại sao chọn Loma?</h2>
-      <div class="features-grid">
-        <div class="feature">
-          <div class="icon">🎯</div>
-          <h3>Hiểu ý bạn</h3>
-          <p>14 intent workflows — nhắc thanh toán, từ chối, theo dõi, viết công văn — mỗi intent cho ra output khác nhau.</p>
+      <h2 class="animate-on-scroll">Tại sao không dùng ChatGPT?</h2>
+      <p class="subtitle animate-on-scroll">Vâng, bạn có thể dùng ChatGPT. Đây là lý do chuyên gia chuyển sang Loma.</p>
+
+      <div class="compare-grid animate-on-scroll">
+        <div class="compare-card chatgpt">
+          <div class="tag">ChatGPT</div>
+          <div class="text">"I would like to kindly remind you about the invoice from last month that has not yet been settled. I hope you can look into this matter at your earliest convenience."</div>
+          <div class="verdict">Passive. Hedging. No deadline. No CTA.</div>
         </div>
-        <div class="feature">
-          <div class="icon">🌏</div>
-          <h3>Hai ngôn ngữ, một nút</h3>
-          <p>Email tiếng Anh cho client? Công văn tiếng Việt cho sở? Loma tự nhận biết và viết đúng giọng.</p>
+        <div class="compare-card loma">
+          <div class="tag">Loma</div>
+          <div class="text">"Hi Minh, following up on last month's invoice &mdash; now overdue. Could you confirm the expected payment date by end of this week?"</div>
+          <div class="verdict">Direct. Clear CTA. Deadline. Professional but firm.</div>
         </div>
-        <div class="feature">
-          <div class="icon">⚡</div>
-          <h3>Dưới 2 giây</h3>
-          <p>Một nút bấm, không cần copy-paste, không cần viết prompt. Nhanh hơn ChatGPT 15 lần.</p>
+      </div>
+
+      <div class="compare-points animate-on-scroll">
+        <div class="compare-point">
+          <div class="num">1</div>
+          <div>
+            <h4>Hiểu bạn muốn gì</h4>
+            <p>ChatGPT không biết bạn đang từ chối hay nhắc thanh toán. Loma phát hiện 14 tình huống và viết khác nhau cho từng loại.</p>
+          </div>
         </div>
-        <div class="feature">
-          <div class="icon">🇻🇳</div>
-          <h3>Giao diện tiếng Việt</h3>
-          <p>Toàn bộ giao diện bằng tiếng Việt. Người dùng không cần đọc tiếng Anh để được giúp viết tiếng Anh.</p>
+        <div class="compare-point">
+          <div class="num">2</div>
+          <div>
+            <h4>Chuyển đổi văn hóa</h4>
+            <p>ChatGPT dịch nguyên 3 câu xin lỗi. Loma biến thành 1 câu chuyên nghiệp &mdash; vì văn hóa phương Tây cần thế.</p>
+          </div>
         </div>
-        <div class="feature">
-          <div class="icon">🔀</div>
-          <h3>Code-switch native</h3>
-          <p>"Anh ơi, cái KPI report Q4 đã review chưa?" — Loma hiểu input trộn lẫn Việt-Anh.</p>
+        <div class="compare-point">
+          <div class="num">3</div>
+          <div>
+            <h4>Nhanh hơn 15 lần</h4>
+            <p>ChatGPT: mở tab, paste, viết prompt, copy, quay lại &mdash; 8 bước. Loma: bấm 1 nút ngay trong Gmail. 2 giây.</p>
+          </div>
         </div>
-        <div class="feature">
-          <div class="icon">🔒</div>
-          <h3>An toàn & riêng tư</h3>
-          <p>Không lưu browsing history. Không đọc trang web. Chỉ xử lý text bạn chủ động gửi.</p>
+        <div class="compare-point">
+          <div class="num">4</div>
+          <div>
+            <h4>Giá rẻ hơn</h4>
+            <p>ChatGPT Plus: $20/tháng cho AI đa dụng. Loma Pro: 149K VND (~$6) cho viết chuyên nghiệp không giới hạn.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ─── FEATURES ─── -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="animate-on-scroll">Tại sao chọn Loma?</h2>
+      <p class="subtitle animate-on-scroll">Mỗi tính năng được xây riêng cho người Việt viết chuyên nghiệp &mdash; không phải chatbot đa dụng.</p>
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="icon">&#x1F3AF;</div>
+          <h3>14 tình huống viết</h3>
+          <p>Nhắc thanh toán, từ chối, theo dõi, viết công văn, xin lỗi &mdash; mỗi tình huống cho ra output hoàn toàn khác nhau.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="icon">&#x1F30F;</div>
+          <h3>Hai ngôn ngữ, một nút</h3>
+          <p>Email tiếng Anh cho client? Công văn tiếng Việt cho sở? Loma tự nhận biết ngữ cảnh và viết đúng giọng.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="icon">&#x26A1;</div>
+          <h3>Dưới 2 giây</h3>
+          <p>Không cần mở tab mới. Không cần viết prompt. Bấm 1 nút ngay trong text field &mdash; nhanh hơn ChatGPT 15 lần.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="icon">&#x1F1FB;&#x1F1F3;</div>
+          <h3>Giao diện tiếng Việt</h3>
+          <p>Toàn bộ giao diện bằng tiếng Việt. Người dùng không cần đọc tiếng Anh để được giúp viết chuyên nghiệp.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="icon">&#x1F500;</div>
+          <h3>Hiểu code-switching</h3>
+          <p>"Anh ơi, cái KPI report Q4 đã review chưa?" &mdash; Loma hiểu input trộn lẫn Việt-Anh, giữ nguyên business terms.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="icon">&#x1F512;</div>
+          <h3>An toàn & riêng tư</h3>
+          <p>Không lưu browsing history. Không đọc trang web. Chỉ xử lý text bạn chủ động gửi khi bấm nút.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section class="how" id="how">
+    <div class="container">
+      <h2 class="animate-on-scroll">Cách hoạt động</h2>
+      <div class="how-steps">
+        <div class="how-step animate-on-scroll">
+          <div class="step-num">1</div>
+          <h3>Viết như thường</h3>
+          <p>Gõ tiếng Việt, tiếng Anh, hoặc trộn lẫn &mdash; trong bất kỳ text field nào.</p>
+          <div class="step-visual">
+            <span style="color:var(--text)">anh ơi cái KPI report Q4 cần <span class="highlight">update</span> lại theo new headcount plan</span>
+          </div>
+        </div>
+        <div class="how-step animate-on-scroll">
+          <div class="step-num">2</div>
+          <h3>Bấm nút Loma</h3>
+          <p>Nút nhỏ xuất hiện góc dưới khi phát hiện tiếng Việt. Bấm một lần.</p>
+          <div class="step-visual" style="text-align:center;">
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:var(--brand);color:#fff;font-family:var(--font-ui);font-size:13px;font-weight:600;">
+              &#10022; Viết lại
+            </div>
+            <div style="margin-top:10px;font-family:var(--font-ui);font-size:11px;color:var(--text-muted);">
+              &#x1F3AF; Nhắc thanh toán &middot; Tự động nhận diện
+            </div>
+          </div>
+        </div>
+        <div class="how-step animate-on-scroll">
+          <div class="step-num">3</div>
+          <h3>Xong. Gửi đi.</h3>
+          <p>Nhận kết quả chuyên nghiệp. Bấm "Dùng" để thay văn bản. Hỗ trợ hoàn tác 5 giây.</p>
+          <div class="step-visual">
+            <span class="highlight">Hi team,</span> the Q4 KPI report has been updated to reflect the new headcount plan. Please review at your convenience.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── KEYBOARD TEASER ─── -->
+  <section class="keyboard" id="keyboard">
+    <div class="container">
+      <div class="keyboard-inner">
+        <div class="keyboard-text animate-on-scroll">
+          <div class="coming">Sắp ra mắt</div>
+          <h2 style="margin-top:16px;">Loma Keyboard cho Mobile</h2>
+          <p>Viết lại chuyên nghiệp ngay trên bàn phím &mdash; trong Zalo, Messenger, Gmail, và mọi app. Không cần copy-paste. Không cần rời app.</p>
+          <ul class="keyboard-features">
+            <li>Tự nhận diện tiếng Việt khi gõ</li>
+            <li>Thanh gợi ý Loma ngay trên bàn phím</li>
+            <li>Một chạm viết lại tại chỗ</li>
+            <li>Hoạt động trên mọi app iOS & Android</li>
+            <li>Riêng tư &mdash; chỉ gửi khi bạn bấm</li>
+          </ul>
+          <a href="#" class="hero-cta" style="font-size:14px;padding:12px 28px;" id="keyboard-waitlist">
+            Đăng ký nhận thông báo
+          </a>
+        </div>
+        <div class="keyboard-visual animate-on-scroll">
+          <div class="keyboard-phone-header">
+            <div class="app-icon">Z</div>
+            <div class="app-name">Zalo &middot; Anh Minh</div>
+          </div>
+          <div class="keyboard-phone-body">
+            <div class="chat-bubble">Invoice tháng 1 đã gửi rồi anh nhé</div>
+            <div class="keyboard-phone-input">anh ơi em check lại thì invoice chưa thanh toán, quá hạn 2 tuần rồi ạ</div>
+            <div class="keyboard-suggestion">
+              <span class="label">&#10022; Loma: Viết lại trang trọng hơn</span>
+              <button class="action">Dùng</button>
+            </div>
+          </div>
+          <div class="keyboard-keys">
+            <div class="keyboard-row">
+              <div class="key">q</div><div class="key">w</div><div class="key">e</div>
+              <div class="key">r</div><div class="key">t</div><div class="key">y</div>
+              <div class="key">u</div><div class="key">i</div><div class="key">o</div>
+              <div class="key">p</div>
+            </div>
+            <div class="keyboard-row">
+              <div class="key">a</div><div class="key">s</div><div class="key">d</div>
+              <div class="key">f</div><div class="key">g</div><div class="key">h</div>
+              <div class="key">j</div><div class="key">k</div><div class="key">l</div>
+            </div>
+            <div class="keyboard-row">
+              <div class="key wide">&#8679;</div>
+              <div class="key">z</div><div class="key">x</div><div class="key">c</div>
+              <div class="key">v</div><div class="key">b</div><div class="key">n</div>
+              <div class="key">m</div>
+              <div class="key wide">&#9003;</div>
+            </div>
+            <div class="keyboard-row">
+              <div class="key wide">123</div>
+              <div class="key brand-key">&#10022; Loma</div>
+              <div class="key space">khoảng trắng</div>
+              <div class="key wide" style="background:var(--brand);color:#fff;">&#8617;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRICING ─── -->
   <section class="pricing" id="pricing">
     <div class="container">
-      <h2>Bảng giá</h2>
+      <h2 class="animate-on-scroll">Bảng giá</h2>
+      <p class="subtitle animate-on-scroll">Bắt đầu miễn phí. Nâng cấp khi cần.</p>
       <div class="pricing-grid">
-        <div class="price-card">
+        <div class="price-card animate-on-scroll">
           <h3>Miễn phí</h3>
-          <div class="price">$0</div>
+          <div class="price">0&#x20AB;</div>
           <div class="period">mãi mãi</div>
           <ul>
             <li>5 lượt viết lại / ngày</li>
-            <li>Tất cả 14 intents</li>
+            <li>Tất cả 14 tình huống</li>
             <li>Tiếng Anh + tiếng Việt</li>
+            <li>Mọi platform hỗ trợ</li>
           </ul>
+          <button class="btn-price secondary">Dùng miễn phí</button>
         </div>
-        <div class="price-card popular">
+        <div class="price-card popular animate-on-scroll">
+          <div class="popular-tag">Phổ biến nhất</div>
           <h3>Pay-As-You-Go</h3>
           <div class="price">49K VND</div>
-          <div class="period">~$2 / 20 lượt</div>
+          <div class="period">~$2 / gói 20 lượt</div>
           <ul>
             <li>20 lượt viết lại</li>
             <li>Không hết hạn</li>
-            <li>MoMo, ZaloPay</li>
+            <li>MoMo, ZaloPay, VietQR</li>
+            <li>Mua thêm bất cứ lúc nào</li>
           </ul>
+          <button class="btn-price primary">Mua gói 20 lượt</button>
         </div>
-        <div class="price-card">
+        <div class="price-card animate-on-scroll">
           <h3>Pro</h3>
-          <div class="price">149K VND</div>
-          <div class="period">~$6/tháng (VN) · $9/tháng (global)</div>
+          <div class="price">149K</div>
+          <div class="period">~$6/tháng (VN) &middot; $9/tháng (global)</div>
           <ul>
             <li>Không giới hạn lượt</li>
             <li>Ưu tiên tốc độ</li>
             <li>Hủy bất cứ lúc nào</li>
+            <li>Hỗ trợ ưu tiên</li>
           </ul>
+          <button class="btn-price secondary">Đăng ký Pro</button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ─── CTA ─── -->
+  <section class="cta-section" id="install-cta">
+    <div class="container animate-on-scroll">
+      <h2>Bạn lo phần ý.<br><em>Loma lo phần lời.</em></h2>
+      <p>Cài đặt miễn phí. Thử ngay lần viết lại đầu tiên. Không cần đăng ký, không cần thẻ.</p>
+      <a href="#" class="hero-cta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+        Cài đặt cho Chrome &mdash; Miễn phí
+      </a>
+      <p class="hero-sub">Chrome Extension &middot; Manifest V3 &middot; Hoạt động trên mọi website</p>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
   <footer class="footer">
-    <div class="container">
+    <div class="container-wide footer-inner">
+      <div class="footer-left">
+        <div class="footer-logo">Loma</div>
+        <div class="footer-tagline">Hết loay hoay với câu chữ.</div>
+      </div>
       <div class="footer-links">
         <a href="/legal/privacy.md">Chính sách bảo mật</a>
-        <a href="/legal/terms.md">Điều khoản sử dụng</a>
+        <a href="/legal/terms.md">Điều khoản</a>
         <a href="mailto:support@loma.app">Liên hệ</a>
       </div>
-      <p>&copy; 2026 Loma. Hết loay hoay với câu chữ.</p>
+    </div>
+    <div class="container-wide" style="text-align:center; margin-top:24px;">
+      <p style="font-family:var(--font-ui); font-size:12px; color:var(--text-muted);">&copy; 2026 Loma. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- ─── SCROLL ANIMATION ─── -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        observer.observe(el);
+      });
+    });
+  </script>
 
 </body>
 </html>
