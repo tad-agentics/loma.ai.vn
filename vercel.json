@@ -1,6 +1,6 @@
 {
-  "buildCommand": null,
-  "outputDirectory": "landing",
+  "buildCommand": "cp -r landing/. public/",
+  "outputDirectory": "public",
   "framework": null,
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
