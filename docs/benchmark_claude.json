@@ -7,14 +7,14 @@
       "structural_completeness": 2,
       "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S02",
     "claude_output": "Hey, could you review PR #347 when you get a chance? Sprint ends Wednesday and we need to deploy before Friday.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -23,9 +23,9 @@
   },
   {
     "id": "S03",
-    "claude_output": "Hi Linh,\n\nI'd like to propose joining the Singapore project. I'm not sure if this is the right fit, but I have two years of experience working with international partners and believe I could contribute meaningfully. Happy to discuss further if you think it could work.\n\nBest regards",
+    "claude_output": "Hi Linh,\n\nI'd like to propose joining the project with the Singapore team. I'm not sure if this is the right fit, but I have two years of experience working with international partners and believe I could contribute meaningfully. Happy to discuss further if you think it could work.\n\nBest regards",
     "claude_score": {
-      "cultural_accuracy": 1,
+      "cultural_accuracy": 0,
       "structural_completeness": 2,
       "tone_calibration": 1,
       "entity_preservation": 2,
@@ -34,11 +34,11 @@
   },
   {
     "id": "S04",
-    "claude_output": "Hi Tuấn,\n\nI'd like to take this Friday off for a family matter. I've already handed over my responsibilities to Hoa.\n\nThank you.",
+    "claude_output": "Hi Tuấn,\n\nI'd like to request your permission to take this Friday off for a family matter. I've already handed over my responsibilities to Hoa.\n\nThank you.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
       "conciseness": 2
     }
@@ -51,7 +51,7 @@
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
@@ -62,16 +62,16 @@
       "structural_completeness": 2,
       "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S07",
-    "claude_output": "Hi,\n\nJust following up on invoice #INV-2024-031 for $8,500. It's now 3 weeks past the net 30 payment terms. Could you confirm when we can expect payment?",
+    "claude_output": "Hi,\n\nJust following up on invoice #INV-2024-031 for $8,500. It's now 3 weeks past the net 30 payment terms. Could you please confirm when we can expect payment?",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
       "conciseness": 2
     }
@@ -91,11 +91,11 @@
     "id": "S09",
     "claude_output": "Hello,\n\nI'm reaching out from the accounting department at TechVina regarding invoice TV-2025-089 for $3,200 USD, which was due on January 15. Could you provide an update on when we can expect payment?\n\nBest regards",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
@@ -111,7 +111,18 @@
   },
   {
     "id": "S11",
-    "claude_output": "Hi,\n\nI wanted to follow up on the Đà Nẵng market expansion proposal I emailed last Monday. Would you have a chance to share your feedback this week?",
+    "claude_output": "Hi,\n\nI wanted to check whether you've had a chance to review the Đà Nẵng market expansion proposal I emailed last Monday. I'd appreciate your feedback when you have a moment.",
+    "claude_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 2,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 2
+    }
+  },
+  {
+    "id": "S12",
+    "claude_output": "Have you had a chance to review the design mockup I shared on Figma last week? We need to finalize before sprint planning on Wednesday.",
     "claude_score": {
       "cultural_accuracy": 1,
       "structural_completeness": 2,
@@ -121,19 +132,8 @@
     }
   },
   {
-    "id": "S12",
-    "claude_output": "Have you had a chance to review the design mockup I shared on Figma last week? We need to finalize before sprint planning on Wednesday.",
-    "claude_score": {
-      "cultural_accuracy": 2,
-      "structural_completeness": 2,
-      "tone_calibration": 2,
-      "entity_preservation": 2,
-      "conciseness": 2
-    }
-  },
-  {
     "id": "S13",
-    "claude_output": "I wanted to follow up on the contract with our Japanese partner — I sent it over two weeks ago and it's still awaiting signature. They've been asking for updates frequently. Could you let me know when you might be able to review and sign it?",
+    "claude_output": "I wanted to follow up on the contract with our Japanese partner — I sent it over two weeks ago and it's still awaiting your signature. They've been asking for updates frequently. Could you let me know when you might be able to review and sign it?",
     "claude_score": {
       "cultural_accuracy": 1,
       "structural_completeness": 2,
@@ -155,21 +155,21 @@
   },
   {
     "id": "S15",
-    "claude_output": "I'm following up on the contract — has Khoa from the legal department provided any feedback yet? We need to finalize by February 20 to stay on track with the project timeline.",
+    "claude_output": "I'm following up on this — I'm not sure if Khoa from the legal department has provided any feedback on the contract yet. We need to finalize by February 20 to stay on track with the project timeline.",
     "claude_score": {
-      "cultural_accuracy": 1,
+      "cultural_accuracy": 0,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S16",
-    "claude_output": "Thank you for thinking of me. Unfortunately, I'm at capacity right now and wouldn't be able to give this the attention it deserves. I'm sorry I have to pass this time — I hope you understand.",
+    "claude_output": "Thank you for thinking of me. Unfortunately, I'm at capacity right now and wouldn't be able to give this the attention it deserves. I'm sorry I have to decline this time — I hope you understand.",
     "claude_score": {
       "cultural_accuracy": 1,
-      "structural_completeness": 2,
+      "structural_completeness": 1,
       "tone_calibration": 1,
       "entity_preservation": 2,
       "conciseness": 1
@@ -188,7 +188,18 @@
   },
   {
     "id": "S18",
-    "claude_output": "I don't think the timing is right for this. We're currently focused on our core product and aren't in a position to take on new partnerships. I'll keep it in mind and reach out if things change down the line.",
+    "claude_output": "I don't think the timing is quite right for this. We're currently focused on our core product and aren't in a position to take on new partnerships. I'll keep it in mind and reach out if things change down the line.",
+    "claude_score": {
+      "cultural_accuracy": 1,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
+      "entity_preservation": 2,
+      "conciseness": 1
+    }
+  },
+  {
+    "id": "S19",
+    "claude_output": "I'm afraid this timeline isn't feasible — we need at least 3 more weeks to deliver with acceptable quality.",
     "claude_score": {
       "cultural_accuracy": 1,
       "structural_completeness": 2,
@@ -198,21 +209,10 @@
     }
   },
   {
-    "id": "S19",
-    "claude_output": "This timeline isn't realistic — we need at least 3 more weeks to deliver with acceptable quality.",
-    "claude_score": {
-      "cultural_accuracy": 2,
-      "structural_completeness": 2,
-      "tone_calibration": 2,
-      "entity_preservation": 2,
-      "conciseness": 2
-    }
-  },
-  {
     "id": "S20",
-    "claude_output": "Thank you for the detailed proposal. After reviewing it carefully, we don't have a need for this service at the moment. I'll be sure to reach out if that changes in the future.",
+    "claude_output": "Thank you for the detailed proposal. After reviewing it carefully, we don't currently have a need for this service. I'll be sure to reach out if that changes in the future.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -221,9 +221,9 @@
   },
   {
     "id": "S21",
-    "claude_output": "Hi,\n\nI'm Nguyễn Văn Đức, Business Director at DataSoft. We've been providing data analytics solutions for Vietnamese SMEs since 2018. I admire your work and would love to explore potential collaboration opportunities. Would you be open to a brief conversation?\n\nBest regards,\nĐức",
+    "claude_output": "Hi,\n\nI'm Nguyễn Văn Đức, Business Director at DataSoft. We've been providing data analytics solutions for Vietnamese SMEs since 2018. I greatly admire your work and would love to explore potential collaboration opportunities. Would you be open to a brief conversation?\n\nBest regards,\nĐức",
     "claude_score": {
-      "cultural_accuracy": 1,
+      "cultural_accuracy": 0,
       "structural_completeness": 2,
       "tone_calibration": 1,
       "entity_preservation": 2,
@@ -234,7 +234,7 @@
     "id": "S22",
     "claude_output": "Hi — I came across your profile on LinkedIn. I'm the founder of CloudBase, and we're building a developer tools platform for the Vietnamese market. Your team's distribution channel is impressive, and I'd love to explore a partnership. Open to a quick chat?",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -254,20 +254,20 @@
   },
   {
     "id": "S24",
-    "claude_output": "Dear Trần Bảo Long,\n\nI'm Phạm Thị Mai from GreenTech. I understand you lead sustainability initiatives at VinGroup, and I'd love the opportunity to present our solar energy solutions for commercial buildings. Would you have time for a brief meeting?\n\nBest regards,\nPhạm Thị Mai",
+    "claude_output": "Dear Trần Bảo Long,\n\nI'm Phạm Thị Mai from GreenTech. I understand you lead the sustainability portfolio for VinGroup. I'd love the opportunity to present our solar energy solutions for commercial buildings. Would you have time for a brief meeting to discuss?\n\nBest regards,\nPhạm Thị Mai",
     "claude_score": {
       "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S25",
-    "claude_output": "I'd like to invite you to speak at TechConnect 2026 on April 15 in Hà Nội. The topic is AI in Vietnamese enterprises, and we're expecting around 500 attendees. Would you be interested?",
+    "claude_output": "I'd like to invite you to speak at TechConnect 2026 on April 15 in Hà Nội. The topic is AI in Vietnamese enterprises, and we're expecting around 500 attendees. Would you be interested in participating?",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -278,7 +278,7 @@
     "id": "S26",
     "claude_output": "Overall, you had a strong quarter. Your customer communication skills could use some improvement — I'd recommend working on that going forward. Your technical work has been solid. Keep it up.",
     "claude_score": {
-      "cultural_accuracy": 1,
+      "cultural_accuracy": 0,
       "structural_completeness": 1,
       "tone_calibration": 1,
       "entity_preservation": 2,
@@ -287,7 +287,7 @@
   },
   {
     "id": "S27",
-    "claude_output": "The PR logic looks solid, but a few things need attention:\n\n1. **Authentication module** — significant code duplication that should be refactored\n2. **Naming conventions** — inconsistent; currently mixing camelCase and snake_case\n3. **Performance** — N+1 query issue at `/api/users` endpoint needs optimization",
+    "claude_output": "The PR logic looks solid, but a few things need attention:\n\n1. **Authentication module** — significant code duplication that should be refactored\n2. **Naming conventions** — inconsistent; currently mixing camelCase and snake_case\n3. **Performance** — N+1 query issue at the `/api/users` endpoint needs optimization",
     "claude_score": {
       "cultural_accuracy": 2,
       "structural_completeness": 2,
@@ -298,20 +298,20 @@
   },
   {
     "id": "S28",
-    "claude_output": "This report doesn't meet the required standards. Specifically: the data contains inaccuracies, the analysis is too superficial, and the conclusions lack clarity. Please revise and resubmit before Friday.",
+    "claude_output": "I don't want to be harsh, but this report doesn't meet the required standards. The data contains inaccuracies, the analysis is too superficial, and the conclusions lack clarity. Please revise and resubmit before Friday.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S29",
     "claude_output": "Your Q4 performance was strong — you exceeded the revenue target by 15% and achieved high client satisfaction scores. Going forward, the main area for growth is your leadership skills, particularly around delegation. There's a tendency to micromanage, which can limit the team's development.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -322,7 +322,7 @@
     "id": "S30",
     "claude_output": "Your presentation today was great, particularly how you handled questions from the board. One suggestion: the slides were quite text-heavy — consider using more visuals next time to keep the audience engaged.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -331,20 +331,20 @@
   },
   {
     "id": "S31",
-    "claude_output": "I have reservations about moving to microservices right now. With only 4 people on the team, we don't have the capacity — microservices typically require 8-10 engineers to maintain properly. I'd recommend we stick with the monolith for another 6 months until we've scaled the team.",
+    "claude_output": "I have some reservations about moving to microservices right now. With only 4 people on the team, we don't have the capacity — microservices typically require 8-10 engineers to maintain properly. If I may be direct, I'd recommend we stick with the monolith for another 6 months until we've scaled the team.",
     "claude_score": {
       "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
       "conciseness": 1
     }
   },
   {
     "id": "S32",
-    "claude_output": "I respect your decision, but I think this approach carries significant risk. Last month's A/B test data shows the conversion rate dropped 12% under the new pricing model. I'd recommend we extend testing for another 2 weeks before committing to a full rollout.",
+    "claude_output": "I respect your decision, but I think this approach carries significant risk. Last month's A/B test data shows the conversion rate dropped 12% under the new pricing model. I'd suggest we test for another 2 weeks before committing to a full rollout.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -353,29 +353,29 @@
   },
   {
     "id": "S33",
-    "claude_output": "I agree with most of your points, but I'd like to flag one concern. Cutting the marketing budget by 30% will directly impact our Q2 pipeline. Last year's data shows every marketing dollar generated $4.20 in revenue — so this cut could have outsized consequences. Worth discussing before we finalize.",
+    "claude_output": "I mostly agree, but I'd like to flag one concern. Cutting the marketing budget by 30% will directly impact our Q2 pipeline. Based on last year's data, every marketing dollar generated $4.20 in revenue — so this cut could have outsized consequences. Worth discussing before we finalize.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
       "conciseness": 1
     }
   },
   {
     "id": "S34",
-    "claude_output": "I see a problem with this direction. Hiring 3 more people while revenue is unstable puts us at significant risk.",
+    "claude_output": "I'm hesitant about this direction. Hiring 3 more people while revenue isn't stable seems like a significant risk.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
       "conciseness": 2
     }
   },
   {
     "id": "S35",
-    "claude_output": "This strategy doesn't align with our committed Q1 OKRs. Key result #2 targets a 15% increase in retention, but this new feature is acquisition-focused. If we split resources, we risk missing both targets.",
+    "claude_output": "This strategy doesn't align with our committed Q1 OKRs. Key result #2 targets a 15% increase in retention, but this new feature is acquisition-focused. My concern is that if we split resources, we risk missing both targets.",
     "claude_score": {
       "cultural_accuracy": 2,
       "structural_completeness": 2,
@@ -386,13 +386,13 @@
   },
   {
     "id": "S36",
-    "claude_output": "I need to escalate this: our project has been blocked for 5 days because the Platform team hasn't delivered the API. I've reached out 3 times with no response. If this isn't resolved this week, we'll miss the February 28 customer delivery deadline. Could you intervene?",
+    "claude_output": "I don't want to escalate this unnecessarily, but our project has been blocked for 5 days because the Platform team hasn't delivered the API. I've reached out 3 times with no response. If this isn't resolved this week, we'll miss the February 28 customer delivery deadline. Could you help?",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
@@ -408,18 +408,18 @@
   },
   {
     "id": "S38",
-    "claude_output": "I need to flag a dependency issue. The Marketing team has missed two delivery dates for the advertising materials we need to launch our campaign. I've attempted to resolve this directly but haven't been able to move it forward. Could you step in to help unblock this?",
+    "claude_output": "I need to bring this to your attention. The Marketing team has missed two promised delivery dates for the advertising materials we need to launch our campaign. I've tried to resolve it on my own, but it's beyond what I can manage. Could you step in to help unblock this?",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
       "conciseness": 1
     }
   },
   {
     "id": "S39",
-    "claude_output": "I flagged this issue at the beginning of January and it still hasn't been addressed. The old server is failing approximately 3 times per week, impacting 200 internal users. I need approval for a $5,000 budget to upgrade the server.",
+    "claude_output": "I reported this issue at the beginning of January and it still hasn't been addressed. The old server is failing approximately 3 times per week, impacting 200 internal users. I need approval for a $5,000 budget to upgrade.",
     "claude_score": {
       "cultural_accuracy": 2,
       "structural_completeness": 2,
@@ -430,29 +430,29 @@
   },
   {
     "id": "S40",
-    "claude_output": "This needs urgent attention. ABC Company has filed two service quality complaints this month, and we risk losing the contract if we don't act soon. I'd recommend we prioritize this immediately.",
+    "claude_output": "I'm worried that if we don't address this soon, we could lose the client. ABC Company has already sent two complaint emails about service quality this month. I think we need to prioritize this immediately.",
     "claude_score": {
-      "cultural_accuracy": 2,
-      "structural_completeness": 2,
-      "tone_calibration": 2,
+      "cultural_accuracy": 1,
+      "structural_completeness": 1,
+      "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S41",
-    "claude_output": "I apologize for sending the incorrect report to Samsung this morning — that was entirely my mistake. I've already sent the corrected version and called the client to apologize directly. I'll be more careful with verification going forward.",
+    "claude_output": "I sincerely apologize for sending the incorrect report to Samsung this morning — that was entirely my fault. I've already sent the corrected version and called the client to apologize directly. I'll be more careful with verification going forward.",
     "claude_score": {
       "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S42",
-    "claude_output": "Apologies — the production bug was caused by me merging without running the full test suite. I've deployed a hotfix as of 3 PM. Root cause was a missing null check in the payment module. I'm adding a pre-merge checklist to prevent this going forward.",
+    "claude_output": "Apologies — the production bug was caused by me merging code without running the full test suite. I've deployed a hotfix as of 3 PM. Root cause was a missing null check in the payment module. I'm adding a pre-merge checklist to prevent this going forward.",
     "claude_score": {
       "cultural_accuracy": 2,
       "structural_completeness": 2,
@@ -463,21 +463,21 @@
   },
   {
     "id": "S43",
-    "claude_output": "I apologize for missing the deadline by 3 days — I underestimated the workload. The deliverable is now complete and I've sent it over. I'll improve my time estimation going forward to avoid this happening again.",
+    "claude_output": "I apologize for missing the deadline by 3 days — I underestimated the workload. I know I was wrong and it won't happen again. The deliverable is now complete and I've sent it over.",
     "claude_score": {
       "cultural_accuracy": 1,
       "structural_completeness": 2,
-      "tone_calibration": 2,
+      "tone_calibration": 1,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   },
   {
     "id": "S44",
     "claude_output": "Apologies for the data error — I accidentally copied from an outdated file. I've corrected it and double-checked the updated version.",
     "claude_score": {
-      "cultural_accuracy": 2,
-      "structural_completeness": 2,
+      "cultural_accuracy": 1,
+      "structural_completeness": 1,
       "tone_calibration": 2,
       "entity_preservation": 2,
       "conciseness": 2
@@ -507,9 +507,9 @@
   },
   {
     "id": "S47",
-    "claude_output": "Write a marketing email for CodeLens, an AI code review tool. Target audience: CTOs and VP of Engineering at SaaS companies. Tone: professional but engaging — not dry or corporate. Length: ~150 words. Focus on the value proposition for engineering leaders.",
+    "claude_output": "Write a marketing email for CodeLens, an AI code review tool. Target audience: CTOs and VP of Engineering at SaaS companies. Tone: professional but engaging — not dry or corporate. Length: approximately 150 words. Focus on the value proposition for engineering leaders.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -520,7 +520,7 @@
     "id": "S48",
     "claude_output": "Analyze the Q4 sales dataset:\n1. Compare revenue by region\n2. Identify the top 5 best-selling products\n3. Provide 3 key insights\n\nFormat the output as bullet points with numbers.",
     "claude_score": {
-      "cultural_accuracy": 2,
+      "cultural_accuracy": 1,
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
@@ -546,7 +546,7 @@
       "structural_completeness": 2,
       "tone_calibration": 2,
       "entity_preservation": 2,
-      "conciseness": 2
+      "conciseness": 1
     }
   }
 ]
