@@ -1,16 +1,33 @@
 /**
  * Vietnamese detection and language mix (Tech Spec 3.1).
  * Loma button appears only when containsVietnamese(text) is true.
+ *
+ * Improvements over v1:
+ * - Romanized Vietnamese detection (no diacritics): common bigrams
+ *   that are unambiguously Vietnamese even without diacritics.
  */
 const VI_CHARS = /[ăắằẳẵặâấầẩẫậđêếềểễệôốồổỗộơớờởỡợưứừửữự]/i;
 const VI_FUNCTION_WORDS = /\b(ơi|ạ|nhé|nha|đã|đang|sẽ|chưa|rồi|cái|của|cho|với|được|không|này|đó|thì|mà|là|và|hay|hoặc|nhưng|nếu|vì|để)\b/i;
 
+// Romanized Vietnamese bigrams — unambiguously Vietnamese even without diacritics
+const VI_ROMANIZED_BIGRAMS = /\b(anh oi|chi oi|em oi|xin chao|cam on|xin loi|duoc khong|chua duoc|khong duoc|nhu the|nhu vay|tai sao|the nao|lam sao|bao nhieu|thanh toan|hoa don|bao cao|de xuat|dong y|gioi thieu|hop tac|phan tich|danh gia|xin phep|gui anh|gui chi|nho anh|nho chi|vang a|cam on anh|cam on chi|mong anh|mong chi)\b/i;
+
+// Single romanized words — need ≥3 to trigger (avoid false positives)
+const VI_ROMANIZED_WORDS = /\b(khong|chua|duoc|nhung|hoac|vay|gui|xin|moi)\b/gi;
+
 function containsVietnamese(text) {
   if (!text || text.length < 10) return false;
+  // Check 1: Vietnamese diacritics
   const viCharMatches = (text.match(VI_CHARS) || []).length;
   if (viCharMatches >= 3) return true;
+  // Check 2: Vietnamese function words with diacritics
   const viWordMatches = (text.match(new RegExp(VI_FUNCTION_WORDS.source, 'gi')) || []).length;
   if (viWordMatches >= 2) return true;
+  // Check 3: Romanized Vietnamese bigrams (no diacritics)
+  if (VI_ROMANIZED_BIGRAMS.test(text)) return true;
+  // Check 4: Multiple romanized single words
+  const romanizedMatches = (text.match(VI_ROMANIZED_WORDS) || []).length;
+  if (romanizedMatches >= 3) return true;
   return false;
 }
 

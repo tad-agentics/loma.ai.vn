@@ -28,6 +28,14 @@ def handler(event: dict, context: object) -> dict:
     if path.endswith("/events"):
         return _handle_event(event)
 
+    # User edit tracking (post-accept correction capture)
+    if path.endswith("/user-edit"):
+        return _handle_user_edit(event)
+
+    # Acceptance rates (analytics dashboard)
+    if path.endswith("/stats/acceptance"):
+        return _handle_acceptance_rates(event)
+
     # Rewrite endpoint (default)
     return _handle_rewrite(event)
 
@@ -131,6 +139,41 @@ def _handle_event(event: dict) -> dict:
     if event_name:
         analytics.track(event_name, user_id=user_id, properties=event_data)
     return _json_response(200, {"ok": True})
+
+
+def _handle_user_edit(event: dict) -> dict:
+    """Handle POST /api/v1/user-edit — capture post-accept text edits."""
+    try:
+        body = event.get("body") or "{}"
+        if isinstance(body, str):
+            body = json.loads(body)
+    except json.JSONDecodeError:
+        return _json_response(400, {"error": "invalid_json"})
+
+    headers = event.get("headers") or {}
+    token = auth.get_bearer_token(headers)
+    user_id = auth.extract_user_id(token)
+
+    analytics.track_user_edit(
+        user_id=user_id,
+        rewrite_id=body.get("rewrite_id", ""),
+        original_output=body.get("original_output", ""),
+        edited_output=body.get("edited_output", ""),
+        detected_intent=body.get("detected_intent", ""),
+        platform=body.get("platform"),
+    )
+    return _json_response(200, {"ok": True})
+
+
+def _handle_acceptance_rates(event: dict) -> dict:
+    """Handle GET /api/v1/stats/acceptance — return acceptance rate metrics."""
+    rates = analytics.compute_acceptance_rates()
+    if rates is None:
+        return _json_response(200, {
+            "ok": False,
+            "message": "Database not configured — acceptance rates unavailable.",
+        })
+    return _json_response(200, {"ok": True, **rates})
 
 
 def _json_response(status: int, body: dict) -> dict:

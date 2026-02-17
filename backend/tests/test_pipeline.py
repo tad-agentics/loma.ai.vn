@@ -57,6 +57,17 @@ class TestRunRewrite:
         scores = result.get("scores", {})
         assert "length_reduction_pct" in scores
 
+    def test_entity_scores_present(self):
+        result = run_rewrite("Anh ơi, invoice $5,000 quá hạn từ Nguyễn Văn Đức")
+        scores = result.get("scores", {})
+        assert "entity_preserved_pct" in scores
+        assert "entity_missing" in scores
+
+    def test_risk_flags_present(self):
+        result = run_rewrite("Anh ơi, em nhờ anh review giúp cái PR #347")
+        assert "risk_flags" in result
+        assert isinstance(result["risk_flags"], list)
+
 
 class TestRunRewriteAuth:
     """Test that pipeline still works without auth (backward compatible)."""
