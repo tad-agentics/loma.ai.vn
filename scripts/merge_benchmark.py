@@ -42,8 +42,14 @@ def main():
             print(f"  ERROR: {path} has invalid JSON: {e}")
             sys.exit(1)
 
-    # Track overall results
+    # Track overall results (5-way)
     win_counts = {"loma": 0, "chatgpt": 0, "gemini": 0, "claude": 0, "copilot": 0, "tie": 0}
+
+    # Track head-to-head results (Loma vs each)
+    h2h = {
+        comp: {"loma_wins": 0, "opponent_wins": 0, "ties": 0}
+        for comp in ["chatgpt", "gemini", "claude", "copilot"]
+    }
 
     # Merge into each scenario
     for scenario in data["scenarios"]:
@@ -63,7 +69,7 @@ def main():
             if score_key in scenario and scenario[score_key]:
                 scores[comp] = weighted_score(scenario[score_key])
 
-        # Determine winner (highest weighted score)
+        # Determine 5-way winner (highest weighted score)
         if scores:
             max_score = max(scores.values())
             winners = [comp for comp, s in scores.items() if s == max_score]
@@ -72,18 +78,26 @@ def main():
                 scenario["winner"] = winners[0]
                 win_counts[winners[0]] += 1
             else:
-                # Tie between multiple competitors
-                if "loma" in winners:
-                    # If loma is tied, it's a tie (don't give loma the edge)
-                    scenario["winner"] = "tie"
-                    win_counts["tie"] += 1
-                else:
-                    # Tie among non-loma competitors - still give to first alphabetically
-                    scenario["winner"] = "tie"
-                    win_counts["tie"] += 1
+                scenario["winner"] = "tie"
+                win_counts["tie"] += 1
 
             # Add rankings with scores
             scenario["rankings"] = dict(sorted(scores.items(), key=lambda x: -x[1]))
+
+        # Head-to-head: Loma vs each competitor
+        loma_score = scores.get("loma", 0)
+        scenario["head_to_head"] = {}
+        for comp in ["chatgpt", "gemini", "claude", "copilot"]:
+            comp_score = scores.get(comp, 0)
+            if loma_score > comp_score:
+                scenario["head_to_head"][comp] = "loma_wins"
+                h2h[comp]["loma_wins"] += 1
+            elif comp_score > loma_score:
+                scenario["head_to_head"][comp] = f"{comp}_wins"
+                h2h[comp]["opponent_wins"] += 1
+            else:
+                scenario["head_to_head"][comp] = "tie"
+                h2h[comp]["ties"] += 1
 
     # Update meta
     data["meta"]["purpose"] = "5-way benchmark: Loma vs ChatGPT vs Gemini vs Claude vs Copilot across 50 Vietnamese business communication scenarios."
@@ -110,6 +124,14 @@ def main():
         }
     }
     data["meta"]["overall_results"] = win_counts
+    data["meta"]["head_to_head"] = {
+        comp: {
+            "loma_wins": h2h[comp]["loma_wins"],
+            f"{comp}_wins": h2h[comp]["opponent_wins"],
+            "ties": h2h[comp]["ties"]
+        }
+        for comp in ["chatgpt", "gemini", "claude", "copilot"]
+    }
 
     # Remove old single-competitor fields from meta
     if "chatgpt_prompt" in data["meta"]:
@@ -131,6 +153,13 @@ def main():
     print(f"  Ties:         {win_counts['tie']}")
     print(f"\n  Total: {sum(win_counts.values())} scenarios")
     print(f"\n  Loma win rate: {win_counts['loma']}/{sum(win_counts.values())} = {win_counts['loma']/sum(win_counts.values())*100:.1f}%")
+
+    # Print head-to-head results
+    print("\n=== Head-to-Head: Loma vs Each ===")
+    for comp in ["chatgpt", "gemini", "claude", "copilot"]:
+        r = h2h[comp]
+        total = r["loma_wins"] + r["opponent_wins"] + r["ties"]
+        print(f"  vs {comp:10s}: Loma {r['loma_wins']}W / {r['ties']}T / {r['opponent_wins']}L  (win rate {r['loma_wins']/total*100:.0f}%)")
 
     # Print per-competitor average scores
     comp_totals = {c: [] for c in ["loma", "chatgpt", "gemini", "claude", "copilot"]}
