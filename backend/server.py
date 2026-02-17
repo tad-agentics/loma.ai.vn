@@ -82,7 +82,7 @@ def handle_500(e):
 def main() -> None:
     port = cfg.API_PORT
     logger.info("Loma API: http://127.0.0.1:%d  [env=%s]", port, cfg.ENV)
-    app.run(host="127.0.0.1", port=port, debug=(cfg.ENV == "development"))
+    app.run(host="0.0.0.0", port=port, debug=(cfg.ENV == "development"))
 
 
 if __name__ == "__main__":
