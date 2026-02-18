@@ -85,5 +85,6 @@
   "ftux_exit_q": {"message": "Điều gì khiến bạn dừng lại?"},
   "ftux_exit_browsing": {"message": "Chỉ xem thử"},
   "ftux_exit_notneed": {"message": "Không phải thứ tôi cần"},
-  "ftux_exit_later": {"message": "Để sau"}
+  "ftux_exit_later": {"message": "Để sau"},
+  "refine_placeholder": {"message": "Yêu cầu thay đổi..."}
 }
