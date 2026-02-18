@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Loma Extension — Local Test</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; background: #f3f4f6; color: #1f2937; }
+    .toolbar { background: #111827; color: #f9fafb; padding: 12px 20px; font-size: 13px; display: flex; align-items: center; gap: 12px; }
+    .toolbar b { color: #5eead4; font-size: 15px; }
+    .toolbar span { color: #9ca3af; }
+    .container { max-width: 720px; margin: 40px auto; padding: 0 20px; }
+    h2 { font-size: 16px; margin: 24px 0 8px; color: #374151; }
+    p.hint { font-size: 13px; color: #6b7280; margin: 0 0 8px; }
+    textarea { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; line-height: 1.6; resize: vertical; font-family: inherit; }
+    textarea:focus { outline: none; border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+    .ce-field {
+      width: 100%; min-height: 120px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px;
+      font-size: 14px; line-height: 1.6; font-family: inherit; background: #fff;
+    }
+    .ce-field:focus { outline: none; border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+    .log { margin-top: 32px; background: #1e1e1e; color: #d4d4d4; border-radius: 8px; padding: 16px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 12px; line-height: 1.7; max-height: 220px; overflow-y: auto; }
+    .log .info { color: #4fc1ff; }
+    .log .warn { color: #ffd700; }
+    .log .error { color: #f44747; }
+    .log .ok { color: #89d185; }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <b>Loma</b>
+  <span>Local Test Page — open this file directly in Chrome (no extension install needed)</span>
+</div>
+
+<div class="container">
+  <h2>1. Textarea (pre-filled Vietnamese)</h2>
+  <p class="hint">The green "L" button should appear at the bottom-right corner.</p>
+  <textarea id="ta" rows="4">Xin chào tôi tên là Trịnh Anh Đức, tôi muốn hỏi về việc thanh toán hóa đơn tháng này.</textarea>
+
+  <h2>2. ContentEditable (simulates Gmail compose)</h2>
+  <p class="hint">Same button should appear here too.</p>
+  <div class="ce-field" contenteditable="true" id="ce">Anh ơi cho em hỏi về dự án mới, em cần gửi báo cáo trước thứ sáu.</div>
+
+  <h2>3. Empty field (no button expected)</h2>
+  <textarea id="empty" rows="3" placeholder="Type Vietnamese here to see the button appear..."></textarea>
+
+  <div class="log" id="log"></div>
+</div>
+
+<script>
+// ── Chrome API mocks ──────────────────────────────────────────────
+const VI_MESSAGES = {
+  aria_button: 'Viết lại với Loma', aria_card: 'Kết quả viết lại',
+  btn_use: '✓ Dùng', btn_copy: '📋 Sao chép', btn_tone: '↻ Đổi giọng',
+  show_original: 'Xem bản gốc', hide_original: 'Ẩn bản gốc',
+  loading_generic: 'Đang viết lại...', loading_payment: 'Đang viết nhắc thanh toán...',
+  loading_followup: 'Đang viết theo dõi chuyên nghiệp...', loading_decline: 'Đang soạn từ chối lịch sự...',
+  error_failed: 'Có lỗi xảy ra.', error_offline: 'Không có kết nối mạng.',
+  copied_toast: 'Đã sao chép!', undo_toast: '✓ Đã thay văn bản', undo_btn: 'Hoàn tác',
+  tone_direct: 'Trực tiếp', tone_softer: 'Nhẹ nhàng', tone_formal: 'Trang trọng', tone_shorter: 'Ngắn gọn',
+  intent_payment: '💰 Nhắc thanh toán', intent_followup: '🔄 Theo dõi', intent_decline: '🚫 Từ chối',
+  intent_request: '📋 Yêu cầu', intent_other: 'Khác...', intent_feedback: '💬 Góp ý',
+  refine_placeholder: 'Yêu cầu thay đổi...',
+  quality_shorter: 'Ngắn hơn $1%',
+};
+
+window.chrome = {
+  i18n: {
+    getMessage(key, subs) {
+      let msg = VI_MESSAGES[key] || '';
+      if (subs && Array.isArray(subs)) subs.forEach((s, i) => { msg = msg.replace('$' + (i+1), s); });
+      return msg;
+    }
+  },
+  runtime: {
+    sendMessage(msg, cb) {
+      log('info', 'chrome.runtime.sendMessage → ' + msg.type);
+      if (msg.type === 'GET_SITE_ENABLED') setTimeout(() => cb && cb({ enabled: true }), 10);
+      else if (msg.type === 'GET_API_BASE') setTimeout(() => cb && cb({ apiBase: 'https://api.loma.app' }), 10);
+      else if (msg.type === 'GET_AUTH') setTimeout(() => cb && cb({ token: 'test-token-mock' }), 10);
+      else if (msg.type === 'INCREMENT_REWRITES') setTimeout(() => cb && cb({}), 10);
+      else if (msg.type === 'TRACK_EVENT') { /* silent */ }
+      else setTimeout(() => cb && cb({}), 10);
+    },
+    onMessage: { addListener() {} },
+    lastError: null,
+  },
+  storage: {
+    local: {
+      get(keys, cb) { cb({}); },
+      set(obj) {},
+    }
+  }
+};
+
+// ── Console logger ────────────────────────────────────────────────
+const logEl = document.getElementById('log');
+function log(level, msg) {
+  const line = document.createElement('div');
+  line.className = level;
+  const ts = new Date().toLocaleTimeString('en', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  line.textContent = ts + '  ' + msg;
+  logEl.appendChild(line);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+// Intercept fetch to simulate API response
+const _fetch = window.fetch;
+window.fetch = function(url, opts) {
+  if (typeof url === 'string' && url.includes('/api/v1/rewrite')) {
+    log('info', 'POST /api/v1/rewrite (mocked)');
+    const body = JSON.parse(opts.body);
+    const input = body.input_text || '';
+    log('info', '  input: "' + input.substring(0, 60) + '..."');
+    // Simulate a rewrite response after 800ms
+    return new Promise(resolve => setTimeout(() => {
+      resolve({
+        status: 200,
+        json: () => Promise.resolve({
+          output_text: 'Hello, my name is Trinh Anh Duc. I would like to inquire about this month\'s invoice payment.',
+          original_text: input,
+          detected_intent: 'ask_payment',
+          output_language: 'en',
+          routing_tier: 'standard',
+          intent_confidence: 0.92,
+          scores: { length_reduction_pct: 15 },
+        })
+      });
+    }, 800));
+  }
+  return _fetch(url, opts);
+};
+
+log('ok', 'Chrome APIs mocked');
+</script>
+
+<!-- Load content scripts in manifest order -->
+<script src="content/detection.js"></script>
+<script>log('ok', 'detection.js loaded — containsVietnamese: ' + (typeof containsVietnamese === 'function'));</script>
+<script src="content/text-isolation.js"></script>
+<script>log('ok', 'text-isolation.js loaded');</script>
+<script src="content/loma-button.js"></script>
+<script>log(customElements.get('loma-button') ? 'ok' : 'error', 'loma-button.js loaded — registered: ' + !!customElements.get('loma-button'));</script>
+<script src="content/result-card.js"></script>
+<script>log('ok', 'result-card.js loaded — getLomaResultCard: ' + (typeof getLomaResultCard === 'function'));</script>
+<script src="content/content.js"></script>
+<script>log('ok', 'content.js loaded — scan running');</script>
+
+</body>
+</html>
