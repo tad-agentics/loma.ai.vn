@@ -6,11 +6,13 @@
 (function () {
   const DEBOUNCE_MS = 300;
   const UNDO_TTL_MS = 5000;
+  const FALLBACK_SCAN_MS = 3000;
   let debounceTimer = null;
   let undoState = null;
   let undoTimer = null;
   const buttons = new WeakMap();
   let lastFocusedField = null;
+  let siteEnabled = true; // cached; assume enabled until background says otherwise
 
   // Track last focused text field for keyboard shortcut
   document.addEventListener('focusin', (e) => {
@@ -260,28 +262,42 @@
     doRewrite(field, text, null);
   }
 
-  function scan() {
+  /**
+   * Refresh cached site-enabled flag from background. Non-blocking — scan()
+   * uses the cached value so it never stalls when the MV3 service worker is
+   * inactive. Also removes Loma buttons immediately when disabled.
+   */
+  function refreshSiteEnabled() {
     const host = window.location.hostname || '';
-    chrome.runtime.sendMessage({ type: 'GET_SITE_ENABLED', host }, (res) => {
-      if (res && res.enabled === false) {
-        document.querySelectorAll('loma-button').forEach((el) => el.remove());
-        return;
-      }
-      const textareas = document.querySelectorAll('textarea');
-      const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
-      const fields = [...textareas, ...inputs];
-      // Platforms that use contenteditable compose fields
-      const platform = typeof getPlatform === 'function' ? getPlatform() : 'generic';
-      if (['gmail', 'outlook', 'teams', 'google_docs', 'notion', 'jira', 'slack'].indexOf(platform) !== -1) {
-        // Use broad selector — Gmail may use contenteditable="" or "plaintext-only",
-        // not just "true". Filter with isContentEditable to catch all variants.
-        const contenteditables = document.querySelectorAll('[contenteditable]:not([contenteditable="false"]), [role="textbox"]');
-        contenteditables.forEach((el) => {
-          if (el.isContentEditable && el.offsetHeight >= 38 && el.offsetParent !== null) fields.push(el);
-        });
-      }
-      fields.forEach((el) => showOrHideButton(el));
-    });
+    try {
+      chrome.runtime.sendMessage({ type: 'GET_SITE_ENABLED', host }, (res) => {
+        if (chrome.runtime.lastError) return;
+        const enabled = !(res && res.enabled === false);
+        if (!enabled && siteEnabled) {
+          // Transition to disabled — remove all buttons
+          document.querySelectorAll('loma-button').forEach((el) => el.remove());
+        }
+        siteEnabled = enabled;
+      });
+    } catch (_) { /* service worker unreachable — keep cached value */ }
+  }
+
+  function scan() {
+    if (!siteEnabled) return;
+    const textareas = document.querySelectorAll('textarea');
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
+    const fields = [...textareas, ...inputs];
+    // Platforms that use contenteditable compose fields
+    const platform = typeof getPlatform === 'function' ? getPlatform() : 'generic';
+    if (['gmail', 'outlook', 'teams', 'google_docs', 'notion', 'jira', 'slack'].indexOf(platform) !== -1) {
+      // Use broad selector — Gmail may use contenteditable="" or "plaintext-only",
+      // not just "true". Filter with isContentEditable to catch all variants.
+      const contenteditables = document.querySelectorAll('[contenteditable]:not([contenteditable="false"]), [role="textbox"]');
+      contenteditables.forEach((el) => {
+        if (el.isContentEditable && el.offsetHeight >= 38 && el.offsetParent !== null) fields.push(el);
+      });
+    }
+    fields.forEach((el) => showOrHideButton(el));
   }
 
   function debouncedScan() {
@@ -291,12 +307,18 @@
 
   document.addEventListener('input', debouncedScan);
   document.addEventListener('change', debouncedScan);
+  document.addEventListener('keyup', debouncedScan);
   // Gmail (and similar SPAs) create compose fields dynamically — rescan on focus
   document.addEventListener('focusin', debouncedScan);
 
-  // Observe DOM for dynamically-added compose fields (Gmail, Outlook, etc.)
+  // Observe DOM for dynamically-added compose fields AND attribute changes
+  // (Gmail may add a div first, then set contenteditable later).
   const mo = new MutationObserver((mutations) => {
     for (const m of mutations) {
+      if (m.type === 'attributes') {
+        debouncedScan();
+        return;
+      }
       for (const node of m.addedNodes) {
         if (node.nodeType === 1 &&
             (node.isContentEditable ||
@@ -307,7 +329,24 @@
       }
     }
   });
-  mo.observe(document.body || document.documentElement, { childList: true, subtree: true });
+  mo.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['contenteditable', 'role'],
+  });
+
+  // Refresh site-enabled cache & run initial scan
+  refreshSiteEnabled();
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshSiteEnabled();
+  });
+
+  // Periodic fallback scan — catches cases where events are missed
+  // (e.g. paste via context menu, autofill, drag-and-drop)
+  setInterval(() => {
+    if (!document.hidden) scan();
+  }, FALLBACK_SCAN_MS);
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', scan);
