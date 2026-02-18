@@ -108,6 +108,7 @@
     let btn = buttons.get(field);
     if (shouldShow && !btn) {
       btn = document.createElement('loma-button');
+      if (typeof btn.setField !== 'function') return; // custom element not registered
       btn.setField(field);
       if (typeof detectGrammarly === 'function' && detectGrammarly(field)) btn.setGrammarlyOffset(true);
       btn.addEventListener('loma-rewrite', () => onRewrite(field, getFieldText(field)));
