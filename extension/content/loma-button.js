@@ -118,5 +118,7 @@
       if (this._btn) this._btn.classList.toggle('loading', !!loading);
     }
   }
-  customElements.define('loma-button', LomaButton);
+  if (typeof customElements !== 'undefined' && !customElements.get('loma-button')) {
+    customElements.define('loma-button', LomaButton);
+  }
 })();
