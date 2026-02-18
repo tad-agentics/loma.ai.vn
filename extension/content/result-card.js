@@ -492,21 +492,19 @@
       refineInput.value = '';
 
       function sendRefinement() {
-        const instruction = refineInput.value.trim();
+        const curInput = root.getElementById('refine-input');
+        const instruction = curInput ? curInput.value.trim() : '';
         if (!instruction) return;
-        refineInput.value = '';
+        if (curInput) curInput.value = '';
         if (typeof callbacks.onRefine === 'function') callbacks.onRefine(instruction);
       }
-      // Remove old listeners by cloning
+      // Remove old listeners by cloning and update persistent refs
       const newSend = btnSend.cloneNode(true);
       btnSend.replaceWith(newSend);
       newSend.addEventListener('click', sendRefinement);
       const newInput = refineInput.cloneNode(true);
       refineInput.replaceWith(newInput);
       newInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendRefinement(); } });
-      // Update refs after clone
-      root.getElementById('refine-input');
-      root.getElementById('btn-send');
 
       addEscapeListener();
     }

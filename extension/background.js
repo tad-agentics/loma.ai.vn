@@ -190,6 +190,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         method: 'POST',
         headers,
         body: JSON.stringify({ event_name: msg.eventName, event_data: msg.eventData || {} }),
+        keepalive: true,
       }).catch(() => {});
     });
     sendResponse({ ok: true });
