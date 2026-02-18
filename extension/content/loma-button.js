@@ -1,19 +1,19 @@
 /**
  * <loma-button> — Shadow DOM custom element (UX Spec 3.1).
  * Shown when Vietnamese is detected in the field. On click: send text to API, show result card.
+ *
+ * Positioned with position:fixed on document.body so it is never clipped by
+ * Gmail/Outlook overflow:hidden containers. Call reposition() or let the
+ * built-in listeners keep it anchored to the bottom-right of its field.
  */
 (function () {
   const template = document.createElement('template');
   template.innerHTML = `
     <style>
       :host {
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
+        position: fixed;
         z-index: 2147483646;
-      }
-      :host([grammarly-offset]) {
-        right: 52px;
+        pointer-events: auto;
       }
       button {
         width: 36px;
@@ -52,20 +52,53 @@
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       this._btn = this.shadowRoot.querySelector('button');
       this._field = null;
+      this._grammarlyOffset = false;
       this._onClick = this._onClick.bind(this);
+      this._reposition = this.reposition.bind(this);
+      this._rafId = null;
     }
 
     connectedCallback() {
       this._btn.setAttribute('aria-label', chrome.i18n.getMessage('aria_button') || 'Rewrite with Loma');
       this._btn.addEventListener('click', this._onClick);
+      window.addEventListener('scroll', this._reposition, true);
+      window.addEventListener('resize', this._reposition);
+      this.reposition();
     }
 
     disconnectedCallback() {
       this._btn.removeEventListener('click', this._onClick);
+      window.removeEventListener('scroll', this._reposition, true);
+      window.removeEventListener('resize', this._reposition);
+      if (this._rafId) cancelAnimationFrame(this._rafId);
     }
 
     setField(el) {
       this._field = el;
+      this.reposition();
+    }
+
+    /** Re-anchor to the bottom-right corner of the associated field. */
+    reposition() {
+      if (this._rafId) cancelAnimationFrame(this._rafId);
+      this._rafId = requestAnimationFrame(() => {
+        if (!this._field) return;
+        const rect = this._field.getBoundingClientRect();
+        if (rect.width === 0 && rect.height === 0) {
+          // Field is hidden — hide ourselves too
+          this.style.display = 'none';
+          return;
+        }
+        this.style.display = '';
+        const rightOffset = this._grammarlyOffset ? 52 : 8;
+        this.style.top = (rect.bottom - 8 - 36) + 'px';   // 8px from bottom, 36px button height
+        this.style.left = (rect.right - rightOffset - 36) + 'px';
+      });
+    }
+
+    setGrammarlyOffset(offset) {
+      this._grammarlyOffset = !!offset;
+      this.reposition();
     }
 
     _getText() {
@@ -77,7 +110,7 @@
 
     _onClick() {
       const text = this._getText();
-      if (!text || text.length < 10) return;
+      if (!text || text.length < 5) return;
       this.dispatchEvent(new CustomEvent('loma-rewrite', { detail: { text }, bubbles: true }));
     }
 
