@@ -122,7 +122,7 @@
     }
   }
 
-  function doRewrite(field, text, intentOverride, toneOverride, outputLanguageOverride) {
+  function doRewrite(field, text, intentOverride, toneOverride, outputLanguageOverride, refinementInstruction) {
     const card = typeof getLomaResultCard === 'function' ? getLomaResultCard() : null;
     const lomaBtn = buttons.get(field);
     if (lomaBtn && lomaBtn.setLoading) lomaBtn.setLoading(true);
@@ -147,6 +147,7 @@
         output_language: outputLanguage || 'en',
       };
       if (intentOverride) payload.intent = intentOverride;
+      if (refinementInstruction) payload.refinement_instruction = refinementInstruction;
 
       const headers = { 'Content-Type': 'application/json' };
       if (authToken) headers['Authorization'] = 'Bearer ' + authToken;
@@ -222,7 +223,7 @@
                   },
                   onRefine: (instruction) => {
                     trackEvent('loma_refine', { instruction_length: instruction.length });
-                    doRewrite(field, text, intentOverride, toneOverride, outputLanguageOverride);
+                    doRewrite(field, text, intentOverride, toneOverride, outputLanguageOverride, instruction);
                   },
                 }
               );
