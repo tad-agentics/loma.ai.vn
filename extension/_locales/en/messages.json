@@ -85,5 +85,6 @@
   "ftux_exit_q": {"message": "What stopped you?"},
   "ftux_exit_browsing": {"message": "Just browsing"},
   "ftux_exit_notneed": {"message": "Not what I need"},
-  "ftux_exit_later": {"message": "I'll try later"}
+  "ftux_exit_later": {"message": "I'll try later"},
+  "refine_placeholder": {"message": "Ask for a change..."}
 }

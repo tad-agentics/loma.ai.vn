@@ -125,7 +125,10 @@
     const card = typeof getLomaResultCard === 'function' ? getLomaResultCard() : null;
     const lomaBtn = buttons.get(field);
     if (lomaBtn && lomaBtn.setLoading) lomaBtn.setLoading(true);
-    if (card) card.showLoading(intentOverride || null);
+    if (card) {
+      card.setAnchorField(field);
+      card.showLoading(intentOverride || null, field);
+    }
 
     function clearLoading() {
       if (lomaBtn && lomaBtn.setLoading) lomaBtn.setLoading(false);
@@ -215,6 +218,10 @@
                   onIntentPick: (intent) => {
                     trackEvent('loma_intent_pick', { intent });
                     doRewrite(field, text, intent);
+                  },
+                  onRefine: (instruction) => {
+                    trackEvent('loma_refine', { instruction_length: instruction.length });
+                    doRewrite(field, text, intentOverride, toneOverride, outputLanguageOverride);
                   },
                 }
               );
